@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Hexo</title>
+  <title>Reverse-python | Hexo</title>
 
   
 
@@ -102,23 +102,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">Reverse-python</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-21T13:54:24.969Z" itemprop="datePublished">2024-01-21</time>
+            <time  class="article-date" datetime="2024-03-13T16:10:13.000Z" itemprop="datePublished">2024-03-14</time>
           </h2>
-          
-            <h2 class="last-time">
-              <span>最后更新于</span>
-              <time  class="article-updated" datetime="1985-10-26T08:15:00.000Z" itemprop="dateUpdated">1985-10-26</time>
-            </h2>
           
           
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
   
 </ul>
         </div>
@@ -142,19 +139,42 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="python逆向"><a href="#python逆向" class="headerlink" title="python逆向"></a>python逆向</h1><p><strong>题目：xctf bad_python</strong></p>
+<p>题目zip中是一个pyc文件</p>
+<p><img src="/imgs/Reverse-python/1.png" alt="1"></p>
+<h3 id="1、pyc反编译py"><a href="#1、pyc反编译py" class="headerlink" title="1、pyc反编译py"></a>1、pyc反编译py</h3><h5 id="pyc文件反编译为py文件的工具："><a href="#pyc文件反编译为py文件的工具：" class="headerlink" title="pyc文件反编译为py文件的工具："></a>pyc文件反编译为py文件的工具：</h5><p>1、uncompyle6</p>
+<p>2、pycdc</p>
+<h5 id="uncompyle6"><a href="#uncompyle6" class="headerlink" title="uncompyle6"></a>uncompyle6</h5><p>这个工具在python3.8及一下的版本才能使用。<br>注意使用时<strong>python版本</strong>切换到<strong>3.8</strong></p>
+<h6 id="反编译指令"><a href="#反编译指令" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/imgs/Reverse-python/2.png"></p>
+<p>执行该指令后即可生成py文件</p>
+<h5 id="pycdc"><a href="#pycdc" class="headerlink" title="pycdc"></a>pycdc</h5><p>我将pycdc安装在了kali里面，将pyc文件拖入Linux的桌面处，打开终端执行反编译指令</p>
+<h6 id="反编译指令-1"><a href="#反编译指令-1" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/imgs/Reverse-python/3.png"></p>
+<p>注意在root下的pycdc终端中执行反编译指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pycdc /home/anjio/Desktop/文件名</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="2、修改文件头"><a href="#2、修改文件头" class="headerlink" title="2、修改文件头"></a>2、修改文件头</h3><p><strong>出现magic表示这个pyc文件头是坏的</strong></p>
+<p>用010editor打开pyc文件查看文件头</p>
+<p><img src="/imgs/Reverse-python/4.png" alt="4"></p>
+<p>黄色标记这部分就是pyc文件的文件头</p>
+<h5 id="文件头包含的信息包括："><a href="#文件头包含的信息包括：" class="headerlink" title="文件头包含的信息包括："></a><strong>文件头包含的信息包括：</strong></h5><p>前四个字节——版本信息，比如python的3.6,3.8等</p>
+<p>中间8个字节——不用管，修改时间而已，对我们来说没用</p>
+<p>后面四个字节——包含大小信息和校验码</p>
+<p>一般这种错误就是因为这个文件的文件头信息被修改了，我们需要去修复，也就是将文件头修复正确中间我们最重要的一步就是找到他是什么版本的pyc文件，不同版本的文件头不同。</p>
+<h5 id="寻找文件头的方法："><a href="#寻找文件头的方法：" class="headerlink" title="寻找文件头的方法："></a>寻找文件头的方法：</h5><p>1、查看题目名字</p>
+<p><img src="/imgs/Reverse-python/1.png" alt="1"></p>
+<p>由pyc文件名可知这是python3.6版本的pyc文件</p>
+<p>2、查看文件头</p>
+<p><img src="/imgs/Reverse-python/5.png" alt="5"></p>
+<p>33 0D 就是python3.6版本的文件名开头</p>
+<h5 id="找正确的-pyc文件头方法"><a href="#找正确的-pyc文件头方法" class="headerlink" title="找正确的.pyc文件头方法"></a>找正确的.pyc文件头方法</h5><p>知道.pyc对应的正确的python版本之后，修改.pyc文件头</p>
+<p>1、搜百度，查找相应版本的python的.pyc文件头是怎样的</p>
+<p>2、用相对应的python版本写一个.pyc文件，放到010 editor里面去看</p>
+<h5 id="python3-6对应的正确的-pyc文件头"><a href="#python3-6对应的正确的-pyc文件头" class="headerlink" title="python3.6对应的正确的.pyc文件头"></a>python3.6对应的正确的.pyc文件头</h5><p>红色部分为修改的内容</p>
+<p><img src="/imgs/Reverse-python/6.png" alt="6"></p>
+<p>将修改后的.pyc文件保存到桌面</p>
+<p>再次运行uncompyle6，即可生成py文件</p>
+<p><img src="/imgs/Reverse-python/7.png"></p>
+<p>python文件中出现代码，进行解题即可<strong>（bad_python的py代码暂时看不懂，之后再解）</strong></p>
 
       </section>
 
@@ -162,20 +182,20 @@
       
         <nav class="article-nav">
           
+          
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/01/21/hexo-github%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo-github的搭建</h2>
+        <a href="/2024/03/11/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-花指令</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       

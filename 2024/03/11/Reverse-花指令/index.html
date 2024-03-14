@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Hexo</title>
+  <title>Reverse-花指令 | Hexo</title>
 
   
 
@@ -102,23 +102,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">Reverse-花指令</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-21T13:54:24.969Z" itemprop="datePublished">2024-01-21</time>
+            <time  class="article-date" datetime="2024-03-11T15:03:39.000Z" itemprop="datePublished">2024-03-11</time>
           </h2>
-          
-            <h2 class="last-time">
-              <span>最后更新于</span>
-              <time  class="article-updated" datetime="1985-10-26T08:15:00.000Z" itemprop="dateUpdated">1985-10-26</time>
-            </h2>
           
           
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
   
 </ul>
         </div>
@@ -142,19 +139,27 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h3 id="花指令"><a href="#花指令" class="headerlink" title="花指令"></a>花指令</h3><p>花指令就是在正常的代码流程之中，通过内联汇编或者插入机器码的方式去干扰指令执行的顺序，从而影响反汇编引擎的工作来导致反汇编工具没有办法很好的识别出正确的代码</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A41.png"></p>
+<h3 id="去除花指令常规步骤"><a href="#去除花指令常规步骤" class="headerlink" title="去除花指令常规步骤"></a>去除花指令常规步骤</h3><p>1、jnz&#x2F;jz是条件跳转指令（jz表示如果是0就跳转，jnz表示如果不是0就跳转）<br>2、loc_+1就是跳过一个字节的指令去执行下面的内容</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A42.png"></p>
+<p>loc_后面应该是data，由于花指令执行错误，所以应该将call一行转为data</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A43.png"></p>
+<p>点击call，并且按D键转为data</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A44.png"></p>
+<p>将转入data那一行数据的后面数据进行数据分析，选中数据并右键选择Analyze selected area</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A45.png"></p>
+<p>这两条就是垃圾指令</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A46.png"></p>
+<p>将0E8hpatch掉，nop为90（90表示没用的不要的东西）</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A47.png"></p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A48.png"></p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A49.png"></p>
+<p>将90h分析出来就是nop，这样整个函数就连在了一起</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A410.png"></p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A411.png"></p>
+<p>选中红色部分，按P转化成函数，再F5进行反编译得到main函数</p>
+<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A412.png"></p>
 
       </section>
 
@@ -167,8 +172,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/01/21/hexo-github%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo-github的搭建</h2>
+        <a href="/2024/03/14/Reverse-python/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-python</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -176,6 +181,20 @@
   </article>
 </div>
           
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/03/05/Reverse-apk/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-apk</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
         </nav>
       
