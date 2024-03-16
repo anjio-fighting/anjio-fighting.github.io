@@ -22,7 +22,7 @@
 
   
 
-  <title>Reverse-花指令 | Hexo</title>
+  <title>Reverse-function | Hexo</title>
 
   
 
@@ -102,11 +102,11 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Reverse-花指令</h1>
+          <h1 class="title-wrap">Reverse-function</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-03-11T15:03:39.000Z" itemprop="datePublished">2024-03-11</time>
+            <time  class="article-date" datetime="2024-03-16T00:58:20.000Z" itemprop="datePublished">2024-03-16</time>
           </h2>
           
           
@@ -139,27 +139,14 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="花指令"><a href="#花指令" class="headerlink" title="花指令"></a>花指令</h3><p>花指令就是在正常的代码流程之中，通过内联汇编或者插入机器码的方式去干扰指令执行的顺序，从而影响反汇编引擎的工作来导致反汇编工具没有办法很好的识别出正确的代码</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A41.png"></p>
-<h3 id="去除花指令常规步骤"><a href="#去除花指令常规步骤" class="headerlink" title="去除花指令常规步骤"></a>去除花指令常规步骤</h3><p>1、jnz&#x2F;jz是条件跳转指令（jz表示如果是0就跳转，jnz表示如果不是0就跳转）<br>2、loc_+1就是跳过一个字节的指令去执行下面的内容</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A42.png"></p>
-<p>loc_后面应该是data，由于花指令执行错误，所以应该将call一行转为data</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A43.png"></p>
-<p>点击call，并且按D键转为data</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A44.png"></p>
-<p>将转入data那一行数据的后面数据进行数据分析，选中数据并右键选择Analyze selected area</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A45.png"></p>
-<p>这两条就是垃圾指令</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A46.png"></p>
-<p>将0E8hpatch掉，nop为90（90表示没用的不要的东西）</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A47.png"></p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A48.png"></p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A49.png"></p>
-<p>将90h分析出来就是nop，这样整个函数就连在了一起</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A410.png"></p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A411.png"></p>
-<p>选中红色部分，按P转化成函数，再F5进行反编译得到main函数</p>
-<p><img src="/imgs/Reverse-%E8%8A%B1%E6%8C%87%E4%BB%A4/%E8%8A%B1%E6%8C%87%E4%BB%A412.png"></p>
+        <h3 id="TLS回调函数"><a href="#TLS回调函数" class="headerlink" title="TLS回调函数"></a>TLS回调函数</h3><p>Thread Local Storage（线程局部存储）<strong>回调函数</strong>常用于<strong>反调试</strong>。TLS回调函数的调用运行要先于<strong>EP代码</strong>的执行 ，该特征使它可以作为一种反调试技术的使用。</p>
+<h5 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h5><p>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。</p>
+<p>简单来说就是，把一段可执行的代码像参数传递那样传给其他代码，而这段代码会在某个时刻被调用执行，这就叫<strong>回调</strong></p>
+<p>如果代码立即被执行就成为同步回调，如果过后再执行，就称之为异步回调。</p>
+<p><strong>回调函数例子</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Callback_1</span><span class="params">(<span class="type">int</span> a)</span>   <span class="comment">///&lt; 回调函数1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_1: a = %d &quot;</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Callback_2</span><span class="params">(<span class="type">int</span> b)</span>  <span class="comment">///&lt; 回调函数2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_2: b = %d &quot;</span>, b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Callback_3</span><span class="params">(<span class="type">int</span> c)</span>   <span class="comment">///&lt; 回调函数3</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_3: c = %d &quot;</span>, c);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Handle</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> (*Callback)(<span class="type">int</span>))</span> <span class="comment">///&lt; 注意这里用到的函数指针定义</span></span><br><span class="line">&#123;</span><br><span class="line">    Callback(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    Handle(<span class="number">4</span>, Callback_1);</span><br><span class="line">    Handle(<span class="number">5</span>, Callback_2);</span><br><span class="line">    Handle(<span class="number">6</span>, Callback_3);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="反调试"><a href="#反调试" class="headerlink" title="反调试"></a>反调试</h5><p>为了防止程序被调试，保护代码的加固手段</p>
 
       </section>
 
@@ -167,28 +154,14 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2024/03/14/Reverse-python/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Reverse-python</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/03/05/Reverse-apk/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Reverse-apk</h2>
+        <a href="/2024/03/15/Reverse-Android/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-Android</h2>
         </a>
       
       <div class="card-text--row">Older</div>
@@ -230,7 +203,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>8</span>
+        <span>11</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

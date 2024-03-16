@@ -22,7 +22,7 @@
 
   
 
-  <title>Reverse-apk | Hexo</title>
+  <title>Crypto-characteristic | Hexo</title>
 
   
 
@@ -102,16 +102,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Reverse-apk</h1>
+          <h1 class="title-wrap">Crypto-characteristic</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-03-05T02:48:39.000Z" itemprop="datePublished">2024-03-05</time>
+            <time  class="article-date" datetime="2024-02-28T07:57:59.000Z" itemprop="datePublished">2024-02-28</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-06T04:06:35.924Z" itemprop="dateUpdated">2024-03-06</time>
+              <time  class="article-updated" datetime="2024-03-16T01:04:59.955Z" itemprop="dateUpdated">2024-03-16</time>
             </h2>
           
           
@@ -120,7 +120,7 @@
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
+    <li><a href="/tags/Crypto/">🏷️ Crypto</a></li>
   
 </ul>
         </div>
@@ -144,50 +144,67 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wei_java144/article/details/132216708?ops_request_misc=%7B%22request_id%22:%22170962492016800215061420%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170962492016800215061420&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-132216708-null-null.nonecase&utm_term=.apk&spm=1018.2226.3001.4450">安卓逆向基础知识之apk文件结构_apk本地文件都有哪些-CSDN博客</a></p>
-<h3 id="一、apk文件结构"><a href="#一、apk文件结构" class="headerlink" title="一、apk文件结构"></a>一、apk文件结构</h3><p>APK是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Android&spm=1001.2101.3001.7020">Android</a> Package的缩写,即Android安装包。而apk文件其实就是一个压缩包，我们可以将apk文件的后缀改为.zip来观察apk中的文件。</p>
-<h3 id="二、apk中常见的文件和文件夹"><a href="#二、apk中常见的文件和文件夹" class="headerlink" title="二、apk中常见的文件和文件夹"></a>二、apk中常见的文件和文件夹</h3><h4 id="assets文件夹"><a href="#assets文件夹" class="headerlink" title="assets文件夹"></a>assets文件夹</h4><p><strong>assets</strong> 这里存放的是静态资源文件(图片，视频等)，这个文件夹下的资源文件不会被编译。不被编译的资源文件是指在编译过程中不会被转换成二进制代码的文件，而是直接被打包到最终的程序中。这些文件通常是一些<strong>静态资源</strong>，如图片、音频、文本文件等</p>
-<h4 id="lib文件夹"><a href="#lib文件夹" class="headerlink" title="lib文件夹"></a>lib文件夹</h4><p><strong>lib：</strong>.so库(c或c++编译的动态链接库)。APK文件中的动态链接库（Dynamic Link Library，简称DLL）是一种可重用的代码库，它包含在应用程序中，以便在运行时被调用。这些库通常包含许多常见的函数和程序，可以在多个应用程序中共享，从而提高了代码的复用性和效率。</p>
-<p>lib文件夹下的每个目录都适用于不同的环境下，armeabi-v7a目录基本通用所有android设备，arm64-v8a目录只适用于64位的android设备，x86目录常见用于android模拟器，x86-64目录适用于支持x86_64架构的Android设备(适用于支持通常称为“x86-64”的指令集的 CPU)</p>
-<h4 id="META-INF文件夹"><a href="#META-INF文件夹" class="headerlink" title="META-INF文件夹"></a>META-INF文件夹</h4><p><strong>META-INF：</strong>在Android应用的APK文件中，META-INF文件夹是<strong>存放数字签名相关文件</strong>的文件夹，包含以下三个文件：</p>
-<p>1、<strong>MANIFEST.MF：</strong>MANIFEST.MF文件是一个<strong>摘要清单文件</strong>，它包含了apk文件中<strong>除自己以外</strong>所有文件的数字摘要。<br>2、<strong>CERT.SF：</strong>CERT.SF文件是用于存储<strong>通过私钥加密后</strong>得到的MANIFEST.MF文件的数字签名信息以及MANIFEST.MF文件中数字摘要的数字签名信息。<br>3、<strong>CERT.RSA</strong>：CERT.RSA文件包含了CERT.SF文件的数字签名和对文件签名时所使用的数字证书。<br>总之，META-INF文件夹中的文件是用于保护APK文件的完整性和真实性的重要文件，可以确保APK文件来自合法的开发者，并且没有被篡改过。</p>
-<h4 id="数字摘要"><a href="#数字摘要" class="headerlink" title="数字摘要"></a>数字摘要</h4><p>数字摘要是一种数学算法，将任何长度的数据转换为固定长度的唯一字符串，而且不同的明文通过Hash算法转换成固定长度的密文，其结果总是不同的，而同样的明文其摘要必定一致。数字摘要通常用于数据完整性验证和加密技术中，以确保数据在传输或存储过程中没有被篡改或损坏。数字摘要算法是单向的，即无法通过数字摘要反推出原始数据。常见的数字摘要使用的Hash算法有MD5、SHA-1、SHA-256等</p>
-<h5 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h5><p>加密者用密钥对明文进行加密得到密文，解密者用密钥对密文进行解密得到明文，加解密都用<strong>同样的密钥</strong>，即为对称加密。</p>
-<h5 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h5><p>在非对称加密中，密钥总是成对出现的，分别称之为公钥和私钥，私钥由自己安全保管不外泄，而公钥则可以发给网络中的任何人。用其中一把密钥加密的明文只能用另一把密钥进行解密，无法使用同一把密钥进行加解密，比如<strong>用公钥进行加密的明文只能用私钥进行解密，公钥自己没法解密</strong>。</p>
-<p>现在是服务器和浏览器之间的信息传输，它们之间是怎么做才能信息不外泄呢？</p>
-<p><strong>第一步</strong>：服务器会将非对称加密中的公钥发送给浏览器，浏览器生成一串随机数字，而这串随机数字使用服务器发送过来的公钥进行加密。</p>
-<p><strong>第二步</strong>：将通过公钥加密的随机数字发送给服务器，服务器接收后使用私钥进行解密，这样双方就都得到了一个同样的随机数字，而这个随机数字可以作为对称加密的密钥。</p>
-<p><strong>第三步</strong>：使用随机数字作为密钥对真正需要传递的数据进行加密传输。</p>
-<p>这样就算是攻击者拦截到了服务器发送给浏览器的公钥，也只能无济于事，因为通过公钥加密的数据没法通过公钥进行解密。这套流程也被称之为SSL(安全套接字层)</p>
-<h4 id="数字证书："><a href="#数字证书：" class="headerlink" title="数字证书："></a>数字证书：</h4><p>在讲数字证书之前，我们需要知道一个第三方机构——<strong>CA机构</strong>。CA机构是指数字证书认证机构（Certificate Authority），也称为证书颁发机构。它是一种可信第三方机构，负责颁发数字证书，用于证明数字身份、数字签名等安全通信和交易中的身份验证和数据保护。CA机构通过对证书申请者的身份进行认证，为其颁发数字证书，使得用户可以在网络上进行加密通信、数字签名、身份认证等安全操作，保障网络安全和数据隐私。</p>
-<p>我们来讲讲数字证书和CA机构在身份验证中是扮演一个什么样的角色：</p>
-<p><strong>第一步</strong>、服务器会将自己的公钥、域名，还有自己所申请认证证书的CA机构，以及数字摘要的Hash算法、签名算法（用于生成数字签名的加密算法）、数字摘要、原始数据等信息打包在一起发送给自己申请的CA机构，该机构也有一对公私钥对，CA机构会用它的私钥对打包数据中的数字摘要进行加密，得到一个密文，而这个密文就是签名，数字签名生成后会被放在证书中发送给服务器的管理员，而这个证书就叫做TLS证书。</p>
-<p><strong>第二步</strong>、服务器将CA机构发送过来的TLS证书代替原本要发送给浏览器的公钥发送给浏览器，浏览器拿到这个证书之后不会选择第一时间相信，而是拿CA机构公开的公钥对证书中的签名进行解密得到数字摘要，浏览器也会从证书中提取出原始数据和数字摘要的Hash算法进行转换，这样就可以获得原始数据的数字摘要，再将这两数字摘要一对比就知道数据在服务器发送过来的途中有没有被篡改了。</p>
-<p><strong>第三步</strong>、如果解密后的数字摘要和由原始数据转换成的数字摘要一致，那么浏览器就会从证书中提取出公钥，从而可以安全的进行SSL。</p>
-<p>不过需要注意的是，<strong>上面的数字证书是https的验证流程</strong>，而apk文件和https在验证数字证书的过程中所用到的算法和流程也有所不同。</p>
-<p>HTTPS所用的数字证书通常需要经过CA机构的认证和颁发。而apk文件的数字证书包含了签名者的公钥、签名算法、签名时间等信息，在Android系统中使用的数字证书，是可以由开发者自行生成和使用。</p>
-<p>APK文件中的数字证书通常存储在META-INF目录下的CERT.RSA文件中。在安装APK文件时，Android系统会提取CERT.RSA文件中的数字证书，并使用证书中的公钥对APK文件进行验证，以确保APK的真实性和完整性。如果数字证书无效或不匹配，则会提示安装失败或警告用户存在安全风险。</p>
-<p>MT管理器是一个可以对APK文件进行修改和重新签名的工具。它使用的签名工具是Android SDK中的apksigner工具，一个官方提供的APK签名工具。</p>
-<p>当MT管理器对APK文件进行修改后，它会将修改后的文件打包成一个新的APK文件。然后，MT管理器会调用apksigner工具，使用开发者提供的数字证书对新的APK文件进行签名。签名过程中，apksigner会对APK文件进行Hash运算，生成数字摘要，并使用提供的数字证书对数字摘要进行加密，最后生成新的META-INF目录和CERT.RSA文件。</p>
-<p>最后，MT管理器会将签名后的APK文件保存到指定位置。需要注意的是，MT管理器只能对已经进行过数字签名的APK文件进行修改和重新签名。因为apksigner要求原本的APK文件必须进行了数字签名才能进行重新签名的操作。所以如果APK文件没有进行数字签名，apksigner无法对其进行签名操作，从而无法通过MT管理器进行修改和签名。</p>
-<p>总结来说，Android系统验证APK的数字签名是为了确保APK的真实性和完整性。MT管理器使用apksigner工具对APK文件进行签名，并要求原始APK文件已经进行了数字签名才能进行修改和重新签名操作。</p>
-<h4 id="AndroidManifest-xml配置文件"><a href="#AndroidManifest-xml配置文件" class="headerlink" title="AndroidManifest.xml配置文件"></a>AndroidManifest.xml配置文件</h4><p>AndroidManifest.xml是Android应用程序中最重要的文件之一，它包含了应用程序的基本信息，如应用程序的名称、图标、版本号、权限、组件（Activity、Service、BroadcastReceiver、Content Provider）等等。在应用程序运行时，系统会根据这个文件来管理应用程序的生命周期，启动和关闭应用程序，管理应用程序的组件等等。</p>
-<p>我们来了解一下AndroidManifest.xml文件的主要组成部分：</p>
-<h5 id="manifest标签"><a href="#manifest标签" class="headerlink" title="manifest标签"></a>manifest标签</h5><p>manifest标签是AndroidManifest.xml文件的根标签，它包含了应用程序的基本信息，如包名、版本号、SDK版本、应用程序的名称和图标等等。</p>
-<h5 id="application标签"><a href="#application标签" class="headerlink" title="application标签"></a>application标签</h5><p>application标签是应用程序的主要标签，它包含了应用程序的所有组件，如Activity(活动)、Service(服务)、Broadcast Receiver(广播接收器)、Content Provider(内容提供者)等等。在application标签中，也可以设置应用程序的全局属性，如主题、权限等等。</p>
-<h5 id="activity标签"><a href="#activity标签" class="headerlink" title="activity标签"></a>activity标签</h5><p>activity标签定义了一个Activity组件，它包含了Activity的基本信息，如Activity的名称、图标、主题、启动模式等等。在activity标签中，还可以定义Activity的布局、Intent过滤器等等。</p>
-<h5 id="service标签"><a href="#service标签" class="headerlink" title="service标签"></a>service标签</h5><p>service标签定义了一个Service组件，它包含了Service的基本信息，如Service的名称、图标、启动模式等等。在service标签中，还可以定义Service的Intent过滤器等等。</p>
-<h5 id="receiver标签"><a href="#receiver标签" class="headerlink" title="receiver标签"></a>receiver标签</h5><p>receiver标签定义了一个BroadcastReceiver组件，它包含了BroadcastReceiver的基本信息，如BroadcastReceiver的名称、图标、权限等等。在receiver标签中，还可以定义BroadcastReceiver的Intent过滤器等等。</p>
-<h5 id="provider标签"><a href="#provider标签" class="headerlink" title="provider标签"></a>provider标签</h5><p>provider标签定义了一个Content Provider组件，它包含了Content Provider的基本信息，如Content Provider的名称、图标、权限等等。在provider标签中，还可以定义Content Provider的URI和Mime Type等等。</p>
-<h5 id="uses-permission标签"><a href="#uses-permission标签" class="headerlink" title="uses-permission标签"></a>uses-permission标签</h5><p>uses-permission标签定义了应用程序需要的权限，如访问网络、读取SD卡等等。在应用程序安装时，系统会提示用户授权这些权限。</p>
-<h5 id="uses-feature标签"><a href="#uses-feature标签" class="headerlink" title="uses-feature标签"></a>uses-feature标签</h5><p>uses-feature标签定义了应用程序需要的硬件或软件特性，如摄像头、GPS等等。在应用程序安装时，系统会检查设备是否支持这些特性。</p>
-<h4 id="resources-arsc文件"><a href="#resources-arsc文件" class="headerlink" title="resources.arsc文件"></a>resources.arsc文件</h4><p>resources.arsc文件是Android应用程序的资源文件之一，它是一个二进制文件，包含了应用程序的所有资源信息，例如布局文件、字符串、图片等。这个文件在应用程序编译过程中由aapt工具生成，并被打包进APK文件中。</p>
-<p>resources.arsc文件的主要作用是提供资源的索引和映射关系。它将资源文件名、类型、值等信息映射到一个唯一的整数ID上。这个ID在R文件中定义，并且可以通过代码中的R类来引用。例如，R.layout.main表示布局文件main.xml对应的ID，R.string.app_name表示字符串资源app_name对应的ID。</p>
-<p>当应用程序运行时，系统会根据R类中的ID来查找对应的资源，并将其加载到内存中，供应用程序使用。这个过程是通过解析resources.arsc文件和R类实现的。通过这种方式，应用程序可以方便地访问和使用资源，而不需要手动处理资源文件的位置和命名等问题。</p>
-<p>需要注意的是，resources.arsc文件只包含资源的索引和映射关系，并不包含实际的资源内容。实际的资源内容存储在res文件夹中，按照资源类型和名称进行组织。当应用程序需要使用资源时，系统会根据resources.arsc文件中的索引信息找到对应的资源文件，并将其加载到内存中。</p>
-<p>总之，resources.arsc文件是Android应用程序的资源文件之一，包含了资源的索引和映射关系。它和R类一起构成了应用程序访问和使用资源的基础。通过解析resources.arsc文件和使用R类，应用程序可以方便地加载和使用资源。</p>
-<h4 id="res文件夹"><a href="#res文件夹" class="headerlink" title="res文件夹"></a>res文件夹</h4><p>res：资源文件目录，二进制格式。实际上，APK文件下的res文件夹并不是二进制格式，而是经过编译后的二进制资源文件。在Android应用程序开发中，资源文件通常是以XML格式存储的，如布局文件、字符串资源、颜色资源等。在编译时，Android编译器会将这些XML资源文件编译成二进制格式的资源文件，以提高应用程序的运行效率和安全性。虽然res文件夹下的二进制资源文件不能直接编辑和修改，但是开发者仍然可以通过Android提供的资源管理工具，如aapt、apktool等，来反编译和编辑这些资源文件的。</p>
-<h4 id="classes-dex"><a href="#classes-dex" class="headerlink" title="classes.dex"></a>classes.dex</h4><p>classes.dex文件是Android应用程序的核心组件之一，包含了应用程序的所有Java类和方法。它是一个被编译过的DEX文件，用于在ART虚拟机上执行Java代码。通过加载和执行classes.dex文件，Android应用程序能够在Android设备上运行并提供各种功能。</p>
+        <h1 id="密码学特征分类："><a href="#密码学特征分类：" class="headerlink" title="密码学特征分类："></a>密码学特征分类：</h1><h3 id="Base族"><a href="#Base族" class="headerlink" title="Base族"></a>Base族</h3><p><strong>特征</strong>：base64，base32的密文都有<strong>等于号“&#x3D;”</strong></p>
+<h5 id="Base16"><a href="#Base16" class="headerlink" title="Base16"></a>Base16</h5><p>base16就是16进制转ASCII问题<br>base16中只有<strong>数字0-9</strong>以及<strong>大写字母ABCDEF</strong></p>
+<h5 id="Base32"><a href="#Base32" class="headerlink" title="Base32"></a>Base32</h5><p>base32编码是由<strong>大写字母（A-Z）</strong>和<strong>234567</strong>组成<br>与base64类似</p>
+<h5 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h5><p>base64是由大写字母（A-Z）,小写字母（a-z），数字（0-9）以及 +&#x2F; 组成</p>
+<p>Base64是把3个字节变成4个可打印字符（ Base64<strong>加密原理</strong>： 要求把每三个8bit的字节转换为四个6bit的字节，然后6bit再添两位高位0，组成四个8bit字节，再将转换后的四个8bit字节当作索引，依次从编码表“A-Za—z1-0+&#x2F;”中取值，最终得到编码结果），所以Base64编码后的字符串长度一定能被4整除 ，并且Base64编码后一定存在0个，1个或2个等号。（因为如果字符不足则会用“&#x3D;”补齐，特征很明显）。</p>
+<h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><p>与偏移量有关</p>
+<p>明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。</p>
+<p>例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。</p>
+<p>当题目没有给出位移量的时候(我就没见题目给过)就全部给列出来然后寻找真正的字符串。记住：他只<strong>位移字母</strong></p>
+<p>以下是凯撒加密的伪代码</p>
+<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E4%BC%AA%E4%BB%A3%E7%A0%81.png"></p>
+<h3 id="rot族"><a href="#rot族" class="headerlink" title="rot族"></a>rot族</h3><h5 id="ROT5"><a href="#ROT5" class="headerlink" title="ROT5"></a>ROT5</h5><p>只对<strong>数字</strong>进行编码，用当前数字往前数的第5个数字替换当前数字</p>
+<p>例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。</p>
+<h5 id="ROT13"><a href="#ROT13" class="headerlink" title="ROT13"></a>ROT13</h5><p>ROT13（回转13位）是一种简易的替换式密码算法。应用ROT13到一段文字上仅仅只需要检查字母顺序并取代它在13位之后的对应字母，有需要超过时则重新绕回26英文字母开头即可。A换成N、B换成O、依此类推到M换成Z，然后串行反转：N换成A、O换成B、最后Z换成M。只有这些出现在英文字母里的字符受影响，数字、符号、空白字符以及所有其他字符都不变。替换后的字母大小写保持不变。</p>
+<p>简单的说就是通过将输入的原字符串ASCII+13&#x2F;或者ASCC-13：</p>
+<p>原字符串：<br>ABCDEFGHIJKLM   NOPQRSTUVWXYZ           abcdefghijklm   nopqrstuvwxyz</p>
+<p>转换成：<br>NOPQRSTUVWXYZ ABCDEFGHIJKLM             nopqrstuvwxyz  abcdefghijklm</p>
+<h5 id="ROT18"><a href="#ROT18" class="headerlink" title="ROT18"></a>ROT18</h5><p>这是一个异类，本来没有，它是将ROT5和ROT13组合在一起，为了好称呼，将其命名为ROT18。</p>
+<h5 id="ROT47"><a href="#ROT47" class="headerlink" title="ROT47"></a>ROT47</h5><p>对<strong>数字</strong>、<strong>字母</strong>、<strong>常用符号</strong>进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符</p>
+<p>例如当前为小写字母z，编码后变成大写字母K，当前为数字0，编码后变成符号_。用于ROT47编码的字符其ASCII值范围是33－126</p>
+<h3 id="摩斯密码"><a href="#摩斯密码" class="headerlink" title="摩斯密码"></a>摩斯密码</h3><p>一般出现形式<strong>“.”</strong>和<strong>“-”</strong>或者为<strong>0</strong>和<strong>1</strong><br>通过“ . ‘’和” __ ”的排列组合表示相应字符，其中“ &#x2F; ”表示分隔符</p>
+<h3 id="Quotedprintable编码"><a href="#Quotedprintable编码" class="headerlink" title="Quotedprintable编码"></a>Quotedprintable编码</h3><p>任何一个8位的字节值可编码为3个字符：一个等号“&#x3D;”后跟随两个十六进制数字（0–9或A–F）表示该字节的数值。</p>
+<p>例如：ASCII码换页符（十进制值为12）可以表示为”&#x3D;0C”。</p>
+<p>除了可打印ASCII字符与换行符以外，所有字符必须表示为这种格式。所有可打印ASCII字符（十进制值的范围为33到126）可用ASCII字符编码来直接表示，但是等号“&#x3D;”（十进制值为61）不可以这样直接表示，<strong>等号”&#x3D;”（十进制值为61）必须表示为”&#x3D;3D”</strong>。ASCII的<strong>水平制表符（tab）与空格符</strong>（即：十进制为9和32），如果不<strong>出现在行尾</strong>则可以用其ASCII字符编码直接表示。如果这两个字符<strong>出现在行尾</strong>，必须QP编码表示为“&#x3D;09”（tab）或“&#x3D;20”（space）。</p>
+<p>如果数据中包含有意义的行结束标志，必须转换为ASCII回车(CR)换行(LF)序列，既不能用原来的ASCII字符也不能用QP编码的“&#x3D;”转义字符序列。 相反，如果字节值13与10有其它的不是行结束的含义，它们必须QP编码为&#x3D;0D与&#x3D;0A。</p>
+<p>Quoted-Printable编码的数据的每行长度不能超过76个字符。为满足此要求又不改变被编码文本，在QP编码结果的每行末尾加上软换行(soft line break)。 即在每行末尾加上一个”&#x3D;”， 但并不会出现在解码得到的文本中。<br>很多时候，我们用些常见字符表示所有8位其它非打印字符，这种通过Quoted-Printable编码，只是对该字节转为16进制后，做简单增加前缀！然后做些特殊字符处理即可！ 它的简单，及编码高效，也让该编码在邮件格式里面，得到了广泛使用。</p>
+<h3 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h3><p>所谓栅栏密码，就是把明文分成N个组，然后取出每组的第一个，每组的第二个。接着按顺序排列得出密文。</p>
+<p>若每个组里有2两个元素的话就叫2栏栅栏密码。</p>
+<h3 id="培根加密"><a href="#培根加密" class="headerlink" title="培根加密"></a>培根加密</h3><p>如果你看到一串字符里全是A和B，并且5个一组的时候，没错了，就是他。培根加密只能加密字母。<br>例如，flag &#x3D;&#x3D;&gt;AABAB ABABB AAAAA AABBA</p>
+<h3 id="jother编码"><a href="#jother编码" class="headerlink" title="jother编码"></a>jother编码</h3><p>在javascript语言中，利用少量特定字符构造精简的匿名函数对与字符串的编码方式.代码中大量出现“+”、“！”、“（”、“）”、“[”、“]”、“{”、“}”字符</p>
+<p>例如:!![]+!![]+!![]+!![]+!![]+!![] 打开控制台(按F12)，输入密文进行解密</p>
+<h3 id="ook编码"><a href="#ook编码" class="headerlink" title="ook编码"></a>ook编码</h3><p>类似于摩斯密码，密文中有ook？ook.等等，在线解密即可</p>
+<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p> 特征：二进制 b开头，八进制 o开头，十进制 d开头，十六进制 x开头</p>
+<h3 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h3><ol>
+<li>长度固定（无论输入多少字节，<strong>输出总是16字节</strong>）</li>
+<li>不可逆（从结果<strong>无法反推原始数据</strong>）</li>
+<li>具有高度的离散性（输出的16字节数据，<strong>没有任何规律可言</strong>，无法预测结果）</li>
+<li>抗碰撞性（在原始数据固定的情况下，<strong>几乎不会出现两个数据的MD5相同</strong>）</li>
+</ol>
+<h3 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h3><p><strong>RSA算法参数</strong></p>
+<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E7%AE%97%E6%B3%95%E5%8F%82%E6%95%B0.png"></p>
+<p><strong>RSA加密</strong></p>
+<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E5%8A%A0%E5%AF%86.png"></p>
+<p><strong>RSA解密</strong></p>
+<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E8%A7%A3%E5%AF%86.png"></p>
+<p><strong>伪代码</strong>中判别是rsa加密解密的函数：</p>
+<p>__gmpz_init_set_str 其实就是 mpz_init_set_str </p>
+<p>int mpz_init_set_str (mpz_t rop, const char *str, int base) 函数：</p>
+<p>这三个参数分别是多精度整数变量，字符串，进制。 这个函数的作用就是将 str 字符数组以 base 指定的进制解读成数值并写入 rop 所指向的内存。</p>
+<p>void mpz_powm (mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod) 函数： 其实就是计算 base 的 exp 次方，并对 mod 取模，最后将结果写入 rop 中， 这个运算的过程和RSA的加密过程一样。</p>
+<p><strong>注意：</strong></p>
+<p>出现“65537”（即e）是很明显的rsa加密的标志</p>
+<p>伪代码所给的数据中可能有16进制，10进制等，需要统一进制再解密</p>
+<h2 id="网页可解析的编码"><a href="#网页可解析的编码" class="headerlink" title="网页可解析的编码"></a>网页可解析的编码</h2><p>通常一个网页中可解析的总共有三种编码，每种编码都能用来代替表示字符，按解析顺序依次是“html实体编码”“urlcode码”“Unicode码”，在执行过程中会在HTML环境下先解析“html实体编码”和“urlcode码”，然后查看有无js环境并解析其中的Unicode编码，对于三者的理解都有助于我们绕过限制正则，实行渗透。</p>
+<h3 id="URL转码"><a href="#URL转码" class="headerlink" title="URL转码"></a>URL转码</h3><p>url编码是一种浏览器用来打包表单输入的格式。（字符串中有“%”）</p>
+<p>URL用来编码ASCII码无法表示的字符、不安全的字符（ <strong>{ } | \ ^ ~ &#96; [ ]</strong> ）、保留字符（ <strong>; &#x2F; ? : @ &#x3D; &amp;</strong> ），只有<strong>字母</strong>和<strong>数字</strong>[0-9a-zA-Z]、<strong>具有特殊含义的保留字符</strong>以及<strong>非保留字符</strong>，才可以不经过编码直接用于 URL。</p>
+<p>例如，%66%6C%61%67%7B%61%6E%64%20%31%3D%31%7D就是经过URL编码得到的密文</p>
+<h3 id="unicode编码"><a href="#unicode编码" class="headerlink" title="unicode编码"></a>unicode编码</h3><p>Unicode码扩展自ASCII字元集，使用全16位元字元集。Unicode目前普遍采用的是UCS-2,它用两个字节来编码一个字符,字符编码一般用十六进制来表示.</p>
+<p>例如:\u4e16\u754c\u4f60\u597d</p>
+<h3 id="HTML编码"><a href="#HTML编码" class="headerlink" title="HTML编码"></a>HTML编码</h3><p>HTML 实体是一段以’**&amp;#‘<strong>开头、加上</strong>ASCII码<strong>居中、以</strong>分号**‘;’结尾的文本，如：“ ；”，实体常常用于显示保留字符，和不可见的字符，作为HTML环境第一次解析的编码，这些字符可能还会进一步被解析为 urlcode、js 代码</p>
+<p>编码可用10进制表示，也可使用16进制表示。如：&amp;#49和&amp;#x31均表示1</p>
 
       </section>
 
@@ -200,8 +217,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/03/11/Reverse-junk_code/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Reverse-junk_code</h2>
+        <a href="/2024/03/05/Reverse-apk/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-apk</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -215,8 +232,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/02/28/Crypto-characteristic/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Crypto-characteristic</h2>
+        <a href="/2024/02/26/Web-base/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Web-base</h2>
         </a>
       
       <div class="card-text--row">Older</div>
