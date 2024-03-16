@@ -22,7 +22,7 @@
 
   
 
-  <title>Crypto-characteristic | Hexo</title>
+  <title>hexo-github的搭建 | Hexo</title>
 
   
 
@@ -102,16 +102,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Crypto-characteristic</h1>
+          <h1 class="title-wrap">hexo-github的搭建</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-02-28T07:57:59.000Z" itemprop="datePublished">2024-02-28</time>
+            <time  class="article-date" datetime="2024-01-21T15:17:43.000Z" itemprop="datePublished">2024-01-21</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-16T01:04:59.955Z" itemprop="dateUpdated">2024-03-16</time>
+              <time  class="article-updated" datetime="2024-03-16T11:37:01.835Z" itemprop="dateUpdated">2024-03-16</time>
             </h2>
           
           
@@ -120,7 +120,7 @@
 </ul>
           <ul class="wrap-list dark">
   
-    <li><a href="/tags/Crypto/">🏷️ Crypto</a></li>
+    <li><a href="/tags/study/">🏷️ study</a></li>
   
 </ul>
         </div>
@@ -144,67 +144,20 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="密码学特征分类："><a href="#密码学特征分类：" class="headerlink" title="密码学特征分类："></a>密码学特征分类：</h1><h3 id="Base族"><a href="#Base族" class="headerlink" title="Base族"></a>Base族</h3><p><strong>特征</strong>：base64，base32的密文都有<strong>等于号“&#x3D;”</strong></p>
-<h5 id="Base16"><a href="#Base16" class="headerlink" title="Base16"></a>Base16</h5><p>base16就是16进制转ASCII问题<br>base16中只有<strong>数字0-9</strong>以及<strong>大写字母ABCDEF</strong></p>
-<h5 id="Base32"><a href="#Base32" class="headerlink" title="Base32"></a>Base32</h5><p>base32编码是由<strong>大写字母（A-Z）</strong>和<strong>234567</strong>组成<br>与base64类似</p>
-<h5 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h5><p>base64是由大写字母（A-Z）,小写字母（a-z），数字（0-9）以及 +&#x2F; 组成</p>
-<p>Base64是把3个字节变成4个可打印字符（ Base64<strong>加密原理</strong>： 要求把每三个8bit的字节转换为四个6bit的字节，然后6bit再添两位高位0，组成四个8bit字节，再将转换后的四个8bit字节当作索引，依次从编码表“A-Za—z1-0+&#x2F;”中取值，最终得到编码结果），所以Base64编码后的字符串长度一定能被4整除 ，并且Base64编码后一定存在0个，1个或2个等号。（因为如果字符不足则会用“&#x3D;”补齐，特征很明显）。</p>
-<h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><p>与偏移量有关</p>
-<p>明文中的所有字母都在字母表上向后（或向前）按照一个固定数目进行偏移后被替换成密文。</p>
-<p>例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。</p>
-<p>当题目没有给出位移量的时候(我就没见题目给过)就全部给列出来然后寻找真正的字符串。记住：他只<strong>位移字母</strong></p>
-<p>以下是凯撒加密的伪代码</p>
-<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E4%BC%AA%E4%BB%A3%E7%A0%81.png"></p>
-<h3 id="rot族"><a href="#rot族" class="headerlink" title="rot族"></a>rot族</h3><h5 id="ROT5"><a href="#ROT5" class="headerlink" title="ROT5"></a>ROT5</h5><p>只对<strong>数字</strong>进行编码，用当前数字往前数的第5个数字替换当前数字</p>
-<p>例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。</p>
-<h5 id="ROT13"><a href="#ROT13" class="headerlink" title="ROT13"></a>ROT13</h5><p>ROT13（回转13位）是一种简易的替换式密码算法。应用ROT13到一段文字上仅仅只需要检查字母顺序并取代它在13位之后的对应字母，有需要超过时则重新绕回26英文字母开头即可。A换成N、B换成O、依此类推到M换成Z，然后串行反转：N换成A、O换成B、最后Z换成M。只有这些出现在英文字母里的字符受影响，数字、符号、空白字符以及所有其他字符都不变。替换后的字母大小写保持不变。</p>
-<p>简单的说就是通过将输入的原字符串ASCII+13&#x2F;或者ASCC-13：</p>
-<p>原字符串：<br>ABCDEFGHIJKLM   NOPQRSTUVWXYZ           abcdefghijklm   nopqrstuvwxyz</p>
-<p>转换成：<br>NOPQRSTUVWXYZ ABCDEFGHIJKLM             nopqrstuvwxyz  abcdefghijklm</p>
-<h5 id="ROT18"><a href="#ROT18" class="headerlink" title="ROT18"></a>ROT18</h5><p>这是一个异类，本来没有，它是将ROT5和ROT13组合在一起，为了好称呼，将其命名为ROT18。</p>
-<h5 id="ROT47"><a href="#ROT47" class="headerlink" title="ROT47"></a>ROT47</h5><p>对<strong>数字</strong>、<strong>字母</strong>、<strong>常用符号</strong>进行编码，按照它们的ASCII值进行位置替换，用当前字符ASCII值往前数的第47位对应字符替换当前字符</p>
-<p>例如当前为小写字母z，编码后变成大写字母K，当前为数字0，编码后变成符号_。用于ROT47编码的字符其ASCII值范围是33－126</p>
-<h3 id="摩斯密码"><a href="#摩斯密码" class="headerlink" title="摩斯密码"></a>摩斯密码</h3><p>一般出现形式<strong>“.”</strong>和<strong>“-”</strong>或者为<strong>0</strong>和<strong>1</strong><br>通过“ . ‘’和” __ ”的排列组合表示相应字符，其中“ &#x2F; ”表示分隔符</p>
-<h3 id="Quotedprintable编码"><a href="#Quotedprintable编码" class="headerlink" title="Quotedprintable编码"></a>Quotedprintable编码</h3><p>任何一个8位的字节值可编码为3个字符：一个等号“&#x3D;”后跟随两个十六进制数字（0–9或A–F）表示该字节的数值。</p>
-<p>例如：ASCII码换页符（十进制值为12）可以表示为”&#x3D;0C”。</p>
-<p>除了可打印ASCII字符与换行符以外，所有字符必须表示为这种格式。所有可打印ASCII字符（十进制值的范围为33到126）可用ASCII字符编码来直接表示，但是等号“&#x3D;”（十进制值为61）不可以这样直接表示，<strong>等号”&#x3D;”（十进制值为61）必须表示为”&#x3D;3D”</strong>。ASCII的<strong>水平制表符（tab）与空格符</strong>（即：十进制为9和32），如果不<strong>出现在行尾</strong>则可以用其ASCII字符编码直接表示。如果这两个字符<strong>出现在行尾</strong>，必须QP编码表示为“&#x3D;09”（tab）或“&#x3D;20”（space）。</p>
-<p>如果数据中包含有意义的行结束标志，必须转换为ASCII回车(CR)换行(LF)序列，既不能用原来的ASCII字符也不能用QP编码的“&#x3D;”转义字符序列。 相反，如果字节值13与10有其它的不是行结束的含义，它们必须QP编码为&#x3D;0D与&#x3D;0A。</p>
-<p>Quoted-Printable编码的数据的每行长度不能超过76个字符。为满足此要求又不改变被编码文本，在QP编码结果的每行末尾加上软换行(soft line break)。 即在每行末尾加上一个”&#x3D;”， 但并不会出现在解码得到的文本中。<br>很多时候，我们用些常见字符表示所有8位其它非打印字符，这种通过Quoted-Printable编码，只是对该字节转为16进制后，做简单增加前缀！然后做些特殊字符处理即可！ 它的简单，及编码高效，也让该编码在邮件格式里面，得到了广泛使用。</p>
-<h3 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h3><p>所谓栅栏密码，就是把明文分成N个组，然后取出每组的第一个，每组的第二个。接着按顺序排列得出密文。</p>
-<p>若每个组里有2两个元素的话就叫2栏栅栏密码。</p>
-<h3 id="培根加密"><a href="#培根加密" class="headerlink" title="培根加密"></a>培根加密</h3><p>如果你看到一串字符里全是A和B，并且5个一组的时候，没错了，就是他。培根加密只能加密字母。<br>例如，flag &#x3D;&#x3D;&gt;AABAB ABABB AAAAA AABBA</p>
-<h3 id="jother编码"><a href="#jother编码" class="headerlink" title="jother编码"></a>jother编码</h3><p>在javascript语言中，利用少量特定字符构造精简的匿名函数对与字符串的编码方式.代码中大量出现“+”、“！”、“（”、“）”、“[”、“]”、“{”、“}”字符</p>
-<p>例如:!![]+!![]+!![]+!![]+!![]+!![] 打开控制台(按F12)，输入密文进行解密</p>
-<h3 id="ook编码"><a href="#ook编码" class="headerlink" title="ook编码"></a>ook编码</h3><p>类似于摩斯密码，密文中有ook？ook.等等，在线解密即可</p>
-<h3 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h3><p> 特征：二进制 b开头，八进制 o开头，十进制 d开头，十六进制 x开头</p>
-<h3 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h3><ol>
-<li>长度固定（无论输入多少字节，<strong>输出总是16字节</strong>）</li>
-<li>不可逆（从结果<strong>无法反推原始数据</strong>）</li>
-<li>具有高度的离散性（输出的16字节数据，<strong>没有任何规律可言</strong>，无法预测结果）</li>
-<li>抗碰撞性（在原始数据固定的情况下，<strong>几乎不会出现两个数据的MD5相同</strong>）</li>
-</ol>
-<h3 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h3><p><strong>RSA算法参数</strong></p>
-<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E7%AE%97%E6%B3%95%E5%8F%82%E6%95%B0.png"></p>
-<p><strong>RSA加密</strong></p>
-<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E5%8A%A0%E5%AF%86.png"></p>
-<p><strong>RSA解密</strong></p>
-<p><img src="/./imgs/Crypto%E5%85%A5%E9%97%A8/RSA%E8%A7%A3%E5%AF%86.png"></p>
-<p><strong>伪代码</strong>中判别是rsa加密解密的函数：</p>
-<p>__gmpz_init_set_str 其实就是 mpz_init_set_str </p>
-<p>int mpz_init_set_str (mpz_t rop, const char *str, int base) 函数：</p>
-<p>这三个参数分别是多精度整数变量，字符串，进制。 这个函数的作用就是将 str 字符数组以 base 指定的进制解读成数值并写入 rop 所指向的内存。</p>
-<p>void mpz_powm (mpz_t rop, const mpz_t base, const mpz_t exp, const mpz_t mod) 函数： 其实就是计算 base 的 exp 次方，并对 mod 取模，最后将结果写入 rop 中， 这个运算的过程和RSA的加密过程一样。</p>
-<p><strong>注意：</strong></p>
-<p>出现“65537”（即e）是很明显的rsa加密的标志</p>
-<p>伪代码所给的数据中可能有16进制，10进制等，需要统一进制再解密</p>
-<h2 id="网页可解析的编码"><a href="#网页可解析的编码" class="headerlink" title="网页可解析的编码"></a>网页可解析的编码</h2><p>通常一个网页中可解析的总共有三种编码，每种编码都能用来代替表示字符，按解析顺序依次是“html实体编码”“urlcode码”“Unicode码”，在执行过程中会在HTML环境下先解析“html实体编码”和“urlcode码”，然后查看有无js环境并解析其中的Unicode编码，对于三者的理解都有助于我们绕过限制正则，实行渗透。</p>
-<h3 id="URL转码"><a href="#URL转码" class="headerlink" title="URL转码"></a>URL转码</h3><p>url编码是一种浏览器用来打包表单输入的格式。（字符串中有“%”）</p>
-<p>URL用来编码ASCII码无法表示的字符、不安全的字符（ <strong>{ } | \ ^ ~ &#96; [ ]</strong> ）、保留字符（ <strong>; &#x2F; ? : @ &#x3D; &amp;</strong> ），只有<strong>字母</strong>和<strong>数字</strong>[0-9a-zA-Z]、<strong>具有特殊含义的保留字符</strong>以及<strong>非保留字符</strong>，才可以不经过编码直接用于 URL。</p>
-<p>例如，%66%6C%61%67%7B%61%6E%64%20%31%3D%31%7D就是经过URL编码得到的密文</p>
-<h3 id="unicode编码"><a href="#unicode编码" class="headerlink" title="unicode编码"></a>unicode编码</h3><p>Unicode码扩展自ASCII字元集，使用全16位元字元集。Unicode目前普遍采用的是UCS-2,它用两个字节来编码一个字符,字符编码一般用十六进制来表示.</p>
-<p>例如:\u4e16\u754c\u4f60\u597d</p>
-<h3 id="HTML编码"><a href="#HTML编码" class="headerlink" title="HTML编码"></a>HTML编码</h3><p>HTML 实体是一段以’**&amp;#‘<strong>开头、加上</strong>ASCII码<strong>居中、以</strong>分号**‘;’结尾的文本，如：“ ；”，实体常常用于显示保留字符，和不可见的字符，作为HTML环境第一次解析的编码，这些字符可能还会进一步被解析为 urlcode、js 代码</p>
-<p>编码可用10进制表示，也可使用16进制表示。如：&amp;#49和&amp;#x31均表示1</p>
+        <h1 id="一、Hexo搭建步骤"><a href="#一、Hexo搭建步骤" class="headerlink" title="一、Hexo搭建步骤"></a>一、Hexo搭建步骤</h1><h5 id="1、安装git"><a href="#1、安装git" class="headerlink" title="1、安装git"></a>1、安装git</h5><h5 id="2、安装node-js"><a href="#2、安装node-js" class="headerlink" title="2、安装node.js"></a>2、安装node.js</h5><h5 id="3、安装Hexo"><a href="#3、安装Hexo" class="headerlink" title="3、安装Hexo"></a>3、安装Hexo</h5><h5 id="4、GitHub创建个人仓库"><a href="#4、GitHub创建个人仓库" class="headerlink" title="4、GitHub创建个人仓库"></a>4、GitHub创建个人仓库</h5><h5 id="5、生成SSH添加到GitHub"><a href="#5、生成SSH添加到GitHub" class="headerlink" title="5、生成SSH添加到GitHub"></a>5、生成SSH添加到GitHub</h5><h5 id="6、将hexo部署到GitHub"><a href="#6、将hexo部署到GitHub" class="headerlink" title="6、将hexo部署到GitHub"></a>6、将hexo部署到GitHub</h5><h1 id="二、相关CSDN文章"><a href="#二、相关CSDN文章" class="headerlink" title="二、相关CSDN文章"></a>二、相关CSDN文章</h1><h5 id="1、搭建教程：（1-Hexo-Github博客搭建教程-hexo-github-CSDN博客-https-blog-csdn-net-qq-58608526-article-details-124652412-ops-request-misc-7B-22request-5Fid-22-3A-22170585097816800184194498-22-2C-22scm-22-3A-2220140713-130102334-22-7D-request-id-170585097816800184194498-biz-id-0-utm-medium-distribute-pc-search-result-none-task-blog-2-blog-top-positive-default-1-124652412-null-null-nonecase-utm-term-hexo-github搭建个人博客-spm-1018-2226-3001-4450"><a href="#1、搭建教程：（1-Hexo-Github博客搭建教程-hexo-github-CSDN博客-https-blog-csdn-net-qq-58608526-article-details-124652412-ops-request-misc-7B-22request-5Fid-22-3A-22170585097816800184194498-22-2C-22scm-22-3A-2220140713-130102334-22-7D-request-id-170585097816800184194498-biz-id-0-utm-medium-distribute-pc-search-result-none-task-blog-2-blog-top-positive-default-1-124652412-null-null-nonecase-utm-term-hexo-github搭建个人博客-spm-1018-2226-3001-4450" class="headerlink" title="1、搭建教程：（1)([Hexo+Github博客搭建教程_hexo github-CSDN博客](https://blog.csdn.net/qq_58608526/article/details/124652412?ops_request_misc=%7B%22request%5Fid%22%3A%22170585097816800184194498%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=170585097816800184194498&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-124652412-null-null.nonecase&amp;utm_term=hexo github搭建个人博客&amp;spm&#x3D;1018.2226.3001.4450))"></a>1、搭建教程：（1)([Hexo+Github博客搭建教程_hexo github-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_58608526/article/details/124652412?ops_request_misc=%7B%22request_id%22:%22170585097816800184194498%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170585097816800184194498&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-124652412-null-null.nonecase&utm_term=hexo">https://blog.csdn.net/qq_58608526/article/details/124652412?ops_request_misc=%7B%22request%5Fid%22%3A%22170585097816800184194498%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=170585097816800184194498&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-124652412-null-null.nonecase&amp;utm_term=hexo</a> github搭建个人博客&amp;spm&#x3D;1018.2226.3001.4450))</h5><h5 id="2-Hexo-GitHub搭建个人博客教程（2023最新版）-hexo-github个人网站教程-CSDN博客-https-blog-csdn-net-qq-62928039-article-details-130248518-ops-request-misc-7B-22request-5Fid-22-3A-22170585097816800184194498-22-2C-22scm-22-3A-2220140713-130102334-22-7D-request-id-170585097816800184194498-biz-id-0-utm-medium-distribute-pc-search-result-none-task-blog-2-blog-top-click-default-2-130248518-null-null-nonecase-utm-term-hexo-github搭建个人博客-spm-1018-2226-3001-4450"><a href="#2-Hexo-GitHub搭建个人博客教程（2023最新版）-hexo-github个人网站教程-CSDN博客-https-blog-csdn-net-qq-62928039-article-details-130248518-ops-request-misc-7B-22request-5Fid-22-3A-22170585097816800184194498-22-2C-22scm-22-3A-2220140713-130102334-22-7D-request-id-170585097816800184194498-biz-id-0-utm-medium-distribute-pc-search-result-none-task-blog-2-blog-top-click-default-2-130248518-null-null-nonecase-utm-term-hexo-github搭建个人博客-spm-1018-2226-3001-4450" class="headerlink" title="(2)[Hexo+GitHub搭建个人博客教程（2023最新版）_hexo github个人网站教程-CSDN博客](https://blog.csdn.net/qq_62928039/article/details/130248518?ops_request_misc=%7B%22request%5Fid%22%3A%22170585097816800184194498%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=170585097816800184194498&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_click~default-2-130248518-null-null.nonecase&amp;utm_term=hexo github搭建个人博客&amp;spm&#x3D;1018.2226.3001.4450)"></a>(2)[Hexo+GitHub搭建个人博客教程（2023最新版）_hexo github个人网站教程-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62928039/article/details/130248518?ops_request_misc=%7B%22request_id%22:%22170585097816800184194498%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170585097816800184194498&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_click~default-2-130248518-null-null.nonecase&utm_term=hexo">https://blog.csdn.net/qq_62928039/article/details/130248518?ops_request_misc=%7B%22request%5Fid%22%3A%22170585097816800184194498%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=170585097816800184194498&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_click~default-2-130248518-null-null.nonecase&amp;utm_term=hexo</a> github搭建个人博客&amp;spm&#x3D;1018.2226.3001.4450)</h5><h5 id="2、搭建过程中遇到的问题"><a href="#2、搭建过程中遇到的问题" class="headerlink" title="2、搭建过程中遇到的问题"></a>2、搭建过程中遇到的问题</h5><p>1、初始化Hexo时：先在D盘中创建一个Blog，在hexo init blog，即可完成初始化</p>
+<p>2、在初始化完成后，先cd到创建的blog中，再进行hexo g和hexo s</p>
+<p>3、在ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a> 时，如果出现连接超时，则需要在.ssh文件下创建一个config文件。<br>具体过程如下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45637036/article/details/106560217?spm=1001.2014.3001.5506">Git问题：解决“ssh:connect to host github.com port 22: Connection timed out”_ssh: connect to host github.com port 22: connectio-CSDN博客</a></p>
+<p>4、修改blog中的__config.yml文件时，冒号：后注意空格</p>
+<p>5、安装上传工具使用如下指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --sa</span><br></pre></td></tr></table></figure>
+
+<h5 id="3、更换主题：hexo博客更换主题的方法-hexo-更换主题-CSDN博客"><a href="#3、更换主题：hexo博客更换主题的方法-hexo-更换主题-CSDN博客" class="headerlink" title="3、更换主题：hexo博客更换主题的方法_hexo 更换主题-CSDN博客"></a>3、更换主题：<a target="_blank" rel="noopener" href="https://blog.csdn.net/tlb203/article/details/128625011?ops_request_misc=%7B%22request_id%22:%22170585196516800213028572%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170585196516800213028572&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-1-128625011-null-null.nonecase&utm_term=hexo%E5%8D%9A%E5%AE%A2%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95&spm=1018.2226.3001.4450">hexo博客更换主题的方法_hexo 更换主题-CSDN博客</a></h5><p>如果git clone不成功，具体操作如下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40296909/article/details/134285451?spm=1001.2014.3001.5506">解决使用git时遇到Failed to connect to github.com port 443 after 21090 ms: Couldn‘t connect to server-CSDN博客</a></p>
+<h5 id="4、上传文章（hexo-g）不成功，解决方法如下：【ERROR】-YAMLException-can-not-read-a-block-mapping-entry；-a-multiline-key-may-not-yamlexception-can-not-read-a-block-mapping-entry-CSDN博客"><a href="#4、上传文章（hexo-g）不成功，解决方法如下：【ERROR】-YAMLException-can-not-read-a-block-mapping-entry；-a-multiline-key-may-not-yamlexception-can-not-read-a-block-mapping-entry-CSDN博客" class="headerlink" title="4、上传文章（hexo g）不成功，解决方法如下：【ERROR】: YAMLException: can not read a block mapping entry； a multiline key may not_yamlexception: can not read a block mapping entry;-CSDN博客"></a>4、上传文章（hexo g）不成功，解决方法如下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_54786552/article/details/123510563">【ERROR】: YAMLException: can not read a block mapping entry； a multiline key may not_yamlexception: can not read a block mapping entry;-CSDN博客</a></h5><h1 id="三、创建并上传文章"><a href="#三、创建并上传文章" class="headerlink" title="三、创建并上传文章"></a>三、创建并上传文章</h1><p>注：切记切记 cd D：&#x2F;Blog&#x2F;blog！！！</p>
+<p>1、hexo new 文章名（创建新文章）</p>
+<p>2、hexo clean 清除缓存文件</p>
+<p>3、hexo g 生成静态文件</p>
+<p>4、hexo d 部署文件到设定仓库</p>
+<h1 id="四、图片上传"><a href="#四、图片上传" class="headerlink" title="四、图片上传"></a>四、图片上传</h1><p>解决图片上传不成功的问题：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Qxiaofei_/article/details/124629908?ops_request_misc=%7B%22request_id%22:%22170593354416800225562547%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170593354416800225562547&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-124629908-null-null.nonecase&utm_term=hexo%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0&spm=1018.2226.3001.4450">【Hexo】GitHub+Typora写博客+图片上传_hexo上传图片-CSDN博客</a></p>
 
       </section>
 
@@ -217,8 +170,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/03/05/Reverse-apk/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Reverse-apk</h2>
+        <a href="/2024/01/22/Reverse-tools/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-tools</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -232,8 +185,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/02/26/Web-base/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Web-base</h2>
+        <a href="/2024/01/21/hello-world/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hello World</h2>
         </a>
       
       <div class="card-text--row">Older</div>
