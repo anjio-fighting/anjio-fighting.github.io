@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-16T11:27:45.902Z" itemprop="dateUpdated">2024-03-16</time>
+              <time  class="article-updated" datetime="2024-03-28T16:33:12.467Z" itemprop="dateUpdated">2024-03-29</time>
             </h2>
           
           
@@ -233,6 +233,18 @@
 
 <h3 id="Reflector"><a href="#Reflector" class="headerlink" title="Reflector"></a>Reflector</h3><p>可以将.NET程序集中的中间语言反编译成C#或者Visual Basic代码。除了能将中间语言转换为C#或Visual Basic以外，Reflector还能够提供程序集中类及其成员的概要信息、提供查看程序集中中间语言的能力以及提供对第三方插件的支持。</p>
 <p>Reflector可以用于对代码的修改</p>
+<h3 id="Jadx-gui"><a href="#Jadx-gui" class="headerlink" title="Jadx-gui"></a>Jadx-gui</h3><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h5><p>jadx-gui 是一种基于 jadx 项目的图形界面工具，用于反编译 Android 应用程序的工具。通过使用jadx-gui，开发人员可以打开 APK（Android应用程序包）文件，并查看其反编译的源代码。这对于分析、理解和调试 Android 应用程序非常有用。jadx-gui 提供了一个用户友好的界面，使用户能够浏览应用程序的类、方法、变量等，并可以搜索特定的代码片段</p>
+<p>可以查看APK中classes.dex转化成出的jar文件，即源码文件</p>
+<h5 id="缺点及解决方案"><a href="#缺点及解决方案" class="headerlink" title="缺点及解决方案"></a>缺点及解决方案</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41872247/article/details/121925266?ops_request_misc=%7B%22request_id%22:%22171132786716800215058374%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=171132786716800215058374&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-121925266-null-null.nonecase&utm_term=jadx-gui&spm=1018.2226.3001.4450">Android反编译 jadx-gui基本用法_jadxgui-CSDN博客</a></p>
+<h6 id="APK过大时无法使用索引"><a href="#APK过大时无法使用索引" class="headerlink" title="APK过大时无法使用索引"></a>APK过大时无法使用索引</h6><p>jadx-gui缺点是如果遇到较大的APP，代码加起来超过30mb的话，这个软件的索引功能基本会失效，需要用Android studio来辅助。</p>
+<p><strong>在jadx-gui中，选择左上角的文件，另存为gradle工程。</strong></p>
+<p><img src="/imgs/Reverse-tools/jadx-gui_1.png"></p>
+<p>在保存之后，再用Android Studio打开另存为的工程，就可以使用索引了。</p>
+<h6 id="内存不足"><a href="#内存不足" class="headerlink" title="内存不足"></a>内存不足</h6><p>如果内存无论如何都不够用用，需要调大内存的话，这个时候就不要从github上下载exe文件了，下载zip文件并解压。</p>
+<p>只要打开bin目录下的jdax-gui.bat就能正常使用</p>
+<p>右键该文件，选择编辑</p>
+<p>搜索set DEFAULT_JVM_OPTS<br>在后面的”-Xms128M” “-Xmx4g”中的4g改为你想要开的内存大小即可，如果后面的内容为空就增加这些内容。</p>
+<h3 id="ResourceHacker"><a href="#ResourceHacker" class="headerlink" title="ResourceHacker"></a>ResourceHacker</h3><p>可以直接查看文件中的资源</p>
 
       </section>
 
@@ -303,7 +315,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>11</span>
+        <span>14</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Hexo</title>
+  <title>Reverse-basics | Hexo</title>
 
   
 
@@ -102,23 +102,20 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">Reverse-basics</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-21T13:54:24.969Z" itemprop="datePublished">2024-01-21</time>
+            <time  class="article-date" datetime="2024-03-28T04:53:41.000Z" itemprop="datePublished">2024-03-28</time>
           </h2>
-          
-            <h2 class="last-time">
-              <span>最后更新于</span>
-              <time  class="article-updated" datetime="1985-10-26T08:15:00.000Z" itemprop="dateUpdated">1985-10-26</time>
-            </h2>
           
           
           <ul class="wrap-list dark">
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
   
 </ul>
         </div>
@@ -142,19 +139,71 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45031801/article/details/126807215?ops_request_misc=%7B%22request_id%22:%22171160144316800186579129%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=171160144316800186579129&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-126807215-null-null.nonecase&utm_term=%E6%8C%89%E4%BD%8D%E4%B8%8E&spm=1018.2226.3001.4450">位运算：按位与、按位或、按位异或、按位左移、按位右移-CSDN博客</a></p>
+<p>位运算用来对二进制位进行操作，包括：按位与（&amp;）、按位或（|）、按位异或（^）、按位取反（~）、按位左移（&lt;&lt;）、按位右移(&gt;&gt;) 。</p>
+<h3 id="（1）按位与（-）"><a href="#（1）按位与（-）" class="headerlink" title="（1）按位与（&amp;）"></a>（1）按位与（&amp;）</h3><pre><code>1. 应用范围：必须在整数范围内进行
+</code></pre>
+<ol start="2">
+<li><p>运算方法：将整数从十进制转化为二进制数，上下比较，有零则零 ，<strong>两个都是 1 才是 1</strong>。</p>
+</li>
+<li><p>运算编码：补码</p>
+</li>
+<li><p>输出方式：整形表达式计算使用在内存中的是补码，打印和看到的都是源码。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// int 为整型4个字节有32个bit位</span><br><span class="line">int a = 3 ;  // 00000000 00000000 00000000 000000011   正数，源码=反码=补码</span><br><span class="line">int b = -5 ; // 10000000 00000000 00000000 000000101   -5的源码</span><br><span class="line">             // 11111111 11111111 11111111 111111010   -5的反码</span><br><span class="line">             // 11111111 11111111 11111111 111111011   -5的补码</span><br><span class="line"> </span><br><span class="line">int c = a &amp; b ;  //按位与：上下比较，有零则零，两个都为 1 才是 1</span><br><span class="line"> </span><br><span class="line">             // 00000000 00000000 00000000 00000011   3的补码</span><br><span class="line">             // 11111111 11111111 11111111 11111011   -5的补码</span><br><span class="line"> </span><br><span class="line">     最终结果// 00000000 00000000 00000000 00000011   ----（3）整数，源码=反码=补码</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="（2）按位或（-）"><a href="#（2）按位或（-）" class="headerlink" title="（2）按位或（|）"></a>（2）按位或（|）</h3><ol>
+<li><p>应用范围：必须在整数范围内进行</p>
+</li>
+<li><p>运算方法：上下比较有 1 则为 1，两<strong>个都是 0 才是 0</strong></p>
+</li>
+<li><p>运算编码：补码</p>
+</li>
+<li><p>输出方式：整形表达式计算使用在内存中的是补码，打印和看到的都是源码。</p>
+</li>
+</ol>
+<h3 id="（3）按位异或（-）"><a href="#（3）按位异或（-）" class="headerlink" title="（3）按位异或（^）"></a>（3）按位异或（^）</h3><ol>
+<li><p>应用范围：必须在整数范围内进行</p>
+</li>
+<li><p>运算方法：上下比较，<strong>相同为 0 ，相异为 1</strong> </p>
+</li>
+<li><p>运算编码：补码</p>
+</li>
+<li><p>输出方式：整形表达式计算使用在内存中的是补码，打印和看到的都是源码。</p>
+</li>
+</ol>
+<h3 id="4-按位左移（"><a href="#4-按位左移（" class="headerlink" title="(4)按位左移（&lt;&lt;）"></a>(4)按位左移（&lt;&lt;）</h3><ol>
+<li><p>应用范围：必须在整数范围内进行</p>
+</li>
+<li><p>运算方法：把二进制数向左移动一位，左边溢出的丢弃，<strong>右边补零</strong></p>
+</li>
+<li><p>编码运算：补码</p>
+</li>
+<li><p>输出方式：整形表达式计算使用在内存中的是补码，打印和看到的都是源码。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a = 4 ;       // 00000000 00000000 00000000 00000100，正数，源码=反码=补码</span><br><span class="line">int b = a &lt;&lt; 1 ;  // 把a左移一位，左边丢弃，右边补零</span><br><span class="line">                  // 00000000 00000000 00000000 00001000 ----（8）</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h3 id="（5）按位右移"><a href="#（5）按位右移" class="headerlink" title="（5）按位右移(&gt;&gt;)"></a>（5）按位右移(&gt;&gt;)</h3><ol>
+<li><p>应用范围：必须在整数范围内进行</p>
+</li>
+<li><p>运算方法：把二进制数向右移动一位，右边丢弃，<strong>左边补原符号位</strong></p>
+</li>
+<li><p>编码运算：补码</p>
+</li>
+<li><p>输出方式：整形表达式计算使用在内存中的是补码，打印和看到的都是源码。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">int a = -4 ; // 10000000 00000000 00000000 00000100 负数，源码</span><br><span class="line">             // 11111111 11111111 11111111 11111011  -4的反码</span><br><span class="line">             // 11111111 11111111 11111111 11111100  -4的补码</span><br><span class="line">int b = &gt;&gt; 1 ; // 把b向右移动一位，右边丢弃，左边补原符号位</span><br><span class="line">               // 11111111 11111111 11111111 11111110  负数，补码</span><br><span class="line">               // 11111111 11111111 11111111 11111101  反码</span><br><span class="line">               // 10000000 00000000 00000000 00000010  源码----（-2）</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p> <strong>此时我们可以发现一个整数，左移有乘2的效果，右移有除二的效果。</strong></p>
+<h1 id="算术运算符-python"><a href="#算术运算符-python" class="headerlink" title="算术运算符-python"></a>算术运算符-python</h1><h3 id="除法运算符："><a href="#除法运算符：" class="headerlink" title="除法运算符：&#x2F;"></a>除法运算符：&#x2F;</h3><p>将第一个操作数除以第二个操作数，结果为<strong>浮点数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">10</span></span><br><span class="line">b=<span class="number">5</span></span><br><span class="line">c=a/b</span><br><span class="line"><span class="built_in">print</span>(c)<span class="comment">#输出：2.0</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="整除运算符："><a href="#整除运算符：" class="headerlink" title="整除运算符：&#x2F;&#x2F;"></a>整除运算符：&#x2F;&#x2F;</h3><p>将第一个操作数除以第二个操作数并向下取整</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">10</span></span><br><span class="line">b=<span class="number">3</span></span><br><span class="line">c=a//b</span><br><span class="line"><span class="built_in">print</span>(c)<span class="comment">#输出：3</span></span><br></pre></td></tr></table></figure>
+
 
       </section>
 
@@ -167,8 +216,8 @@
     
     <div class="card-text">
       
-        <a href="/2024/01/21/hexo-github%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo-github的搭建</h2>
+        <a href="/2024/03/28/Reverse-Classic-Example/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-Classic-Example</h2>
         </a>
       
       <div class="card-text--row">Newer</div>
@@ -176,6 +225,20 @@
   </article>
 </div>
           
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/03/21/Reverse-Induction/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-Induction</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
           
         </nav>
       

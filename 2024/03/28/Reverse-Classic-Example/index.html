@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | Hexo</title>
+  <title>Reverse-Classic-Example | Hexo</title>
 
   
 
@@ -102,16 +102,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">Reverse-Classic-Example</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-01-21T13:54:24.969Z" itemprop="datePublished">2024-01-21</time>
+            <time  class="article-date" datetime="2024-03-28T14:52:39.000Z" itemprop="datePublished">2024-03-28</time>
           </h2>
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="1985-10-26T08:15:00.000Z" itemprop="dateUpdated">1985-10-26</time>
+              <time  class="article-updated" datetime="2024-03-29T03:08:20.653Z" itemprop="dateUpdated">2024-03-29</time>
             </h2>
           
           
@@ -119,6 +119,8 @@
   
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
   
 </ul>
         </div>
@@ -142,19 +144,75 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="CrackRTF"><a href="#CrackRTF" class="headerlink" title="CrackRTF"></a>CrackRTF</h1><h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>将文件用IDA打开，找到主函数并进行分析</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf1.png"></p>
+<p>对于Destination和Str第一次的加密是如何看出来的呢？首先查看sub_40100A和sub_401019函数</p>
+<p>下图是sub_40100A</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf2.png"></p>
+<p>下图是sub_401019</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf3.png"></p>
+<p>通过上面两张图中红色框框起来的函数部分我们可以判断加密类型</p>
+<p>介绍一下CryptCreateHash 函数</p>
+<h3 id="CryptCreateHash-函数"><a href="#CryptCreateHash-函数" class="headerlink" title="CryptCreateHash 函数"></a><strong>CryptCreateHash 函数</strong></h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">CryptCreateHash</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  HCRYPTPROV hProv,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  ALG_ID     Algid,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  HCRYPTKEY  hKey,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  DWORD      dwFlags,</span></span></span><br><span class="line"><span class="params"><span class="function">  [out] HCRYPTHASH *phHash</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[in] hProv</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>通过调用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/api/wincrypt/nf-wincrypt-cryptacquirecontexta">CryptAcquireContext</a> 创建的 CSP 的句柄。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[in] Algid</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>标识要使用的哈希算法 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecCrypto/alg-id">的ALG_ID</a> 值。</p>
+<p>此参数的有效值因使用的 CSP 而异。 有关默认算法的列表，请参阅备注。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[in] hKey</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>如果哈希算法的类型是键控哈希，例如 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecGloss/h-gly">基于哈希的消息身份验证代码</a> (HMAC) 或 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecGloss/m-gly">消息身份验证代码</a> (MAC) 算法，则哈希的密钥在此参数中传递。 对于非密钥算法，此参数必须设置为零。</p>
+<p>对于键式算法，该密钥必须是 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecGloss/b-gly">具有密码块</a> 链接 (CBC) 的密码 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecGloss/c-gly">模式</a> 的 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/desktop/SecGloss/c-gly">块</a> 加密密钥，例如 RC2。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[in] dwFlags</span><br></pre></td></tr></table></figure>
+
+<p>定义了以下标志值。</p>
+<p><strong>注</strong>：通过上述了解可以知道，Aligid的值决定了函数的加密类型，默认算法表查看<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/alg-id">ALG_ID (Wincrypt.h) - Win32 apps | Microsoft Learn</a></p>
+<h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>通过查看算法表，我们可以知道sub_40100A是进行了sha1加密，sub_401019是进行了MD5加密</p>
+<p>sha1的解密脚本如下</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf4.png"></p>
+<p>得到密码1：123321</p>
+<p>对于爆破脚本的分析：</p>
+<h3 id="str"><a href="#str" class="headerlink" title="str()"></a>str()</h3><p>将参数转换成字符串类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">age=20</span><br><span class="line">message=&quot;Happy &quot; + age + &quot;th Btrthday!&quot;</span><br><span class="line">print(message)</span><br></pre></td></tr></table></figure>
+
+<p>在Python看来，age这个变量表示的可能是数值20，也可能是字符2和0。因为 “+” 运算符两边的数据需要类型一致，因此像上面这样在字符串中使用整数时，需要显式地将这个整数用作字符串，让其与两侧的字符串数据类型保持一致。即调用 str() 函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">age=20</span><br><span class="line">message=&quot;Happy &quot; + str(age) + &quot;th Birthday!&quot;</span><br><span class="line">print(message)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"># result</span><br><span class="line"> </span><br><span class="line">Happy 20th Birthday!</span><br></pre></td></tr></table></figure>
+
+<h3 id="hexdigest"><a href="#hexdigest" class="headerlink" title="hexdigest()"></a>hexdigest()</h3><p>它可以计算给定数据的摘要值，以16进制字符串的形式返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">data = <span class="string">&quot;Hello, World!&quot;</span></span><br><span class="line">md5_hash = hashlib.md5(data.encode())</span><br><span class="line">result = md5_hash.hexdigest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;MD5摘要值：&quot;</span>, result)</span><br><span class="line"></span><br><span class="line">sha1_hash = hashlib.sha1(data.encode())</span><br><span class="line">result = sha1_hash.hexdigest()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;SHA1摘要值：&quot;</span>, result)</span><br><span class="line"></span><br><span class="line">MD5摘要值： 6cd3556deb0da54bca060b4c39479839</span><br><span class="line">SHA1摘要值： 0a4d55a8d778e5022fab701977c5d840bbc486d0</span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>程序中并没有说明密码2的范围，所以不能爆破，所以我们继续往下分析程序</p>
+<p>有一个函数<code>sub_40100F</code>，点进去看一看</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf5.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HRSRC FindResourceA(</span><br><span class="line">  HMODULE hModule,</span><br><span class="line">  LPCSTR  lpName,</span><br><span class="line">  LPCSTR  lpType</span><br><span class="line">);</span><br><span class="line">FindResourceA function</span><br><span class="line">Determines the location of a resource with the specified type and name in the specified module.</span><br><span class="line">确定具有指定类型和名称的资源在指定模块中的位置。</span><br><span class="line">hModule：处理包含资源的可执行文件的模块。NULL值则指定模块句柄指向操作系统通常情况下创建最近过程的相关位图文件。</span><br><span class="line">lpName：指定资源名称。</span><br><span class="line">lpType：指定资源类型。</span><br><span class="line">返回值：如果函数运行成功，那么返回值为指向被指定资源信息块的句柄。为了获得这些资源，将这个句柄传递给LoadResource函数。如果函数运行失败，则返回值为NULL。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SizeofResource表示该函数返回指定资源的字节数大小。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LoadResource function</span><br><span class="line">检索一个句柄，该句柄可用于获取指向内存中指定资源的第一个字节的指针。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>总之这三个函数，一个找句柄，一个通过句柄找指针，一个范围查找的资源的大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hResInfo = FindResourceA(0, (LPCSTR)&#x27;e&#x27;, &quot;AAA&quot;);</span><br><span class="line">  if ( !hResInfo )</span><br><span class="line">    return 0;</span><br><span class="line">  nNumberOfBytesToWrite = SizeofResource(0, hResInfo);</span><br><span class="line">  hResData = LoadResource(0, hResInfo);</span><br><span class="line">  if ( !hResData )</span><br><span class="line">    return 0;</span><br><span class="line">  lpBuffer = LockResource(hResData);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这一段代码的含义就是，从AAA文件中查找字符，然后如果没有找到就返回，找到了的话就计算出资源的大小，把资源第一个字符出的指针传给lpBuffer</p>
+<h3 id="4"><a href="#4" class="headerlink" title="(4)"></a>(4)</h3><p>继续往下看代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sub_401005(lpString, (int)lpBuffer, nNumberOfBytesToWrite);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>又碰到一个函数<code>sub_401005</code></p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf6.png"></p>
+<p>资源的每一位和密码的每一位循环异或<br>异或结束之后，生成一个rtf文件</p>
+<p>我们的密码一共是18位<br>我们现在想要的是前六位的密码，循环异或的话，那么也就是说，资源的前六位与密码的前六位异或的结果就是rtf文件的前六位<br>我们找来一个rtf文件（直接在桌面生成一个rtf文件，随便输入一些内容，用010editor打开即可查看头文件），看看它的标志位</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf7.png"></p>
+<p>前六位是<code>&#123;\rtf1</code></p>
+<p>用resourcehacker打开文件，查看资源</p>
+<p><img src="/imgs/Reverse-Classic-Example/crackrtf8.png"></p>
+<p>看一下资源的前六位，写出异或脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rtf = <span class="string">&#x27;&#123;\\rtf1&#x27;</span> \\需要注意，\r需要转义，变成\\r</span><br><span class="line">A = [<span class="number">0x05</span>, <span class="number">0x7D</span>, <span class="number">0x41</span>, <span class="number">0x15</span>, <span class="number">0x26</span>, <span class="number">0x01</span>]</span><br><span class="line">password=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(rtf)):</span><br><span class="line">    x = <span class="built_in">ord</span>(rtf[i]) ^ A[i]</span><br><span class="line">    password+=<span class="built_in">chr</span>(x)</span><br><span class="line"><span class="built_in">print</span>(password)</span><br></pre></td></tr></table></figure>
+
+<p>结果为<code>~!3a@0</code></p>
+<p>接下来就可以继续输入第二段密码了<br>两端密码输入完后，就会在程序所在文件夹中生成一个带有flag的rtf文件，打开就能得到flag<br>flag为<code>Flag&#123;N0_M0re_Free_Bugs&#125;</code></p>
 
       </section>
 
@@ -162,20 +220,20 @@
       
         <nav class="article-nav">
           
+          
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/01/21/hexo-github%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">hexo-github的搭建</h2>
+        <a href="/2024/03/28/Reverse-basics/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-basics</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       

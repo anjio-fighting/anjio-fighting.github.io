@@ -109,6 +109,11 @@
             <time  class="article-date" datetime="2024-03-16T00:58:20.000Z" itemprop="datePublished">2024-03-16</time>
           </h2>
           
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-03-29T03:31:01.361Z" itemprop="dateUpdated">2024-03-29</time>
+            </h2>
+          
           
           <ul class="wrap-list dark">
   
@@ -139,7 +144,9 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h3 id="TLS回调函数"><a href="#TLS回调函数" class="headerlink" title="TLS回调函数"></a>TLS回调函数</h3><p>Thread Local Storage（线程局部存储）<strong>回调函数</strong>常用于<strong>反调试</strong>。TLS回调函数的调用运行要先于<strong>EP代码</strong>的执行 ，该特征使它可以作为一种反调试技术的使用。</p>
+        <h3 id="TLS回调函数"><a href="#TLS回调函数" class="headerlink" title="TLS回调函数"></a>TLS回调函数</h3><p>Thread Local Storage（线程局部存储）<strong>回调函数</strong>常用于<strong>反调试</strong>。</p>
+<p>所谓TLS回调函数是指，每当创建&#x2F;终止进程的线程时会自动调用执行的函数。有意思的是，创建进程的主线程时，也会自动调用回调函数，且其调用执行先于EP代码。反调试技术利用的就是TLS回调函数的这一特征。</p>
+<p>请注意，创建或终止某线程时，TLS回调函数都会自动调用执行，前后共2次（原意即为此）。</p>
 <h5 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h5><p>回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。</p>
 <p>简单来说就是，把一段可执行的代码像参数传递那样传给其他代码，而这段代码会在某个时刻被调用执行，这就叫<strong>回调</strong></p>
 <p>如果代码立即被执行就成为同步回调，如果过后再执行，就称之为异步回调。</p>
@@ -147,12 +154,160 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Callback_1</span><span class="params">(<span class="type">int</span> a)</span>   <span class="comment">///&lt; 回调函数1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_1: a = %d &quot;</span>, a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Callback_2</span><span class="params">(<span class="type">int</span> b)</span>  <span class="comment">///&lt; 回调函数2</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_2: b = %d &quot;</span>, b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Callback_3</span><span class="params">(<span class="type">int</span> c)</span>   <span class="comment">///&lt; 回调函数3</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, this is Callback_3: c = %d &quot;</span>, c);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">Handle</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> (*Callback)(<span class="type">int</span>))</span> <span class="comment">///&lt; 注意这里用到的函数指针定义</span></span><br><span class="line">&#123;</span><br><span class="line">    Callback(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    Handle(<span class="number">4</span>, Callback_1);</span><br><span class="line">    Handle(<span class="number">5</span>, Callback_2);</span><br><span class="line">    Handle(<span class="number">6</span>, Callback_3);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="反调试"><a href="#反调试" class="headerlink" title="反调试"></a>反调试</h5><p>为了防止程序被调试，保护代码的加固手段</p>
+<h5 id="EP代码"><a href="#EP代码" class="headerlink" title="EP代码"></a>EP代码</h5><p>EP代码是指程序的入口点，是Windows可执行文件（如EXE、DLL、SYS等）中最先被执行的代码的位置</p>
+<p>在Windows操作系统中，每个可执行文件都有一个指定的入口点，它是程序启动时CPU开始执行代码的具体地址。EP代码通常由链接器在编译和链接过程中自动生成，并存储在PE文件的头信息中</p>
+<p><strong>程序调试</strong>：在软件开发和调试过程中，开发者可以通过设置断点在EP处来开始调试程序的执行流程<br><strong>加壳与脱壳</strong>：在软件保护领域，加壳技术会修改程序的原始入口点（OEP），以隐藏程序真实的执行起始位置。脱壳则是还原或找到程序的真正入口点，以便进行逆向工程或破解</p>
+<h3 id="memset"><a href="#memset" class="headerlink" title="memset"></a>memset</h3><p>这是一个初始化函数，作用是将某一块内存中的全部设置为指定的值（它是以字节为单位进行赋值的）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void *memset（void *s，int c，size_t n);</span><br><span class="line">eg：</span><br><span class="line">int a[4];</span><br><span class="line">memset(a,1,sizeof(a));</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>s指向要填充的内存块</li>
+<li>c是要被设置的值</li>
+<li>n是要被设置该值的字符数</li>
+<li>返回类型是一个指向存储区s的指针</li>
+</ul>
+<h3 id="strncpy-strcpy"><a href="#strncpy-strcpy" class="headerlink" title="strncpy&amp;strcpy"></a>strncpy&amp;strcpy</h3><p>***<u>strcpy</u>***（char *dest,const char*src)：该函数用来复制字符串</p>
+<p><em><strong><u>strncpy</u></strong></em>(char*dest,const char*src,n):该函数用来复制字符串的前n个字符</p>
+<p>（注：1、dest 表示字符串起始地址。<br>2、当src字符串长度小于n时，则拷贝完字符串后，剩余部分将用空字节填充，直到n个。src和dest所指的内存区域不能重叠，且dest必须有足够的空间放置n个字符。</p>
+<p>3、不同于strcpy，strncpy不会向dest追加结束标记‘\n’）</p>
+<h3 id="strcmp-strncmp"><a href="#strcmp-strncmp" class="headerlink" title="strcmp&amp;strncmp"></a>strcmp&amp;strncmp</h3><p>***<u>strcmp</u>***（const char *string1，const char *string2）：进行字符串比较，比较字符串大小的函数。返回类型是int，当前者大于后者返回1，前者小于后者返回-1。<br>（strcmp本质上比较的是第一位不同位的ASCII码值大小。例如字符串A,B，若所有对应的字符都相同，则返回值为0，若第一位不同位的ASCII码值，A大于B，无论B后面有多长，都返回1，反之返回-1。</p>
+<h5 id="if-strncmp-Str1-Str2-v5"><a href="#if-strncmp-Str1-Str2-v5" class="headerlink" title="if ( !strncmp(Str1, Str2, v5) )"></a>if ( !strncmp(Str1, Str2, v5) )</h5><p>strncmp(str1,str2,v5)是把str1与str2两字符串的前v5位数做一个比较，&#x3D;&#x3D;若str1&#x3D;str2，返回0&#x3D;&#x3D;</p>
+<p>***<u>strncmp</u>***（const char *string1,const char string2,length):strncmp较strcmp多了一个length（即参数n）。strncmp是用来比较两个字符串前n个字节的大小。</p>
+<h3 id="text-char-join-key3-v9"><a href="#text-char-join-key3-v9" class="headerlink" title="text &#x3D; (char *)join(key3, v9)"></a>text &#x3D; (char *)join(key3, v9)</h3><p>这句话是一个C语言中的字符串操作，意思是将变量key3和变量v9连接起来，然后将结果赋给一个新的字符串指针。在C语言中，字符串操作通常使用char*类型的指针来表示字符串。因此，这句话的意思就是将key3和v9链接成一个新的字符串。</p>
+<h3 id="strcat"><a href="#strcat" class="headerlink" title="strcat"></a>strcat</h3><p>这是一个字符串连接函数，用于&#x3D;&#x3D;字符串追加&#x3D;&#x3D;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strcat（char *dest，const char *src）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>dest—指向目标数组，该数组包含了一个C字符串，且足够容纳追加后的字符串</li>
+<li>src—指向要追加的字符串，该字符串不会覆盖目标字符串</li>
+</ul>
+<h3 id="GetStdHandle"><a href="#GetStdHandle" class="headerlink" title="GetStdHandle"></a>GetStdHandle</h3><p>GetStdHandle是一个Windows API函数。它用于从一个特定的标准设备（标准输入、标准输出或标准错误）中取得一个句柄。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetStdHandle( _In_ DWORD nStdHandle);//包含在头文件windows.h中</span><br></pre></td></tr></table></figure>
+
+<p>GetStdHandle函数的参数可以是下列之一</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>STD_INPUT_HANDLE</td>
+<td>标准输入句柄</td>
+</tr>
+<tr>
+<td>STD_OUTPUT_HANDLE</td>
+<td>标准输出句柄</td>
+</tr>
+<tr>
+<td>STD_ERROR_HANDLE</td>
+<td>标准错误句柄</td>
+</tr>
+</tbody></table>
+<p>注：<br>1、只有这三种参数。不同的参数用于获取不同标准设备的句柄。<br>2、GetStdHandle函数是用来获取句柄的，那它的返回值当然是个句柄</p>
+<h3 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a>sprintf</h3><p>由于 sprintf 跟 printf 在用法上几乎一样，只是打印的目的地不同而已，前者打印到字符串中，后者则直接在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%91%BD%E4%BB%A4%E8%A1%8C&spm=1001.2101.3001.7020">命令行</a>上输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int sprintf( char *buffer, const char *format [, argument] … );</span><br></pre></td></tr></table></figure>
+
+<p>除了前两个参数类型固定外，后面可以接任意多个参数。而它的精华，显然就在第二个参数：格式化字符串上。</p>
+<p>1、格式化数字字符串</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sprintf（s，“%d”，123）；</span><br><span class="line">//产生&quot;123&quot;</span><br><span class="line">sprintf（s，“%08x”,4567）</span><br><span class="line">//产生十六进制：000011D7</span><br></pre></td></tr></table></figure>
+
+<p>2、控制浮点数打印格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sprintf（s，&quot;%f&quot;,3.1415926);</span><br><span class="line">//产生&quot;3.141593&quot;</span><br></pre></td></tr></table></figure>
+
+<p>浮点数使用“ %f ”控制，默认保留小数点后6位数字</p>
+<p>3、连接多个字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">who = &#x27;I&#x27;</span><br><span class="line">whom = &#x27;balabala&#x27;</span><br><span class="line">sprintf（”%s love %s“，who，whom）；</span><br><span class="line">//产生&quot;I love balabala.</span><br></pre></td></tr></table></figure>
+
+<p>4、打印地址信息（查看某些变量或者成员的地址）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sprintf（s，“%p”，&amp;i）；</span><br></pre></td></tr></table></figure>
+
+<h3 id="MessageBoxA函数"><a href="#MessageBoxA函数" class="headerlink" title="MessageBoxA函数"></a>MessageBoxA函数</h3><p>- <code>MessageBoxA</code> 是一个函数，用于在Windows系统中显示一个消息框。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MessageBoxA(hDlg, &quot;U g3t 1T!&quot;, &quot;@_@&quot;, 0);</span><br></pre></td></tr></table></figure>
+
+<p><code>hDlg</code> 是对话框的句柄，通常由 <code>CreateDialog</code> 或 <code>DialogBoxParam</code> 等函数返回。<br>- <code>&quot;U g3t 1T!&quot;</code> 是要在消息框中显示的文本内容。<br>- <code>&quot;@_@&quot;</code> 是消息框的标题。<br>- <code>0</code> 是消息框的类型，其中 <code>0</code> 表示一个标准的模态消息框。</p>
+<p>所以，这段代码的意思是：在一个模态的消息框中显示文本 “U g3t 1T!”，并将该消息框的标题设置为 “@_@”。</p>
+<h3 id="malloc（动态内存分配）"><a href="#malloc（动态内存分配）" class="headerlink" title="malloc（动态内存分配）"></a>malloc（动态内存分配）</h3><p>用于申请一块连续的指定大小的内存块区域，以void类型返回分配的内存区域地址。当无法知道内存具体位置的时候，想要绑定真正的内存空间，就需要用到动态的分配内存，且分配的大小就是程序要求的大小</p>
+<h3 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h3><p>memcpy是内存拷贝函数，它可以实现指定内存大小的拷贝。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void * memcpy(void * destination,const void* sourcr,size_t num)</span><br></pre></td></tr></table></figure>
+
+<p>库函数memcpy在头文件string.h中被声明。</p>
+<p>它有三个参数：<br>第一个参数类型是void<em>，用来接收目的地的首地址；<br>第二个参数类型是const void</em>，用来接收源头内容的首地址（拷贝时源头的内容不会被改变，用const修饰会更安全）；<br>第三个参数类型是size_t（无符号整型），表示从源头地址开始向后需要拷贝的字节数。<br>在之前使用qsort函数时我们了解到：void<em>可以接收任意类型的指针变量，指向1个字节的空间。由于这个库函数要能够拷贝任意类型的数据，所以这里使用了void</em>来接受指针变量（上一篇介绍的字符串函数的参数是char*型的，所以只能对字符进行拷贝）<br>结合第三个参数，就可以实现将从源头首元素地址开始的内存中num个字节内的数据拷贝到目的地首元素地址开始的num个字节的空间中。由于数据都是以二进制的形式存储在内存中的，最小存储单元就是1个字节，所以只要能够将某一内存空间的每一个字节拷贝到另一空间。这样，就可以实现任意数据类型的拷贝。</p>
+<p>返回值是void*型的，用来返回目的地的首元素地址。</p>
+<p>需要注意的是，memcpy函数在处理从源头地址开始的num个字节的内存空间与从目的地地址开始的num个字节的内存空间有重叠的情况时，可能会出现一些问题导致不能实现正确的拷贝。建议使用memmove函数来处理</p>
+<h3 id="fopen"><a href="#fopen" class="headerlink" title="fopen"></a>fopen</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fopen(const char *filename, const char *mode);`</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>filename: 要打开的文件名字符串</li>
+<li>mode: 访问文件的模式， 它包括：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+<th>文件可否存在</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-r</td>
+<td>打开文件仅供读取</td>
+<td>必须存在</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>创建新文件仅供写入</td>
+<td>若存在，则清空后再写入</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>打开文件附加写入</td>
+<td>若不存在，则创建新文件写入</td>
+</tr>
+<tr>
+<td>-r+</td>
+<td>打开文件供读取并写入</td>
+<td>必须存在</td>
+</tr>
+<tr>
+<td>-w+</td>
+<td>创建新文件供读取并写入</td>
+<td>若存在，则清空后再写入</td>
+</tr>
+<tr>
+<td>-a+</td>
+<td>打开文件读取并附加写入</td>
+<td>若不存在，则创建新文件写入</td>
+</tr>
+</tbody></table>
+<h3 id="fclose"><a href="#fclose" class="headerlink" title="fclose"></a>fclose</h3><p>关闭当前文件流，此动作会让缓冲区内的数据写入文件中，并释放系统所提供的文件资源</p>
+<h3 id="atoi"><a href="#atoi" class="headerlink" title="atoi"></a>atoi</h3><p>将输入的字符串转为数字</p>
+<h3 id="byte和hibyte"><a href="#byte和hibyte" class="headerlink" title="byte和hibyte"></a>byte和hibyte</h3><p>LOWORD( )得到一个32bit数的低16bit<br>HIWORD( )得到一个32bit数的高16bit<br>LOBYTE( )得到一个16bit数最低（最右边）那个字节<br>HIBYTE( )得到一个16bit数最高（最左边）那个字节</p>
+<h3 id="exit-函数"><a href="#exit-函数" class="headerlink" title="exit()函数"></a>exit()函数</h3><p>用来终止进程<br><strong>exit(0)</strong> 表示程序正常退出；除了0之外，其他参数均代表程序异常退出，如：exit(1),exit(-1)。<br><strong>exit(1)</strong> 和<strong>exit(-1)</strong> 是分别返回1和-1到主调程序。exit(0)则是返回0。exit(0)表示程序正常退出，非0表示非正常退出。</p>
+<h3 id="mpz-init-set-str"><a href="#mpz-init-set-str" class="headerlink" title="mpz_init_set_str"></a>mpz_init_set_str</h3><p>int mpz_init_set_str (mpz t rop, const char *str, int base)<br>&#x2F;&#x2F;rop &#x3D; str(转为base进制数)</p>
+<h3 id="mpz-powm"><a href="#mpz-powm" class="headerlink" title="mpz_powm"></a>mpz_powm</h3><p>void mpz_powm (mpz t rop, const mpz t base, const mpz t exp, const mpz t [Function] mod)<br>&#x2F;&#x2F;rop &#x3D; base^exp%mod</p>
+<p><strong>注</strong>：看到这个函数要联想到rsa加密</p>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/03/21/Reverse-Induction/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-Induction</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -203,7 +358,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>11</span>
+        <span>14</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
