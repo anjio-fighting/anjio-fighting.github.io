@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-16T00:58:43.554Z" itemprop="dateUpdated">2024-03-16</time>
+              <time  class="article-updated" datetime="2024-03-31T16:38:53.755Z" itemprop="dateUpdated">2024-04-01</time>
             </h2>
           
           
@@ -145,9 +145,29 @@
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h1 id="安卓逆向"><a href="#安卓逆向" class="headerlink" title="安卓逆向"></a>安卓逆向</h1><p>安卓逆向是对已经打包好的APP进行反编译、源码分析了解APP实现逻辑的一门技术。我们可以把安卓安装时用到的APK文件看作一个加密后的压缩包，逆向就是要最大程序地还原出APK打包之前的源码</p>
-<p>安卓是基于java开发的，需要java环境</p>
+<p>安卓是基于java开发的，需要java环境，之后改为了Kotlin（基于JVM的编程语言）</p>
+<h3 id="Android四大组件"><a href="#Android四大组件" class="headerlink" title="Android四大组件"></a>Android四大组件</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xchaha/article/details/80398620?ops_request_misc=%7B%22request_id%22:%22171189637816800186528392%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=171189637816800186528392&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~top_positive~default-1-80398620-null-null.nonecase&utm_term=android%E5%9B%9B%E5%A4%A7%E7%BB%84%E4%BB%B6&spm=1018.2226.3001.4450">Android四大组件（整理相关知识点）_android 四大组件-CSDN博客</a></p>
+<h5 id="1-Activity"><a href="#1-Activity" class="headerlink" title="1.Activity"></a>1.Activity</h5><p>面向用户的应用组件或者用户操作的可视化界面，基于Activity基类，底层由ActivityManager统一管理，也负责处理应用内或应用间发送的Intent消息</p>
+<h5 id="2、Service"><a href="#2、Service" class="headerlink" title="2、Service"></a>2、Service</h5><p>通常用于处理后台耗时逻辑，用户不直接与Service对应的应用进程交互。与其他Android应用组件一样，Service也可以通过IPC机制接受和发送Intent</p>
+<h5 id="3、Broadcast-Receiver"><a href="#3、Broadcast-Receiver" class="headerlink" title="3、Broadcast Receiver"></a>3、Broadcast Receiver</h5><p>接受并过滤广播消息的组件，应用想显示的接收广播消息，须在Mainfest清单文件中注册一个receiver，用Inter filter过滤特定类型的广播消息，应用内也可以通过registerReceiver在运行时动态注册。</p>
+<h5 id="4、Content-Provider"><a href="#4、Content-Provider" class="headerlink" title="4、Content Provider"></a>4、Content Provider</h5><p>应用程序间数据共享的组件。如ContactsProvider（联系人提供者）对联系人信息统一管理，可以被其他应用（申请权限后）访问，应用还可以创建自己的Content Provider，并且把自身数据暴露给其他应用</p>
 <h3 id="Apk文件"><a href="#Apk文件" class="headerlink" title="Apk文件"></a>Apk文件</h3><p>通过apk文件可以判断是安卓逆向。apk就是英文AndroidPackage的缩写，也就是我们常说的Android系统安装包。apk类似于Symbian系统的Sis或Sisx文件格式。我们可以将APK文件直接传到Android模拟器或Android手机中执行即可安装。其实就是一个压缩文件，类似于zip格式，或者说就是zip格式。</p>
 <p><strong>用jadx打开apk文件</strong>，得到apk文件的java代码，通过对java代码进行逆向分析</p>
+<h5 id="APK文件结构"><a href="#APK文件结构" class="headerlink" title="APK文件结构"></a>APK文件结构</h5><h6 id="1、meta-inf目录"><a href="#1、meta-inf目录" class="headerlink" title="1、meta-inf目录"></a>1、meta-inf目录</h6><p>#mainfest.mf: 清单文件</p>
+<p>#cert.rsa: 应用签名文件</p>
+<p>#cert.sf: 资源列表及对应的SHA-1签名</p>
+<h6 id="2、lib目录"><a href="#2、lib目录" class="headerlink" title="2、lib目录"></a>2、lib目录</h6><p>#armeabi：所有ARM处理器相关文件</p>
+<p>#armeabi-v7a: ARMv7及以上处理器相关文件</p>
+<p>#arm64-v8a：所有ARMv8处理器下的arm64相关文件</p>
+<p>#x86：所有x86处理器相关文件</p>
+<p>#x86_64：所有x86_64处理器相关文件</p>
+<p>#mips：MIPS处理器相关文件</p>
+<h6 id="3、res"><a href="#3、res" class="headerlink" title="3、res"></a>3、res</h6><p>res文件是没有编译至resources.arsc中的其他资源文件</p>
+<h6 id="4、assets"><a href="#4、assets" class="headerlink" title="4、assets"></a>4、assets</h6><p>assets文件是指能通过AssetManager访问到的资源文件</p>
+<h6 id="5、AndroidMainfest-xml"><a href="#5、AndroidMainfest-xml" class="headerlink" title="5、AndroidMainfest.xml"></a>5、AndroidMainfest.xml</h6><p>AndroidMainfest.xml是Android组件清单文件，包含应用名字、版本、权限等信息，以二进制XML文件格式存储在APK文件中，能通过<strong>apktool，AXMLPrinter2等工具转换成XML明文格式文件</strong></p>
+<h6 id="6、classes-dex"><a href="#6、classes-dex" class="headerlink" title="6、classes.dex"></a>6、classes.dex</h6><p>classes.dex是Android运行时可执行文件</p>
+<h6 id="7、resources-arsc"><a href="#7、resources-arsc" class="headerlink" title="7、resources.arsc"></a>7、resources.arsc</h6><p>resources.arsc包含编译好的部分资源文件</p>
+<h3 id="DEX文件格式"><a href="#DEX文件格式" class="headerlink" title="DEX文件格式"></a>DEX文件格式</h3><p>DEX是Android Dalvik可执行程序，其中包含该可执行程序的所有Java层代码。Dex经过压缩和优化，不仅能减小程序大小，还能加快类及方法的查找效率</p>
 
       </section>
 
