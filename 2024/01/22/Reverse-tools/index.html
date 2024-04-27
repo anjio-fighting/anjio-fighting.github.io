@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-28T16:33:12.467Z" itemprop="dateUpdated">2024-03-29</time>
+              <time  class="article-updated" datetime="2024-04-27T09:17:14.973Z" itemprop="dateUpdated">2024-04-27</time>
             </h2>
           
           
@@ -149,12 +149,12 @@
 <h5 id="2、打开exeinfope"><a href="#2、打开exeinfope" class="headerlink" title="2、打开exeinfope"></a>2、打开exeinfope</h5><p>将文件放置在<strong>桌面</strong>，<strong>右键</strong>点击要查壳的文件，点击<strong>显示更多选项</strong>，找到<strong>Exe Info PE scan</strong>，即可查壳</p>
 <h5 id="3、具体使用步骤：exeinfo-pe的使用（基本）-CSDN博客"><a href="#3、具体使用步骤：exeinfo-pe的使用（基本）-CSDN博客" class="headerlink" title="3、具体使用步骤：exeinfo pe的使用（基本）-CSDN博客"></a>3、具体使用步骤：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ftxyz23/article/details/133100418">exeinfo pe的使用（基本）-CSDN博客</a></h5><p><strong>检查是否加壳：</strong></p>
 <p>如果软件未加壳（Not packed），则会直接显示开发的编程语言</p>
-<p><img src="/./imgs/Re-Tools/exeinfope1.png"></p>
+<p><img src="/imgs/Reverse-tools/exeinfope1.png"></p>
 <p>如果软件加了壳，则可以识别出加的哪种壳（EP Section会显示壳类型）</p>
-<p><img src="/./imgs/Re-Tools/exeinfope2.png"></p>
+<p><img src="/imgs/Reverse-tools/exeinfope2.png"></p>
 <h3 id="IDA-pro"><a href="#IDA-pro" class="headerlink" title="IDA pro"></a>IDA pro</h3><p>IDA Pro就是一款递归下降反汇编器<br>反汇编器使用的算法包括：线性扫描反汇编算法、递归下降反汇编算法<br>适用于静态调试和动态调试</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mackilo/article/details/127747292?ops_request_misc=&request_id=&biz_id=102&utm_term=IDA%E4%BD%BF%E7%94%A8&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-2-127747292.nonecase&spm=1018.2226.3001.4450">IDA详细使用教程，适合逆向新手的实验报告-CSDN博客</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73644864/article/details/128376581?ops_request_misc=%7B%22request_id%22:%22170766154416800180648357%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170766154416800180648357&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-128376581-null-null.nonecase&utm_term=IDA%E4%BD%BF%E7%94%A8&spm=1018.2226.3001.4450">IDA基本使用_ida修改exe并保存-CSDN博客</a></p>
-<p><img src="/./imgs/Re-Tools/ida1.png"></p>
+<p><img src="/imgs/Reverse-tools/ida1.png"></p>
 <h5 id="1）导航条IDA"><a href="#1）导航条IDA" class="headerlink" title="1）导航条IDA"></a>1）导航条IDA</h5><p>主界面中存在一项颜色各异的导航条。通过导航条可了解分析可执行文件各部分数据分布情况，各种颜色代表含义如下：</p>
 <p><strong>蓝色</strong>：表示常规的指令函数，绝大部分为用户编写的代码，上图中绝大部分数据属于蓝色数据。</p>
 <p><strong>黑色</strong>：表示间隙部分内容，可执行文件中包含多个节段，相邻节段之间存在空隙，红色表示空隙部分。</p>
@@ -162,15 +162,23 @@
 <p><strong>粉色</strong>：表示外部导入符号，通常可执行文件会导入外部的库函数。</p>
 <p><strong>暗黄色</strong>：表示IDA未识别的内容，需要用户根据需求自行分析。</p>
 <h5 id="2）反汇编窗口"><a href="#2）反汇编窗口" class="headerlink" title="2）反汇编窗口"></a>2）反汇编窗口</h5><p>反汇编窗口属于“IDA View-A”标签项内容。反汇编窗口可分为两种模式，分别为：默认模式和图形模式。</p>
-<h5 id="3）其他辅助分析窗口"><a href="#3）其他辅助分析窗口" class="headerlink" title="3）其他辅助分析窗口"></a>3）其他辅助分析窗口</h5><p><strong>十六进制窗口</strong>可支持用户查看可执行文件对应相对偏移的二进制机器码数据，十六进制查看窗口对应“Hex View-1”选项内容。</p>
-<p><img src="/./imgs/Re-Tools/ida2.png"></p>
+<p>汇编窗口中可以根据地址的颜色分辨某个位置的数据类型：</p>
+<p>黑色——被标注为代码的位置<br>灰色——被标注为数据的位置<br>黄色——未定义数据类型的位置</p>
+<h5 id="3）输出窗口"><a href="#3）输出窗口" class="headerlink" title="3）输出窗口"></a>3）输出窗口</h5><p>显示运行过程中IDA日志，也可以在下方的输入框中输入命令并执行</p>
+<h5 id="4）其他辅助分析窗口"><a href="#4）其他辅助分析窗口" class="headerlink" title="4）其他辅助分析窗口"></a>4）其他辅助分析窗口</h5><p><strong>十六进制窗口</strong>可支持用户查看可执行文件对应相对偏移的二进制机器码数据，十六进制查看窗口对应“Hex View-1”选项内容。</p>
+<p>按F2可以对数据库中的数据进行修改，修改后再次按F2即可应用修改</p>
+<p><img src="/imgs/Reverse-tools/ida2.png"></p>
 <p>十六进制查看窗口总共分为三部分，三部分内容分别位于上图左、中、右，三处含义分别为：<br>左边数据：表示十六进制数据对应的内存相对偏移。<br>中间数据：表示内存中数据的具体内容。<br>右边数据：表示内存数据的字符串显示，该功能可辅助读者快速识别字符串内容。</p>
 <p><strong>函数窗口</strong>：</p>
-<p><img src="/./imgs/Re-Tools/ida3.png"></p>
+<p><img src="/imgs/Reverse-tools/ida3.png"></p>
 <p>IDA在数据库中识别的每一个函数，双击一个函数，会跳转到反汇编窗口这个函数所在的位置</p>
-<h5 id="4）IDA分析可执行文件"><a href="#4）IDA分析可执行文件" class="headerlink" title="4）IDA分析可执行文件"></a>4）IDA分析可执行文件</h5><p>IDA会对可识别的文件进行代码反编译，反编译过程依据文件大小而定。IDA软件会利用回归方式递进分析可执行文件反汇编代码。判断IDA分析完毕的三种方法分别为：<br>1）图中IDA的“Output Window”窗口输出“The initial autoanalysis has been finished”日志时，则说明IDA已分析完毕。<br>2）如图所示进度条处黄色向上箭头消失时，则表明IDA分析完毕。<br>3）图中IDA界面左下角AU处于”idle”状态时，也表明IDA分析完毕。</p>
-<h5 id="5）快捷键"><a href="#5）快捷键" class="headerlink" title="5）快捷键"></a>5）快捷键</h5><p><strong>空格键</strong>：反汇编窗口切换文本跟图形<br><strong>Tab</strong>：汇编语言转入高级语言<br><strong>Esc</strong>：在反汇编窗口中使用为后退到上个操作的地址处<br><strong>Shift +F5</strong>：打开签名窗口<br><strong>shift+F12</strong>：自动分析出参考字符串<br><strong>shift+E</strong>：提取数据（提取选中东西的数值）<br><strong>ALT+T</strong>：搜索字符串(文本搜索)<br><strong>ALT+L</strong>：标记(Lable)<br><strong>ALT+M</strong>：设置标签(mark)<br><strong>ALT+G</strong>：转换局部变量为结构体<br><strong>ALT+Enter</strong>：跳转到新的窗口<br><strong>Alt+B</strong>：快捷键用于搜索十六进制字节序列，通常在分析过程中可以用来搜索opcode<br><strong>Ctrl+“+”</strong>&#x2F;<strong>Ctrl+鼠标滚轮</strong>:可以实现界面的缩放<br><strong>CTRL+M</strong>：列举出当前已经添加的标签<br><strong>CTRL+S</strong>：列举出二进制程序的段的开始地址、结束地址、权限等信息<br><strong>Ctrl+F</strong>：左栏搜索函数<br><strong>F9</strong>：动态调试程序(其实IDA主要用作静态分析用的)<br><strong>F5</strong>：将一个函数逆向出来(生成c伪代码)<br><strong>G</strong>：跳转到指定地址<br><strong>A</strong>：将选择的信息转换成ASCII(转换成可读性跟强的字符串)，将数据转换为字符串<br>**X(ctrl+X)**：交叉引用,类似于OD中的栈回溯操作<br><strong>N</strong>：对符号重命名<br>**：&amp;；(冒号&amp;分号)**：光标所在位置添加常规注释和可重复注释<br><strong>P</strong>：创建函数<br><strong>T</strong>：解析结构体偏移<br><strong>M</strong>：转换为枚举类型常量<br><strong>Y</strong>：设置变量类型<br><strong>H</strong>：转换16进制<br><strong>C</strong>：光标所在地址处的内容解析成代码<br><strong>D</strong>：光标所在地址处的内容解析成数据<br><strong>U</strong>：光标所在地址处的内容解析成未定义内容。<br><strong>R</strong>：将数字转化为ASCII码 </p>
-<h5 id="6）交叉引用"><a href="#6）交叉引用" class="headerlink" title="6）交叉引用"></a>6）交叉引用</h5><p>文件中存储的一些数据，我们知道计算机是存储程序式结构，代码部分会对数据进行操作，使用IDA的交叉引用可以查看对于一个地址处的数据被哪些地方的代码进行了引用，我们就可以根据一个数据进行跟踪</p>
+<h5 id="5）IDA分析可执行文件"><a href="#5）IDA分析可执行文件" class="headerlink" title="5）IDA分析可执行文件"></a>5）IDA分析可执行文件</h5><p>IDA会对可识别的文件进行代码反编译，反编译过程依据文件大小而定。IDA软件会利用回归方式递进分析可执行文件反汇编代码。判断IDA分析完毕的三种方法分别为：<br>1）图中IDA的“Output Window”窗口输出“The initial autoanalysis has been finished”日志时，则说明IDA已分析完毕。<br>2）如图所示进度条处黄色向上箭头消失时，则表明IDA分析完毕。<br>3）图中IDA界面左下角AU处于”idle”状态时，也表明IDA分析完毕。</p>
+<h5 id="6）快捷键"><a href="#6）快捷键" class="headerlink" title="6）快捷键"></a>6）快捷键</h5><p><strong>空格键</strong>：反汇编窗口切换文本跟图形<br><strong>Tab</strong>：汇编语言转入高级语言<br><strong>Shift +F5</strong>：打开签名窗口<br><strong>shift+F12</strong>：自动分析出参考字符串<br><strong>shift+E</strong>：提取数据（提取选中东西的数值）<br><strong>ALT+T</strong>：搜索字符串(文本搜索)<br><strong>ALT+L</strong>：标记(Lable)<br><strong>ALT+M</strong>：设置标签(mark)<br><strong>ALT+G</strong>：转换局部变量为结构体<br><strong>ALT+Enter</strong>：跳转到新的窗口<br><strong>Alt+B</strong>：快捷键用于搜索十六进制字节序列，通常在分析过程中可以用来搜索opcode<br><strong>Ctrl+“+”</strong>&#x2F;<strong>Ctrl+鼠标滚轮</strong>:可以实现界面的缩放<br><strong>CTRL+M</strong>：列举出当前已经添加的标签<br><strong>Ctrl+F</strong>：左栏搜索函数<br><strong>F9</strong>：动态调试程序(其实IDA主要用作静态分析用的)<br><strong>F5</strong>：将一个函数逆向出来(生成c伪代码)<br>**X(ctrl+X)**：交叉引用,类似于OD中的栈回溯操作<br><strong>N</strong>：对符号重命名<br>**：&amp;；(冒号&amp;分号)**：光标所在位置添加常规注释和可重复注释<br><strong>T</strong>：解析结构体偏移<br><strong>M</strong>：转换为枚举类型常量<br><strong>H</strong>：转换16进制<br><strong>R</strong>：将数字转化为ASCII码 </p>
+<h6 id="数据类型操作"><a href="#数据类型操作" class="headerlink" title="数据类型操作"></a>数据类型操作</h6><p><strong>A</strong>：将选择的信息转换成ASCII(转换成可读性跟强的字符串)，将数据转换为字符串<br><strong>*键</strong>：将此处定义为一个数组<br><strong>O</strong>：将此处定义为一个地址偏移<br><strong>C</strong>：光标所在地址处的内容解析成代码，即让某一个位置变为指令，在定义为指令后，IDA会自动以此为起始位置进行递归下降反汇编。<br><strong>D</strong>：光标所在地址处的内容解析成数据，一直按D键，这个位置的数据类型将会以1，2，4，8字节循环。<br><strong>U</strong>：光标所在地址处的内容解析成未定义内容，即取消一个地方已有的数据类型定义。</p>
+<h6 id="函数操作"><a href="#函数操作" class="headerlink" title="函数操作"></a>函数操作</h6><p><strong>删除函数</strong>：在函数窗口选中函数，按Delete键<br><strong>定义函数</strong>：在反汇编窗口中选中对应行后，按P键<br><strong>修改函数参数</strong>：在函数窗口中选中并按Ctrl+E，或在反汇编窗口的函数内部按Alt+P</p>
+<h6 id="导航操作"><a href="#导航操作" class="headerlink" title="导航操作"></a>导航操作</h6><p><strong>ESC</strong>：回退到上一位置<br><strong>Ctrl+Enter</strong>：前进到下一位置<br><strong>G</strong>：跳转到指定地址，按下G键后可以输入地址&#x2F;已经定义的名称<br><strong>CTRL+S</strong>：跳转到某一区段，按下快捷键后选择区段</p>
+<h6 id="类型操作"><a href="#类型操作" class="headerlink" title="类型操作"></a>类型操作</h6><p><strong>Y键</strong>：自由定义各种数据类型（函数声明、变量声明、结构体声明）。选中变量、函数后按Y键，输入正确的C语言类型，IDA自动解析应用这个类型</p>
+<h5 id="7）交叉引用"><a href="#7）交叉引用" class="headerlink" title="7）交叉引用"></a>7）交叉引用</h5><p>文件中存储的一些数据，我们知道计算机是存储程序式结构，代码部分会对数据进行操作，使用IDA的交叉引用可以查看对于一个地址处的数据被哪些地方的代码进行了引用，我们就可以根据一个数据进行跟踪</p>
 <p><strong>概念</strong><br>交叉引用是一个地址引用一个地址<br>根据图论的知识，可以把地址看成节点，把交叉引用看成边<br>分为代码交叉引用和数据交叉引用</p>
 <p><strong>代码交叉引用</strong>（函数调用，顺序执行和跳转）<br>三种基本的流：普通流，跳转流，调用流</p>
 <p><strong>普通流</strong>：就是顺序执行，默认执行流，执行紧跟在后面的指令</p>
@@ -179,26 +187,50 @@
 <p><strong>数据数据交叉引用</strong><br><strong>读取交叉引用</strong>：访问某个内存位置</p>
 <p><strong>写入交叉引用</strong>：写入内内存</p>
 <p><strong>偏移量交叉引用</strong>：引用某个位置的地址</p>
-<h5 id="7）Patch"><a href="#7）Patch" class="headerlink" title="7）Patch"></a>7）Patch</h5><p>Patch就是打补丁，即修改汇编代码</p>
+<h5 id="8）Patch"><a href="#8）Patch" class="headerlink" title="8）Patch"></a>8）Patch</h5><p>Patch就是打补丁，即修改汇编代码</p>
 <p>选中汇编代码</p>
-<p><img src="/./imgs/Re-Tools/ida4.png"></p>
+<p><img src="/imgs/Reverse-tools/ida4.png"></p>
 <p>Chang bytes可以修改汇编语言对应的机器码</p>
-<p><img src="/./imgs/Re-Tools/ida5.png"></p>
+<p><img src="/imgs/Reverse-tools/ida5.png"></p>
 <p>Assemble instruction可以修改汇编指令</p>
-<p><img src="/./imgs/Re-Tools/ida6.png"></p>
+<p><img src="/imgs/Reverse-tools/ida6.png"></p>
 <p>修改exe文件并保存运行</p>
 <p>按照上述操作进行修改之后，我们修改的信息存在了数据库中<br>exe文件是不会修改的，若我们想得到修改后的一个exe文件 ，进行下面的操作</p>
-<p><img src="/./imgs/Re-Tools/ida7.png"></p>
-<p><img src="/./imgs/Re-Tools/ida8.png"></p>
-<h5 id="8）Re基础总结："><a href="#8）Re基础总结：" class="headerlink" title="8）Re基础总结："></a>8）Re基础总结：</h5><p>1、更改scanf，printf并F5刷新<br>2、查看函数退出F5刷新会补充&#x2F;消去参数<br>3、不需要return的时候可以更改函数返回值类型或者直接移除return<br>4、交叉引用<br>5、显示指令的地址（勾1）显示指令的硬编码（改2，一般8个就可以）</p>
-<p><img src="/./imgs/Re-Tools/ida9.png"><br>6、“ \ “将隐藏强制类型转换<br>7、“ &#x2F; ”进行注释<br>8、动态调试：<br>下断点&gt;&gt;在上面一行“no debugger”处选择“local windows debugger”&gt;&gt;按下绿色箭头开始调试<br>按F7表示进入函数，在某处再下一个断点，按F8会跳过该函数</p>
+<p><img src="/imgs/Reverse-tools/ida7.png"></p>
+<p><img src="/imgs/Reverse-tools/ida8.png"></p>
+<h5 id="9）Re基础总结："><a href="#9）Re基础总结：" class="headerlink" title="9）Re基础总结："></a>9）Re基础总结：</h5><p>1、更改scanf，printf并F5刷新<br>2、查看函数退出F5刷新会补充&#x2F;消去参数<br>3、不需要return的时候可以更改函数返回值类型或者直接移除return<br>4、交叉引用<br>5、显示指令的地址（勾1）显示指令的硬编码（改2，一般8个就可以）</p>
+<p><img src="/imgs/Reverse-tools/ida9.png"><br>6、“ \ “将隐藏强制类型转换<br>7、“ &#x2F; ”进行注释<br>8、动态调试：<br>下断点&gt;&gt;在上面一行“no debugger”处选择“local windows debugger”&gt;&gt;按下绿色箭头开始调试<br>按F7表示进入函数，在某处再下一个断点，按F8会跳过该函数</p>
+<h5 id="10）Remote-Linux-debugger"><a href="#10）Remote-Linux-debugger" class="headerlink" title="10）Remote Linux debugger"></a>10）Remote Linux debugger</h5><p>[ida远程动态调试Linux_ida linux_server64-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43876357/article/details/108096552?ops_request_misc=%7B%22request_id%22:%22171220814116800182169862%22,%22scm%22:%2220140713.130102334.pc_blog.%22%7D&request_id=171220814116800182169862&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-4-108096552-null-null.nonecase&utm_term=IDA">https://blog.csdn.net/weixin_43876357/article/details/108096552?ops_request_misc=%7B%22request%5Fid%22%3A%22171220814116800182169862%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&amp;request_id=171220814116800182169862&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-4-108096552-null-null.nonecase&amp;utm_term=IDA</a> linux远程调试&amp;spm&#x3D;1018.2226.3001.4450)</p>
+<p>（1）<strong>在ida安装目录下的dbgsrv文件中找到linux_server &amp; linux_server64，将其拖入Ubuntu的Home文件夹里面，再从Home文件夹拖到桌面，待调试（题目）文件同理</strong></p>
+<p>（2）<strong>进入终端，在桌面路径下输入如下指令，赋予两个文件权限</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x linux_server64</span><br><span class="line">chmod +x 你的待调试文件名</span><br></pre></td></tr></table></figure>
+
+<p>（3）<strong>输入如下指令运行调试服务器组件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./linux_server64</span><br></pre></td></tr></table></figure>
+
+<p><img src="/imgs/Reverse-tools/remote%20linux%20debugger1.png"></p>
+<p>（4）<strong>打开windows下的IDA，下好断点，选择remote linux debugger进行远程调试</strong></p>
+<p><img src="/imgs/Reverse-tools/remote%20linux%20debugger2.png"></p>
+<p>（5）<strong>配置调试器</strong></p>
+<p><img src="/imgs/Reverse-tools/remote%20linux%20debugger3.png"></p>
+<p>（6）<strong>选择ok运行即可</strong></p>
+<p>（7）<strong>查看linux的ip地址</strong></p>
+<p>在linux终端输入指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p>即可查看虚拟机ip地址</p>
+<p><img src="/imgs/Reverse-tools/remote%20linux%20debugger4.png"></p>
+<h5 id="11）找main函数"><a href="#11）找main函数" class="headerlink" title="11）找main函数"></a>11）找main函数</h5><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/-mo-/p/12524691.html">逆向]寻找PE文件的main与winmain - 肖洋肖恩、 - 博客园 (cnblogs.com)</a></p>
+<p>1、VC的入口点（IDA中的start函数–export窗口可查看）会直接调用main( )函数，在start( )函数中被调用的函数参数有3个（<strong>汇编代码指令中出现3个push，1个call）</strong>，并且返回值被传入exit( )函数的要重点查看</p>
+<p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-224500.htm">原创]逆向技术之寻找Main入口点-软件逆向-看雪-安全社区|安全招聘|kanxue.com</a></p>
+<p>2、GCC将main( )函数的地址传入_libc_start_main来调用main( )函数，查看调用的参数即可找到main( )函数的地址</p>
 <h3 id="Xdbg"><a href="#Xdbg" class="headerlink" title="Xdbg"></a>Xdbg</h3><p>以管理员模式运行</p>
-<h4 id="1）快捷键："><a href="#1）快捷键：" class="headerlink" title="1）快捷键："></a>1）快捷键：</h4><p><strong>g</strong>：查看流程图<br><strong>右键-脱离</strong>：可以脱离流程图<br><strong>CPU窗口-右键-搜索-选择模块-字符串</strong>：搜索字符串<br><strong>空格</strong>：对汇编语言进行修改<br><strong>F7</strong>：步进——相当于逐语句执行<br><strong>F8</strong>:步过——相当于逐过程执行<br><strong>Ctrl+F9</strong>：运行到返回<br><strong>F9</strong>：运行程序，进入主模块<br><strong>F2</strong>：下断点（在想断下的指令上按下对应快捷键）<br><strong>选中函数-右键-符号名称帮助</strong>：查询不理解的函数名称<br><strong>Ctrl+G</strong>:跳转到（401000是程序的入口地址）<br><strong>单击需要高亮显示的内容</strong>：进入高亮模式，高亮显示所有相同的内容<br><strong>按H-点击空白处</strong>：取消高亮<br><strong>帮助-计算器</strong>：x64dbg计算器<br><strong>右键-显示指令提示</strong>：显示汇编指令对应解释<br><strong>选中要复制的数据部分-右键-二进制-编辑-复制数据</strong>：复制各种格式的数据</p>
-<h4 id="2）基本窗口"><a href="#2）基本窗口" class="headerlink" title="2）基本窗口"></a>2）基本窗口</h4><p><img src="/./imgs/Re-Tools/xdbg1.png"></p>
+<h4 id="1）快捷键："><a href="#1）快捷键：" class="headerlink" title="1）快捷键："></a>1）快捷键：</h4><p><strong>g</strong>：查看流程图<br><strong>右键-脱离</strong>：可以脱离流程图<br><strong>CPU窗口-右键-搜索-选择模块-字符串</strong>：搜索字符串<br><strong>空格</strong>：对汇编语言进行修改<br><strong>F7</strong>：步进——相当于逐语句执行<br><strong>F8</strong>:步过——相当于逐过程执行<br><strong>Ctrl+F9</strong>：运行到返回<br><strong>F9</strong>：运行程序，进入主模块<br><strong>F2</strong>：下断点（在想断下的指令上按下对应快捷键）<br><strong>选中函数-右键-符号名称帮助</strong>：查询不理解的函数名称<br><strong>F4</strong>：运行到光标处位置<br><strong>Ctrl+G</strong>:跳转到（401000是程序的入口地址）<br><strong>单击需要高亮显示的内容</strong>：进入高亮模式，高亮显示所有相同的内容<br><strong>按H-点击空白处</strong>：取消高亮<br><strong>帮助-计算器</strong>：x64dbg计算器<br><strong>右键-显示指令提示</strong>：显示汇编指令对应解释<br><strong>选中要复制的数据部分-右键-二进制-编辑-复制数据</strong>：复制各种格式的数据</p>
+<h4 id="2）基本窗口"><a href="#2）基本窗口" class="headerlink" title="2）基本窗口"></a>2）基本窗口</h4><p><img src="/imgs/Reverse-tools/xdbg1.png"></p>
 <h4 id="3）汇编代码相关："><a href="#3）汇编代码相关：" class="headerlink" title="3）汇编代码相关："></a>3）汇编代码相关：</h4><h5 id="（一）寄存器"><a href="#（一）寄存器" class="headerlink" title="（一）寄存器"></a>（一）寄存器</h5><h6 id="寄存器："><a href="#寄存器：" class="headerlink" title="寄存器："></a>寄存器：</h6><p><strong>x64</strong>有16个寄存器，以”R“开头</p>
-<p><img src="/./imgs/Re-Tools/xdbg2.png"></p>
+<p><img src="/imgs/Reverse-tools/xdbg2.png"></p>
 <p><strong>x32</strong>有8个寄存器，以‘’E’开头</p>
-<p><img src="/./imgs/Re-Tools/xdbg3.png"></p>
+<p><img src="/imgs/Reverse-tools/xdbg3.png"></p>
 <p><strong>EIP&#x2F;RIP</strong>：存放即将执行的代码的地址<br><strong>ESP&#x2F;RSP</strong>：指向堆栈的最顶端<br><strong>EAX&#x2F;EBX&#x2F;ECX&#x2F;EDX&#x2F;RAX&#x2F;RBX&#x2F;RCX&#x2F;RDX</strong>:通用寄存器，存储内存地址，计算，计数</p>
 <p>16位寄存器可拆分为2个8位寄存器：如AX，可以拆分为AL(低8位)和AH(高8位)</p>
 <h6 id="标志位："><a href="#标志位：" class="headerlink" title="标志位："></a>标志位：</h6><p><strong>CF（进位标志位）</strong>：执行一个加法（减法）运算时，最高位产生进位（或借位）时，CF&#x3D;1，否则为0<br><strong>ZF（零标志位）</strong>：若当前运算的结果为0，则ZF&#x3D;1，否则为0<br><strong>SF（符号标志位）</strong>：该标志位与运算结果的最高位相同，即运算结果为负，则SF&#x3D;1，否则为0<br><strong>OF（溢出标志位）</strong>：若运算结果超出机器能够表示的范围称为溢出，此时OF&#x3D;1，否则为0<br><strong>PF（奇偶标志位）</strong>：若运算结果（二进制）的最低16位中含1的个数为偶数，则PF&#x3D;1，否则为0</p>
@@ -315,7 +347,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>14</span>
+        <span>17</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

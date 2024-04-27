@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-04-01T15:25:53.194Z" itemprop="dateUpdated">2024-04-01</time>
+              <time  class="article-updated" datetime="2024-04-23T15:09:01.822Z" itemprop="dateUpdated">2024-04-23</time>
             </h2>
           
           
@@ -144,13 +144,13 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="CrackRTF"><a href="#CrackRTF" class="headerlink" title="CrackRTF"></a>CrackRTF</h1><h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>将文件用IDA打开，找到主函数并进行分析</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf1.png"></p>
+        <h1 id="CrackRTF（Hash类型判断）"><a href="#CrackRTF（Hash类型判断）" class="headerlink" title="CrackRTF（Hash类型判断）"></a>CrackRTF（Hash类型判断）</h1><h3 id="（1）"><a href="#（1）" class="headerlink" title="（1）"></a>（1）</h3><p>将文件用IDA打开，找到主函数并进行分析</p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf1.png"></p>
 <p>对于Destination和Str第一次的加密是如何看出来的呢？首先查看sub_40100A和sub_401019函数</p>
 <p>下图是sub_40100A</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf2.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf2.png"></p>
 <p>下图是sub_401019</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf3.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf3.png"></p>
 <p>通过上面两张图中红色框框起来的函数部分我们可以判断加密类型</p>
 <p>介绍一下CryptCreateHash 函数</p>
 <h3 id="CryptCreateHash-函数"><a href="#CryptCreateHash-函数" class="headerlink" title="CryptCreateHash 函数"></a><strong>CryptCreateHash 函数</strong></h3><h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">CryptCreateHash</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  HCRYPTPROV hProv,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  ALG_ID     Algid,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  HCRYPTKEY  hKey,</span></span></span><br><span class="line"><span class="params"><span class="function">  [in]  DWORD      dwFlags,</span></span></span><br><span class="line"><span class="params"><span class="function">  [out] HCRYPTHASH *phHash</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -172,7 +172,7 @@
 <p><strong>注</strong>：通过上述了解可以知道，Aligid的值决定了函数的加密类型，默认算法表查看<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/win32/seccrypto/alg-id">ALG_ID (Wincrypt.h) - Win32 apps | Microsoft Learn</a></p>
 <h3 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h3><p>通过查看算法表，我们可以知道sub_40100A是进行了sha1加密，sub_401019是进行了MD5加密</p>
 <p>sha1的解密脚本如下</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf4.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf4.png"></p>
 <p>得到密码1：123321</p>
 <p>对于爆破脚本的分析：</p>
 <h3 id="str"><a href="#str" class="headerlink" title="str()"></a>str()</h3><p>将参数转换成字符串类型</p>
@@ -186,7 +186,7 @@
 
 <h3 id="（3）"><a href="#（3）" class="headerlink" title="（3）"></a>（3）</h3><p>程序中并没有说明密码2的范围，所以不能爆破，所以我们继续往下分析程序</p>
 <p>有一个函数<code>sub_40100F</code>，点进去看一看</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf5.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf5.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">HRSRC FindResourceA(</span><br><span class="line">  HMODULE hModule,</span><br><span class="line">  LPCSTR  lpName,</span><br><span class="line">  LPCSTR  lpType</span><br><span class="line">);</span><br><span class="line">FindResourceA function</span><br><span class="line">Determines the location of a resource with the specified type and name in the specified module.</span><br><span class="line">确定具有指定类型和名称的资源在指定模块中的位置。</span><br><span class="line">hModule：处理包含资源的可执行文件的模块。NULL值则指定模块句柄指向操作系统通常情况下创建最近过程的相关位图文件。</span><br><span class="line">lpName：指定资源名称。</span><br><span class="line">lpType：指定资源类型。</span><br><span class="line">返回值：如果函数运行成功，那么返回值为指向被指定资源信息块的句柄。为了获得这些资源，将这个句柄传递给LoadResource函数。如果函数运行失败，则返回值为NULL。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SizeofResource表示该函数返回指定资源的字节数大小。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -201,24 +201,80 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sub_401005(lpString, (int)lpBuffer, nNumberOfBytesToWrite);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>又碰到一个函数<code>sub_401005</code></p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf6.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf6.png"></p>
 <p>资源的每一位和密码的每一位循环异或<br>异或结束之后，生成一个rtf文件</p>
 <p>我们的密码一共是18位<br>我们现在想要的是前六位的密码，循环异或的话，那么也就是说，资源的前六位与密码的前六位异或的结果就是rtf文件的前六位<br>我们找来一个rtf文件（直接在桌面生成一个rtf文件，随便输入一些内容，用010editor打开即可查看头文件），看看它的标志位</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf7.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf7.png"></p>
 <p>前六位是<code>&#123;\rtf1</code></p>
 <p>用resourcehacker打开文件，查看资源</p>
-<p><img src="/imgs/Reverse-Classic-Example/crackrtf8.png"></p>
+<p><img src="/imgs/Reverse-Classic_Example/crackrtf8.png"></p>
 <p>看一下资源的前六位，写出异或脚本</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rtf = <span class="string">&#x27;&#123;\\rtf1&#x27;</span> \\需要注意，\r需要转义，变成\\r</span><br><span class="line">A = [<span class="number">0x05</span>, <span class="number">0x7D</span>, <span class="number">0x41</span>, <span class="number">0x15</span>, <span class="number">0x26</span>, <span class="number">0x01</span>]</span><br><span class="line">password=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(rtf)):</span><br><span class="line">    x = <span class="built_in">ord</span>(rtf[i]) ^ A[i]</span><br><span class="line">    password+=<span class="built_in">chr</span>(x)</span><br><span class="line"><span class="built_in">print</span>(password)</span><br></pre></td></tr></table></figure>
 
 <p>结果为<code>~!3a@0</code></p>
 <p>接下来就可以继续输入第二段密码了<br>两端密码输入完后，就会在程序所在文件夹中生成一个带有flag的rtf文件，打开就能得到flag<br>flag为<code>Flag&#123;N0_M0re_Free_Bugs&#125;</code></p>
+<h1 id="BABYRE（IDApython）"><a href="#BABYRE（IDApython）" class="headerlink" title="BABYRE（IDApython）"></a>BABYRE（IDApython）</h1><p>查看主函数</p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre1.png"></p>
+<p>分析伪代码，我们可以看出if语句中的judge（）是一个函数，但是从前面可以看出judge是一个数组，进行了异或。</p>
+<p>点击judge，进行数据查看</p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre2.png"></p>
+<p>选中public judge，按C键将数据解析为代码。</p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre3.png"></p>
+<p>选中红色部分，按P</p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre4.png"></p>
+<p>无法解析代码，出现这个问题的原因是<strong>代码混淆</strong></p>
+<p><strong>代码混淆</strong>——函数经过代码混淆或加密，使得静态分析工具无法正确解析函数的逻辑和结构</p>
+<h3 id="一、IDApython"><a href="#一、IDApython" class="headerlink" title="一、IDApython"></a>一、IDApython</h3><p>这里的judge函数被加密了，插入脚本进行解密</p>
+<p>提示：先退出程序重新来输入解密脚本</p>
+<h5 id="（1）在File中找到Script-command"><a href="#（1）在File中找到Script-command" class="headerlink" title="（1）在File中找到Script command"></a>（1）在File中找到Script command</h5><p><img src="/imgs/Reverse-Classic_Example/babyre5.png"></p>
+<h5 id="（2）输入解密脚本"><a href="#（2）输入解密脚本" class="headerlink" title="（2）输入解密脚本"></a>（2）输入解密脚本</h5><p><img src="/imgs/Reverse-Classic_Example/babyre6.png"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、#include&lt;idc.idc&gt;：包含IDA Pro SDK头文件，其中包含IDA Pro API和数据结构的声明。</span><br><span class="line">2、static main()：定义IDA Pro脚本的入口点函数。</span><br><span class="line">3、auto i,addr = 0x0600B00;：声明两个自动变量：i用于循环，addr指定要修改的内存地址。</span><br><span class="line">4、for(i=0;i&lt;182;i++)：开始一个循环，循环变量i从0到181。</span><br><span class="line">5、PatchByte(addr+i,Byte(addr+i)^0xc);：使用PatchByte函数修改addr+i处的内存字节。Byte(addr+i)获取addr+i处的原始字节值，然后将其与0xc进行异或运算，将结果写入addr+i。这将反转addr处182个字节的最低有效位。</span><br></pre></td></tr></table></figure>
+
+<p><strong>高版本的idapython解密脚本</strong></p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre6%EF%BC%881%EF%BC%89.png"></p>
+<h5 id="（3）运行解密脚本"><a href="#（3）运行解密脚本" class="headerlink" title="（3）运行解密脚本"></a>（3）运行解密脚本</h5><p><img src="/imgs/Reverse-Classic_Example/babyre7.png"></p>
+<h5 id="（4）选中public-judge，按C键"><a href="#（4）选中public-judge，按C键" class="headerlink" title="（4）选中public judge，按C键"></a>（4）选中public judge，按C键</h5><p><img src="/imgs/Reverse-Classic_Example/babyre8.png"></p>
+<h5 id="（5）选中红色部分，按P键"><a href="#（5）选中红色部分，按P键" class="headerlink" title="（5）选中红色部分，按P键"></a>（5）选中红色部分，按P键</h5><p><img src="/imgs/Reverse-Classic_Example/babyre9.png"></p>
+<h5 id="（6）写出解密脚本"><a href="#（6）写出解密脚本" class="headerlink" title="（6）写出解密脚本"></a>（6）写出解密脚本</h5><p><img src="/imgs/Reverse-Classic_Example/babyre10.png"></p>
+<h3 id="二、Remote-Linux-debugger"><a href="#二、Remote-Linux-debugger" class="headerlink" title="二、Remote Linux debugger"></a>二、Remote Linux debugger</h3><h5 id="（1）设置好断点，调试器准备好后开始调试-按F9运行"><a href="#（1）设置好断点，调试器准备好后开始调试-按F9运行" class="headerlink" title="（1）设置好断点，调试器准备好后开始调试,按F9运行"></a>（1）设置好断点，调试器准备好后开始调试,按F9运行</h5><p><img src="/imgs/Reverse-Classic_Example/babyre11.png"></p>
+<h5 id="（2）在linux中随意输入flag（注意：flag长度为14）让程序断下"><a href="#（2）在linux中随意输入flag（注意：flag长度为14）让程序断下" class="headerlink" title="（2）在linux中随意输入flag（注意：flag长度为14）让程序断下"></a>（2）在linux中随意输入flag（注意：flag长度为14）让程序断下</h5><p><img src="/imgs/Reverse-Classic_Example/babyre12.png"></p>
+<h5 id="（3）F7单步步入下图所示的call"><a href="#（3）F7单步步入下图所示的call" class="headerlink" title="（3）F7单步步入下图所示的call"></a>（3）F7单步步入下图所示的call</h5><p><img src="/imgs/Reverse-Classic_Example/babyre13.png"></p>
+<h5 id="（4）发现14个mov，这是在声明一个数组，这些数就是密文"><a href="#（4）发现14个mov，这是在声明一个数组，这些数就是密文" class="headerlink" title="（4）发现14个mov，这是在声明一个数组，这些数就是密文"></a>（4）发现14个mov，这是在声明一个数组，这些数就是密文</h5><p><img src="/imgs/Reverse-Classic_Example/babyre14.png"></p>
+<h5 id="（5）继续分析，发现流程"><a href="#（5）继续分析，发现流程" class="headerlink" title="（5）继续分析，发现流程"></a>（5）继续分析，发现流程</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmp     dword ptr [rbp-4], 0Dh</span><br><span class="line">jle     short loc_600B49</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>就是比较[rbp-4]和0Dh（十进制：13），小于等于13则跳转，其实就是做了14次判断，分析图如下：</p>
+<p><img src="/imgs/Reverse-Classic_Example/babyre15.png"></p>
+<h5 id="（6）分析跳转后的汇编代码"><a href="#（6）分析跳转后的汇编代码" class="headerlink" title="（6）分析跳转后的汇编代码"></a>（6）分析跳转后的汇编代码</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">.data:0000000000600B49 loc_600B49:                             ; CODE XREF: .data:0000000000600B75↓j</span><br><span class="line">.data:0000000000600B49 mov     eax, [rbp-4]				//eax赋值0</span><br><span class="line">.data:0000000000600B4C movsxd  rdx, eax					//rdx赋值0</span><br><span class="line">.data:0000000000600B4F mov     rax, [rbp-28h]			//取出数组给rax</span><br><span class="line">.data:0000000000600B53 add     rax, rdx					//rax=rax+rdx，也就是数组[1]</span><br><span class="line">.data:0000000000600B56 mov     edx, [rbp-4]				//edx赋值0</span><br><span class="line">.data:0000000000600B59 movsxd  rcx, edx					//rcx赋值edx，也就是是0</span><br><span class="line">.data:0000000000600B5C mov     rdx, [rbp-28h]			//取出数组给rdx</span><br><span class="line">.data:0000000000600B60 add     rdx, rcx					//rdx=rdx+rcx也就是数组[0]</span><br><span class="line">.data:0000000000600B63 movzx   edx, byte ptr [rdx]		//edx=[rdx]，也就是edx为数组[0]</span><br><span class="line">.data:0000000000600B66 mov     ecx, [rbp-4]				//ecx=[rbp-4]，也就是ecx为0</span><br><span class="line">.data:0000000000600B69 xor     edx, ecx					//edx=edx^ecx，也就是数组[0]^0</span><br><span class="line">.data:0000000000600B6B mov     [rax], dl				//[rax]这里应该是保存异或后的结果</span><br><span class="line">.data:0000000000600B6D add     dword ptr [rbp-4], 1		//[rbp-4]+=1，这里就是循环的变量</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="（7）写出解题代码"><a href="#（7）写出解题代码" class="headerlink" title="（7）写出解题代码"></a>（7）写出解题代码</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=[<span class="number">0x66</span>,<span class="number">0x6D</span>,<span class="number">0x63</span>,<span class="number">0x64</span>,<span class="number">0x7F</span>,<span class="number">0x6B</span>,<span class="number">0x37</span>,<span class="number">0x64</span>,<span class="number">0x3B</span>,<span class="number">0x56</span>,<span class="number">0x60</span>,<span class="number">0x3B</span>,<span class="number">0x6E</span>,<span class="number">0x70</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">14</span>):</span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">chr</span>(a[i]^i),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>即可求出flag</p>
+<h1 id="Youngter-drive"><a href="#Youngter-drive" class="headerlink" title="Youngter-drive"></a>Youngter-drive</h1><p>多线程+下标查找字符串</p>
+<p><strong>解题代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">source=<span class="string">&#x27;TOiZiZtOrYaToUwPnToBsOaOapsyS&#x27;</span></span><br><span class="line">a=<span class="string">&#x27;QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm&#x27;</span></span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">29</span>):</span><br><span class="line">    <span class="keyword">if</span>(i%<span class="number">2</span>==<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span>(source[i]&gt;=<span class="string">&#x27;A&#x27;</span> <span class="keyword">and</span> source[i]&lt;=<span class="string">&#x27;Z&#x27;</span>):</span><br><span class="line">            flag+=<span class="built_in">chr</span>(a.find(source[i])+<span class="number">96</span>)</span><br><span class="line">        <span class="keyword">elif</span>(source[i]&gt;=<span class="string">&#x27;a&#x27;</span> <span class="keyword">and</span> source[i]&lt;=<span class="string">&#x27;z&#x27;</span>):</span><br><span class="line">            flag+=<span class="built_in">chr</span>(a.find(source[i])+<span class="number">38</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        flag+=source[i]</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_79218813/article/details/134260193?ops_request_misc=&request_id=&biz_id=102&utm_term=buuctf%E2%80%94%E2%80%94youngter_drive&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-134260193.142%5Ev100%5Epc_search_result_base8&spm=1018.2226.3001.4450">BUUCTF逆向题Youngter-drive_youngter-drive题解-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/OrientalGlass/article/details/129338810?ops_request_misc=&request_id=&biz_id=102&utm_term=buuctf%E2%80%94%E2%80%94youngter_drive&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-1-129338810.nonecase&spm=1018.2226.3001.4450">Buuctf Younger-drive 题解_younger-driver-CSDN博客</a></p>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/04/01/Reverse-Software/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-Software</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -269,7 +325,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>14</span>
+        <span>17</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
