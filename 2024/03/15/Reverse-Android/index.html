@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-03-31T16:38:53.755Z" itemprop="dateUpdated">2024-04-01</time>
+              <time  class="article-updated" datetime="2024-05-05T10:59:23.096Z" itemprop="dateUpdated">2024-05-05</time>
             </h2>
           
           
@@ -151,7 +151,7 @@
 <h5 id="2、Service"><a href="#2、Service" class="headerlink" title="2、Service"></a>2、Service</h5><p>通常用于处理后台耗时逻辑，用户不直接与Service对应的应用进程交互。与其他Android应用组件一样，Service也可以通过IPC机制接受和发送Intent</p>
 <h5 id="3、Broadcast-Receiver"><a href="#3、Broadcast-Receiver" class="headerlink" title="3、Broadcast Receiver"></a>3、Broadcast Receiver</h5><p>接受并过滤广播消息的组件，应用想显示的接收广播消息，须在Mainfest清单文件中注册一个receiver，用Inter filter过滤特定类型的广播消息，应用内也可以通过registerReceiver在运行时动态注册。</p>
 <h5 id="4、Content-Provider"><a href="#4、Content-Provider" class="headerlink" title="4、Content Provider"></a>4、Content Provider</h5><p>应用程序间数据共享的组件。如ContactsProvider（联系人提供者）对联系人信息统一管理，可以被其他应用（申请权限后）访问，应用还可以创建自己的Content Provider，并且把自身数据暴露给其他应用</p>
-<h3 id="Apk文件"><a href="#Apk文件" class="headerlink" title="Apk文件"></a>Apk文件</h3><p>通过apk文件可以判断是安卓逆向。apk就是英文AndroidPackage的缩写，也就是我们常说的Android系统安装包。apk类似于Symbian系统的Sis或Sisx文件格式。我们可以将APK文件直接传到Android模拟器或Android手机中执行即可安装。其实就是一个压缩文件，类似于zip格式，或者说就是zip格式。</p>
+<h3 id="Apk文件（详情见Reverse-apk"><a href="#Apk文件（详情见Reverse-apk" class="headerlink" title="Apk文件（详情见Reverse-apk)"></a>Apk文件（详情见Reverse-apk)</h3><p>通过apk文件可以判断是安卓逆向。apk就是英文AndroidPackage的缩写，也就是我们常说的Android系统安装包。apk类似于Symbian系统的Sis或Sisx文件格式。我们可以将APK文件直接传到Android模拟器或Android手机中执行即可安装。其实就是一个压缩文件，类似于zip格式，或者说就是zip格式。</p>
 <p><strong>用jadx打开apk文件</strong>，得到apk文件的java代码，通过对java代码进行逆向分析</p>
 <h5 id="APK文件结构"><a href="#APK文件结构" class="headerlink" title="APK文件结构"></a>APK文件结构</h5><h6 id="1、meta-inf目录"><a href="#1、meta-inf目录" class="headerlink" title="1、meta-inf目录"></a>1、meta-inf目录</h6><p>#mainfest.mf: 清单文件</p>
 <p>#cert.rsa: 应用签名文件</p>
@@ -238,7 +238,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>17</span>
+        <span>21</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -295,7 +295,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Crypto/" style="font-size: 10px;" class="tags-cloud-0">Crypto</a> <a href="/tags/Reverse/" style="font-size: 20px;" class="tags-cloud-10">Reverse</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/study/" style="font-size: 10px;" class="tags-cloud-0">study</a>
+      <a href="/tags/Crypto/" style="font-size: 10px;" class="tags-cloud-0">Crypto</a> <a href="/tags/Reverse/" style="font-size: 20px;" class="tags-cloud-10">Reverse</a> <a href="/tags/Web/" style="font-size: 15px;" class="tags-cloud-5">Web</a> <a href="/tags/study/" style="font-size: 10px;" class="tags-cloud-0">study</a>
     </div>
   </div>
 </section>

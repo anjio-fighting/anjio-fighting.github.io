@@ -109,6 +109,11 @@
             <time  class="article-date" datetime="2024-04-27T09:32:44.000Z" itemprop="datePublished">2024-04-27</time>
           </h2>
           
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-04-28T23:42:53.473Z" itemprop="dateUpdated">2024-04-29</time>
+            </h2>
+          
           
           <ul class="wrap-list dark">
   
@@ -143,7 +148,29 @@
 <p>UPX、ASPack注重压缩代码<br>VMP、ASProtect注重保护代码</p>
 <h1 id="脱壳方法"><a href="#脱壳方法" class="headerlink" title="脱壳方法"></a>脱壳方法</h1><h3 id="静态法"><a href="#静态法" class="headerlink" title="静态法"></a>静态法</h3><p>使用脱壳工具 upx -d</p>
 <p><img src="/imgs/Reverse-Shelling/%E8%84%B1%E5%A3%B3%E6%AD%A5%E9%AA%A4.png"></p>
-<h3 id="动态法"><a href="#动态法" class="headerlink" title="动态法"></a>动态法</h3><p>oep：orignal entry point：未加壳的程序的真正的入口点，是手动脱壳的目标。</p>
+<h3 id="动态法"><a href="#动态法" class="headerlink" title="动态法"></a>动态法</h3><h5 id="OEP"><a href="#OEP" class="headerlink" title="OEP"></a>OEP</h5><p>oep：orignal entry point：未加壳的程序的真正的入口点，是手动脱壳的目标。</p>
+<p>一般加壳程序在使用Ollydbg等动态调试工具时，会停在壳的预处理块。即处在对于程序原始代码块的解压或解密操作之前，在运行完程序自脱壳模块后，会停留在程序加壳之前的OEP位置，此时是dump程序的最佳时期。脱壳时在真实OEP处下int3断点，就可以捕捉到程序代码段完全恢复的状态。因此，寻找加壳程序的正确OEP，也成了手动脱壳时的第一要务。</p>
+<h5 id="IAT（导入地址表）"><a href="#IAT（导入地址表）" class="headerlink" title="IAT（导入地址表）"></a>IAT（导入地址表）</h5><p>导入被程序调用但其执行代码不在程序中的函数。这些函数代码位于一个或多个DLL（动态链接库）中。当PE文件被装入内存的时候，Windows装载器才能装入DLL，并将调用导入函数的指令和函数实际所处的地址联系起来（动态链接），这些操作就需要导入表完成。其中导入表的地址就是函数实际地址。</p>
+<p>多数加壳软件在运行时会重新导入地址表，因此获取加壳程序正确的导入地址表是手动脱壳的关键。</p>
+<h4 id="脱壳方法-1"><a href="#脱壳方法-1" class="headerlink" title="脱壳方法"></a>脱壳方法</h4><h5 id="1、单步跟踪法"><a href="#1、单步跟踪法" class="headerlink" title="1、单步跟踪法"></a>1、单步跟踪法</h5><p>完整运行脱壳程序，跳过循环恢复代码的片段，边调试边观察，确保程序不会略过EOP，让软件实现自动脱壳</p>
+<p><strong>要点：</strong></p>
+<ul>
+<li>跟踪过程是不修改任何代码的</li>
+<li>使用F7[单步步入]、F8[单步步过]、F4[直接执行到指定位置]等功能完整的进行自脱壳的过程</li>
+<li>大循环用f4跳过，尽量实现向下jmp</li>
+<li>函数载入不远处的call一般选择f7步入</li>
+<li>一般如果jmp到很远的地址，那极有可能就是跳到原程序入口（EOP）</li>
+</ul>
+<h5 id="2、ESP定律法"><a href="#2、ESP定律法" class="headerlink" title="2、ESP定律法"></a>2、ESP定律法</h5><p>原理是运用程序中的堆栈平衡来实现。</p>
+<p>大多壳开始会使用pushad来保存寄存器，在pushad保存好寄存器后，对esp下硬件断点，之后直接f9运行，就会到达最后的popad，硬件断点就会触发。</p>
+<h6 id="硬件断点与软件断点的区别："><a href="#硬件断点与软件断点的区别：" class="headerlink" title="硬件断点与软件断点的区别："></a><strong>硬件断点与软件断点的区别：</strong></h6><p>硬件断点由调试寄存器的值来控制，它是看地址来下断点和判断与触发断点的，而软件断点是看指令根据指令来下断点和判断断点来触发的</p>
+<p>要点：</p>
+<ul>
+<li>程序开始pushad&#x2F;pushfd</li>
+<li>在pushad&#x2F;pushfd压栈后设置ESP硬件断点</li>
+<li>F9运行</li>
+<li>删除断点后即可分析</li>
+</ul>
 <h5 id="Xdbg"><a href="#Xdbg" class="headerlink" title="Xdbg"></a>Xdbg</h5><h6 id="找到正常的函数位置"><a href="#找到正常的函数位置" class="headerlink" title="找到正常的函数位置"></a>找到正常的函数位置</h6><p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%951.png"></p>
 <p>按F8单步执行pushad指令</p>
 <p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%952.png"></p>
@@ -159,15 +186,59 @@
 <p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%957.png"></p>
 <h6 id="对程序进行dump"><a href="#对程序进行dump" class="headerlink" title="对程序进行dump"></a>对程序进行dump</h6><p>选择”插件——Scylla“</p>
 <p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%958.png"></p>
-<p>点击dump</p>
+<p>点击IAT Autoserch之后，点击dump</p>
 <p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%959.png"></p>
 <p>导出文件后，即可得到脱壳的文件</p>
+<h5 id="3、一步到达OEP法"><a href="#3、一步到达OEP法" class="headerlink" title="3、一步到达OEP法"></a>3、一步到达OEP法</h5><p>找到离OEP或大jmp近的popad，下int3断点，然后直接运行到断点处实现脱壳</p>
+<p><strong>要点</strong></p>
+<ul>
+<li>ctrl+f查找popad</li>
+<li>ctrl+l跳到下一匹配处，选择确认正确的popad位置，下断点运行到该处</li>
+<li>只适用于极少数壳</li>
+</ul>
+<h5 id="4、内存镜像法（待完善）"><a href="#4、内存镜像法（待完善）" class="headerlink" title="4、内存镜像法（待完善）"></a>4、内存镜像法（待完善）</h5><p>适用于APSack加密</p>
+<p><strong>原理</strong></p>
+<p>在程序自解压或解密时会先访问程序资源段，自动脱壳后转回程序代码段，所以我们现在程序资源段下一个断点，运行完后又在代码段下一个断点运行</p>
+<p><strong>要点</strong></p>
+<ul>
+<li>菜单的选项—&gt;调试选项—&gt;异常—&gt;勾选所有的忽略异常</li>
+<li>alt+m打开内存镜像，找到程序的第一个.rsrc，F2下断点，shift+f9运行到断点</li>
+<li>alt+m在第一个.rsrc上面的.text地址F2下断点，然后shift+f9</li>
+</ul>
+<h5 id="5、最后一次异常法（待完善）"><a href="#5、最后一次异常法（待完善）" class="headerlink" title="5、最后一次异常法（待完善）"></a>5、最后一次异常法（待完善）</h5><p><strong>原理</strong></p>
+<p>程序自解压或自解密过程可能会触发很多异常，最后一次异常是很接近自动脱壳完成的地方，所以我们可以想办法给最后一个异常处下断点</p>
+<p>要点</p>
+<p>Ollydbg 选项—&gt;调试异常—&gt;异常，将所有✔消掉，ctrl+f2重新加载程序<br>开始程序是一个跳转，按shift+f9，直到程序运行，要记录按shift+f9的次数m<br>ctrl+f2重新加载程序，按m-1次shift+f9，OD右下角的框里会看到”SE句柄”，ctrl+g，输入SE句柄前的地址<br>在地址上按f2下断点，shift+f9来到断点，f8跟踪</p>
+<h5 id="6、SFX法"><a href="#6、SFX法" class="headerlink" title="6、SFX法"></a>6、SFX法</h5><p>Ollydbg自带的OEP寻找功能，找到后直接停在OEP处</p>
+<p><strong>要点</strong></p>
+<ul>
+<li>OD异常选项卡都打上勾</li>
+<li>同一框内的SFX选项卡选择 “字节模式跟踪实际入口 (速度非常慢)”</li>
+<li>重新加载程序(如果跳出是否 “压缩代码?” 选择 “否”, OD 直接到达 OEP)</li>
+</ul>
+<h4 id="Dump及IAT重建"><a href="#Dump及IAT重建" class="headerlink" title="Dump及IAT重建"></a>Dump及IAT重建</h4><p>在脱壳找到OEP后，我们需要将程序dump出来，并重建IAT</p>
+<p>[逆向学习1-<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_52343643/article/details/123557782">脱壳技术]&#x2F;篇1_逆向脱壳-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/whatday/article/details/99709317">手动去upx特征_upx -d-CSDN博客</a></p>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/04/29/Reverse-GDB/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Reverse-GDB</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
           
           
             <div class="article-nav-item layout-padding">
@@ -218,7 +289,7 @@
         <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
 </svg>
-        <span>17</span>
+        <span>21</span>
       </div>
       <div class="count-box--item">
         <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -275,7 +346,7 @@
   </div>
   <div class="widget-body">
     <div class="tags-cloud">
-      <a href="/tags/Crypto/" style="font-size: 10px;" class="tags-cloud-0">Crypto</a> <a href="/tags/Reverse/" style="font-size: 20px;" class="tags-cloud-10">Reverse</a> <a href="/tags/Web/" style="font-size: 10px;" class="tags-cloud-0">Web</a> <a href="/tags/study/" style="font-size: 10px;" class="tags-cloud-0">study</a>
+      <a href="/tags/Crypto/" style="font-size: 10px;" class="tags-cloud-0">Crypto</a> <a href="/tags/Reverse/" style="font-size: 20px;" class="tags-cloud-10">Reverse</a> <a href="/tags/Web/" style="font-size: 15px;" class="tags-cloud-5">Web</a> <a href="/tags/study/" style="font-size: 10px;" class="tags-cloud-0">study</a>
     </div>
   </div>
 </section>
