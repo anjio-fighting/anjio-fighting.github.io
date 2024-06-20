@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6"/>
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+  
+  <meta name="generator" content="Hexo 6.3.0">
+
+  
+
+  
+
+  
+    <meta name="author" content="John Doe">
+  
+
+  
+
+  
+
+  <title>Reverse-tools | Hexo</title>
+
+  
+
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+
+  <!--mathjax latex数学公式显示支持-->
+  
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@1.1.13/index.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/monokai.min.css">
+  
+
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+  <div class="root-container">
+    
+<!-- header container -->
+<header class="header-container post">
+  
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
+  
+
+  <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          Hexo
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-text layout-block">
+        <div class="layout-margin">
+          <h1 class="title-wrap">Reverse-tools</h1>
+          <h2 class="title-sub-wrap">
+            <strong>John Doe</strong>
+            <span>发布于</span>
+            <time  class="article-date" datetime="2024-01-22T13:40:58.000Z" itemprop="datePublished">2024-01-22</time>
+          </h2>
+          
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-06-11T11:58:54.509Z" itemprop="dateUpdated">2024-06-11</time>
+            </h2>
+          
+          
+          <ul class="wrap-list dark">
+  
+</ul>
+          <ul class="wrap-list dark">
+  
+    <li><a href="/tags/Reverse/">🏷️ Reverse</a></li>
+  
+</ul>
+        </div>
+      </div>
+    </div>
+  
+
+  
+  
+  
+</header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+<div class="body-container">
+  <article class="content-container layout-block post-container">
+    <div class="article-info">
+      
+      
+      
+      
+      <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
+        <h3 id="Exeinfope（查壳软件）："><a href="#Exeinfope（查壳软件）：" class="headerlink" title="Exeinfope（查壳软件）："></a>Exeinfope（查壳软件）：</h3><p>可以查看exe、dll程序的编译信息，开发语言，是否加壳，壳的种类以及入口地址等信息。</p>
+<h5 id="1、集成exeinfope到右键菜单"><a href="#1、集成exeinfope到右键菜单" class="headerlink" title="1、集成exeinfope到右键菜单"></a>1、集成exeinfope到右键菜单</h5><p>打开exeinfope后选择右侧一栏的（长得很像）<strong>设置</strong>的按钮，选择<strong>外壳整合</strong>，即可集成到右键菜单</p>
+<h5 id="2、打开exeinfope"><a href="#2、打开exeinfope" class="headerlink" title="2、打开exeinfope"></a>2、打开exeinfope</h5><p>将文件放置在<strong>桌面</strong>，<strong>右键</strong>点击要查壳的文件，点击<strong>显示更多选项</strong>，找到<strong>Exe Info PE scan</strong>，即可查壳</p>
+<h5 id="3、具体使用步骤：exeinfo-pe的使用（基本）-CSDN博客"><a href="#3、具体使用步骤：exeinfo-pe的使用（基本）-CSDN博客" class="headerlink" title="3、具体使用步骤：exeinfo pe的使用（基本）-CSDN博客"></a>3、具体使用步骤：<a target="_blank" rel="noopener" href="https://blog.csdn.net/ftxyz23/article/details/133100418">exeinfo pe的使用（基本）-CSDN博客</a></h5><p><strong>检查是否加壳：</strong></p>
+<p>如果软件未加壳（Not packed），则会直接显示开发的编程语言</p>
+<p><img src="/imgs/Reverse-tools/exeinfope1.png"></p>
+<p>如果软件加了壳，则可以识别出加的哪种壳（EP Section会显示壳类型）</p>
+<p><img src="/imgs/Reverse-tools/exeinfope2.png"></p>
+<h3 id="IDA-pro"><a href="#IDA-pro" class="headerlink" title="IDA pro"></a>IDA pro</h3><p>IDA Pro就是一款递归下降反汇编器<br>反汇编器使用的算法包括：线性扫描反汇编算法、递归下降反汇编算法<br>适用于静态调试和动态调试</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mackilo/article/details/127747292?ops_request_misc=&request_id=&biz_id=102&utm_term=IDA%E4%BD%BF%E7%94%A8&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-2-127747292.nonecase&spm=1018.2226.3001.4450">IDA详细使用教程，适合逆向新手的实验报告-CSDN博客</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_73644864/article/details/128376581?ops_request_misc=%7B%22request_id%22:%22170766154416800180648357%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=170766154416800180648357&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-128376581-null-null.nonecase&utm_term=IDA%E4%BD%BF%E7%94%A8&spm=1018.2226.3001.4450">IDA基本使用_ida修改exe并保存-CSDN博客</a></p>
+<p><img src="/imgs/Reverse-tools/ida1.png"></p>
+<h5 id="1）导航条IDA"><a href="#1）导航条IDA" class="headerlink" title="1）导航条IDA"></a>1）导航条IDA</h5><p>主界面中存在一项颜色各异的导航条。通过导航条可了解分析可执行文件各部分数据分布情况，各种颜色代表含义如下：</p>
+<p><strong>蓝色</strong>：表示常规的指令函数，绝大部分为用户编写的代码，上图中绝大部分数据属于蓝色数据。</p>
+<p><strong>黑色</strong>：表示间隙部分内容，可执行文件中包含多个节段，相邻节段之间存在空隙，红色表示空隙部分。</p>
+<p><strong>银白色</strong>：表示数据项部分内容，可执行文件中会包含大量数据，银白色表示数据项部分内容。</p>
+<p><strong>粉色</strong>：表示外部导入符号，通常可执行文件会导入外部的库函数。</p>
+<p><strong>暗黄色</strong>：表示IDA未识别的内容，需要用户根据需求自行分析。</p>
+<h5 id="2）反汇编窗口"><a href="#2）反汇编窗口" class="headerlink" title="2）反汇编窗口"></a>2）反汇编窗口</h5><p>反汇编窗口属于“IDA View-A”标签项内容。反汇编窗口可分为两种模式，分别为：默认模式和图形模式。</p>
+<p>汇编窗口中可以根据地址的颜色分辨某个位置的数据类型：</p>
+<p>黑色——被标注为代码的位置<br>灰色——被标注为数据的位置<br>黄色——未定义数据类型的位置</p>
+<h5 id="3）输出窗口"><a href="#3）输出窗口" class="headerlink" title="3）输出窗口"></a>3）输出窗口</h5><p>显示运行过程中IDA日志，也可以在下方的输入框中输入命令并执行</p>
+<h5 id="4）其他辅助分析窗口"><a href="#4）其他辅助分析窗口" class="headerlink" title="4）其他辅助分析窗口"></a>4）其他辅助分析窗口</h5><p><strong>十六进制窗口</strong>可支持用户查看可执行文件对应相对偏移的二进制机器码数据，十六进制查看窗口对应“Hex View-1”选项内容。</p>
+<p>按F2可以对数据库中的数据进行修改，修改后再次按F2即可应用修改</p>
+<p><img src="/imgs/Reverse-tools/ida2.png"></p>
+<p>十六进制查看窗口总共分为三部分，三部分内容分别位于上图左、中、右，三处含义分别为：<br>左边数据：表示十六进制数据对应的内存相对偏移。<br>中间数据：表示内存中数据的具体内容。<br>右边数据：表示内存数据的字符串显示，该功能可辅助读者快速识别字符串内容。</p>
+<p><strong>函数窗口</strong>：</p>
+<p><img src="/imgs/Reverse-tools/ida3.png"></p>
+<p>IDA在数据库中识别的每一个函数，双击一个函数，会跳转到反汇编窗口这个函数所在的位置</p>
+<h5 id="5）IDA分析可执行文件"><a href="#5）IDA分析可执行文件" class="headerlink" title="5）IDA分析可执行文件"></a>5）IDA分析可执行文件</h5><p>IDA会对可识别的文件进行代码反编译，反编译过程依据文件大小而定。IDA软件会利用回归方式递进分析可执行文件反汇编代码。判断IDA分析完毕的三种方法分别为：<br>1）图中IDA的“Output Window”窗口输出“The initial autoanalysis has been finished”日志时，则说明IDA已分析完毕。<br>2）如图所示进度条处黄色向上箭头消失时，则表明IDA分析完毕。<br>3）图中IDA界面左下角AU处于”idle”状态时，也表明IDA分析完毕。</p>
+<h5 id="6）快捷键"><a href="#6）快捷键" class="headerlink" title="6）快捷键"></a>6）快捷键</h5><p><strong>空格键</strong>：反汇编窗口切换文本跟图形<br><strong>Tab</strong>：汇编语言转入高级语言<br><strong>Shift +F5</strong>：打开签名窗口<br><strong>shift+F12</strong>：自动分析出参考字符串<br><strong>shift+E</strong>：提取数据（提取选中东西的数值）<br><strong>ALT+T</strong>：搜索字符串(文本搜索)<br><strong>ALT+L</strong>：标记(Lable)<br><strong>ALT+M</strong>：设置标签(mark)<br><strong>ALT+G</strong>：转换局部变量为结构体<br><strong>ALT+Enter</strong>：跳转到新的窗口<br><strong>Alt+B</strong>：快捷键用于搜索十六进制字节序列，通常在分析过程中可以用来搜索opcode<br><strong>Ctrl+“+”</strong>&#x2F;<strong>Ctrl+鼠标滚轮</strong>:可以实现界面的缩放<br><strong>CTRL+M</strong>：列举出当前已经添加的标签<br><strong>Ctrl+F</strong>：左栏搜索函数<br><strong>F9</strong>：动态调试程序(其实IDA主要用作静态分析用的)<br><strong>F5</strong>：将一个函数逆向出来(生成c伪代码)<br>**X(ctrl+X)**：交叉引用,类似于OD中的栈回溯操作<br><strong>N</strong>：对符号重命名<br>**：&amp;；(冒号&amp;分号)**：光标所在位置添加常规注释和可重复注释<br><strong>T</strong>：解析结构体偏移<br><strong>M</strong>：转换为枚举类型常量<br><strong>H</strong>：转换16进制<br><strong>R</strong>：将数字转化为ASCII码 </p>
+<h6 id="数据类型操作"><a href="#数据类型操作" class="headerlink" title="数据类型操作"></a>数据类型操作</h6><p><strong>A</strong>：将选择的信息转换成ASCII(转换成可读性跟强的字符串)，将数据转换为字符串<br><strong>*键</strong>：将此处定义为一个数组<br><strong>O</strong>：将此处定义为一个地址偏移<br><strong>C</strong>：光标所在地址处的内容解析成代码，即让某一个位置变为指令，在定义为指令后，IDA会自动以此为起始位置进行递归下降反汇编。<br><strong>D</strong>：光标所在地址处的内容解析成数据，一直按D键，这个位置的数据类型将会以1，2，4，8字节循环。<br><strong>U</strong>：光标所在地址处的内容解析成未定义内容，即取消一个地方已有的数据类型定义。</p>
+<h6 id="函数操作"><a href="#函数操作" class="headerlink" title="函数操作"></a>函数操作</h6><p><strong>删除函数</strong>：在函数窗口选中函数，按Delete键<br><strong>定义函数</strong>：在反汇编窗口中选中对应行后，按P键<br><strong>修改函数参数</strong>：在函数窗口中选中并按Ctrl+E，或在反汇编窗口的函数内部按Alt+P</p>
+<h6 id="导航操作"><a href="#导航操作" class="headerlink" title="导航操作"></a>导航操作</h6><p><strong>ESC</strong>：回退到上一位置<br><strong>Ctrl+Enter</strong>：前进到下一位置<br><strong>G</strong>：跳转到指定地址，按下G键后可以输入地址&#x2F;已经定义的名称<br><strong>CTRL+S</strong>：跳转到某一区段，按下快捷键后选择区段</p>
+<h6 id="类型操作"><a href="#类型操作" class="headerlink" title="类型操作"></a>类型操作</h6><p><strong>Y键</strong>：自由定义各种数据类型（函数声明、变量声明、结构体声明）。选中变量、函数后按Y键，输入正确的C语言类型，IDA自动解析应用这个类型</p>
+<h5 id="7）交叉引用"><a href="#7）交叉引用" class="headerlink" title="7）交叉引用"></a>7）交叉引用</h5><p>文件中存储的一些数据，我们知道计算机是存储程序式结构，代码部分会对数据进行操作，使用IDA的交叉引用可以查看对于一个地址处的数据被哪些地方的代码进行了引用，我们就可以根据一个数据进行跟踪</p>
+<p><strong>概念</strong><br>交叉引用是一个地址引用一个地址<br>根据图论的知识，可以把地址看成节点，把交叉引用看成边<br>分为代码交叉引用和数据交叉引用</p>
+<p><strong>代码交叉引用</strong>（函数调用，顺序执行和跳转）<br>三种基本的流：普通流，跳转流，调用流</p>
+<p><strong>普通流</strong>：就是顺序执行，默认执行流，执行紧跟在后面的指令</p>
+<p><strong>跳转流</strong>：无条件分支和条件分支分配到一跳转流，注释中出现j后缀</p>
+<p><strong>调用流</strong>：调用一个函数使用调用流，使用后缀p</p>
+<p><strong>数据数据交叉引用</strong><br><strong>读取交叉引用</strong>：访问某个内存位置</p>
+<p><strong>写入交叉引用</strong>：写入内内存</p>
+<p><strong>偏移量交叉引用</strong>：引用某个位置的地址</p>
+<h5 id="8）Patch"><a href="#8）Patch" class="headerlink" title="8）Patch"></a>8）Patch</h5><p>Patch就是打补丁，即修改汇编代码</p>
+<p>选中汇编代码</p>
+<p><img src="/imgs/Reverse-tools/ida4.png"></p>
+<p>Chang bytes可以修改汇编语言对应的机器码</p>
+<p><img src="/imgs/Reverse-tools/ida5.png"></p>
+<p>Assemble instruction可以修改汇编指令</p>
+<p><img src="/imgs/Reverse-tools/ida6.png"></p>
+<p>修改exe文件并保存运行</p>
+<p>按照上述操作进行修改之后，我们修改的信息存在了数据库中<br>exe文件是不会修改的，若我们想得到修改后的一个exe文件 ，进行下面的操作</p>
+<p><img src="/imgs/Reverse-tools/ida7.png"></p>
+<p><img src="/imgs/Reverse-tools/ida8.png"></p>
+<h5 id="9）Re基础总结："><a href="#9）Re基础总结：" class="headerlink" title="9）Re基础总结："></a>9）Re基础总结：</h5><p>1、更改scanf，printf并F5刷新<br>2、查看函数退出F5刷新会补充&#x2F;消去参数<br>3、不需要return的时候可以更改函数返回值类型或者直接移除return<br>4、交叉引用<br>5、显示指令的地址（勾1）显示指令的硬编码（改2，一般8个就可以）</p>
+<p><img src="/imgs/Reverse-tools/ida9.png"><br>6、“ \ “将隐藏强制类型转换<br>7、“ &#x2F; ”进行注释<br>8、动态调试：<br>下断点&gt;&gt;在上面一行“no debugger”处选择“local windows debugger”&gt;&gt;按下绿色箭头开始调试<br>按F7表示进入函数，在某处再下一个断点，按F8会跳过该函数</p>
+<h5 id="10）找main函数"><a href="#10）找main函数" class="headerlink" title="10）找main函数"></a>10）找main函数</h5><p>[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/-mo-/p/12524691.html">逆向]寻找PE文件的main与winmain - 肖洋肖恩、 - 博客园 (cnblogs.com)</a></p>
+<p>1、VC的入口点（IDA中的start函数–export窗口可查看）会直接调用main( )函数，在start( )函数中被调用的函数参数有3个（<strong>汇编代码指令中出现3个push，1个call）</strong>，并且返回值被传入exit( )函数的要重点查看</p>
+<p>[<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-224500.htm">原创]逆向技术之寻找Main入口点-软件逆向-看雪-安全社区|安全招聘|kanxue.com</a></p>
+<p>2、GCC将main( )函数的地址传入_libc_start_main来调用main( )函数，查看调用的参数即可找到main( )函数的地址</p>
+<h5 id="1）创建结构体"><a href="#1）创建结构体" class="headerlink" title="1）创建结构体"></a>1）创建结构体</h5><p><strong>Ins键</strong>：创建结构体<br><strong>d键</strong>：添加结构体成员（连续按d键可以切换字节数），添加新成员时，鼠标点击ends一行再按d键<br><strong>Del</strong>：选中要删除的结构体，按Del键即可删除</p>
+<h6 id="要删除结构体中的某个成员："><a href="#要删除结构体中的某个成员：" class="headerlink" title="要删除结构体中的某个成员："></a><strong>要删除结构体中的某个成员</strong>：</h6><p>先选中该成员，再右键按“Undefined”，然后对Undefined部分右键按“Shrink struct Type”即可删除</p>
+<h6 id="快速创建结构体成员："><a href="#快速创建结构体成员：" class="headerlink" title="快速创建结构体成员："></a><strong>快速创建结构体成员</strong>：</h6><p><strong>法一</strong>：</p>
+<p>先创建结构体和一个结构体成员<br>再选中该成员，右键点击Array<br>在Array size中输入要创建的成员个数（Options全不选），最后点击OK即可</p>
+<p><strong>法二</strong>：</p>
+<h3 id="Xdbg"><a href="#Xdbg" class="headerlink" title="Xdbg"></a>Xdbg</h3><p>以管理员模式运行</p>
+<h4 id="1）快捷键："><a href="#1）快捷键：" class="headerlink" title="1）快捷键："></a>1）快捷键：</h4><p><strong>g</strong>：查看流程图<br><strong>右键-脱离</strong>：可以脱离流程图<br><strong>CPU窗口-右键-搜索-选择模块-字符串</strong>：搜索字符串<br><strong>空格</strong>：对汇编语言进行修改<br><strong>F7</strong>：步进——相当于逐语句执行<br><strong>F8</strong>:步过——相当于逐过程执行<br><strong>Ctrl+F9</strong>：运行到返回<br><strong>F9</strong>：运行程序，进入主模块<br><strong>F2</strong>：下断点（在想断下的指令上按下对应快捷键）<br><strong>选中函数-右键-符号名称帮助</strong>：查询不理解的函数名称<br><strong>F4</strong>：运行到光标处位置<br><strong>Ctrl+G</strong>:跳转到（401000是程序的入口地址）<br><strong>单击需要高亮显示的内容</strong>：进入高亮模式，高亮显示所有相同的内容<br><strong>按H-点击空白处</strong>：取消高亮<br><strong>帮助-计算器</strong>：x64dbg计算器<br><strong>右键-显示指令提示</strong>：显示汇编指令对应解释<br><strong>选中要复制的数据部分-右键-二进制-编辑-复制数据</strong>：复制各种格式的数据</p>
+<h4 id="2）基本窗口"><a href="#2）基本窗口" class="headerlink" title="2）基本窗口"></a>2）基本窗口</h4><p><img src="/imgs/Reverse-tools/xdbg1.png"></p>
+<h4 id="3）汇编代码相关："><a href="#3）汇编代码相关：" class="headerlink" title="3）汇编代码相关："></a>3）汇编代码相关：</h4><h5 id="（一）寄存器"><a href="#（一）寄存器" class="headerlink" title="（一）寄存器"></a>（一）寄存器</h5><h6 id="寄存器："><a href="#寄存器：" class="headerlink" title="寄存器："></a>寄存器：</h6><p><strong>x64</strong>有16个寄存器，以”R“开头</p>
+<p><img src="/imgs/Reverse-tools/xdbg2.png"></p>
+<p><strong>x32</strong>有8个寄存器，以‘’E’开头</p>
+<p><img src="/imgs/Reverse-tools/xdbg3.png"></p>
+<p><strong>EIP&#x2F;RIP</strong>：存放即将执行的代码的地址<br><strong>ESP&#x2F;RSP</strong>：指向堆栈的最顶端<br><strong>EAX&#x2F;EBX&#x2F;ECX&#x2F;EDX&#x2F;RAX&#x2F;RBX&#x2F;RCX&#x2F;RDX</strong>:通用寄存器，存储内存地址，计算，计数</p>
+<p>16位寄存器可拆分为2个8位寄存器：如AX，可以拆分为AL(低8位)和AH(高8位)</p>
+<h6 id="标志位："><a href="#标志位：" class="headerlink" title="标志位："></a>标志位：</h6><p><strong>CF（进位标志位）</strong>：执行一个加法（减法）运算时，最高位产生进位（或借位）时，CF&#x3D;1，否则为0<br><strong>ZF（零标志位）</strong>：若当前运算的结果为0，则ZF&#x3D;1，否则为0<br><strong>SF（符号标志位）</strong>：该标志位与运算结果的最高位相同，即运算结果为负，则SF&#x3D;1，否则为0<br><strong>OF（溢出标志位）</strong>：若运算结果超出机器能够表示的范围称为溢出，此时OF&#x3D;1，否则为0<br><strong>PF（奇偶标志位）</strong>：若运算结果（二进制）的最低16位中含1的个数为偶数，则PF&#x3D;1，否则为0</p>
+<h5 id="（二）指令"><a href="#（二）指令" class="headerlink" title="（二）指令"></a>（二）指令</h5><h5 id="nop指令："><a href="#nop指令：" class="headerlink" title="nop指令："></a>nop指令：</h5><p>意思是没有执行任何操作。<br>选择跳转（jmp）处，右键-二进制-用nop填充，可以不执行跳转指令。再右键-回复选取，即可取消nop指令</p>
+<h5 id="lea指令："><a href="#lea指令：" class="headerlink" title="lea指令："></a>lea指令：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lea 寄存器，[值]</span><br><span class="line">相当于mov 寄存器，值//lea是取内存地址或者说取[]内的值</span><br><span class="line">eg：lea eax,dword ptr ds:[41001]</span><br><span class="line">执行后，eax=00041001</span><br></pre></td></tr></table></figure>
+
+<h5 id="（三）位运算指令"><a href="#（三）位运算指令" class="headerlink" title="（三）位运算指令"></a>（三）位运算指令</h5><h6 id="and指令：逻辑与指令，按位进行运算"><a href="#and指令：逻辑与指令，按位进行运算" class="headerlink" title="and指令：逻辑与指令，按位进行运算"></a>and指令：逻辑与指令，按位进行运算</h6><p>mov al,01100011B<br>and al,00111011B<br>执行后：al&#x3D;00100011B</p>
+<p>**注：两个同时为真的结果才会为真（只有1 and 1才会为1） **</p>
+<p><strong>功能</strong>：通过该指令可将操作对象的相应位设为0，其他位不变。<br>例如–将al的第6位设为0：and al,10111111B</p>
+<h6 id="or指令：逻辑或指令，按位进行或运算"><a href="#or指令：逻辑或指令，按位进行或运算" class="headerlink" title="or指令：逻辑或指令，按位进行或运算"></a>or指令：逻辑或指令，按位进行或运算</h6><p>mov al,01100011B<br>or al,00111011B<br>执行后：al&#x3D;01111011B</p>
+<p><strong>注：两个同时为假的结果才会为假（只有0 or 0才会为0）</strong></p>
+<p><strong>功能</strong>：通过该指令可将操作对象的相应位设为1，其他位不变<br>例如–将al的第0位设为1：or al,00000001B</p>
+<h6 id="xor指令：按位异或运算"><a href="#xor指令：按位异或运算" class="headerlink" title="xor指令：按位异或运算"></a>xor指令：按位异或运算</h6><p>按位异或运算将两个运算分量的对应位按位遵照以下规则进行计算：<br>0 ^ 0 &#x3D; 0, 0 ^ 1 &#x3D; 1, 1 ^ 0 &#x3D; 1, 1 ^ 1 &#x3D; 0<br>即相应位的值相同的，结果为 0，不相同的结果为 1。<br>例如，2 ^ 6结果为4<br>因为2表示为二进制为0010，6表示为二进制为0110<br>两数只有第三位相异，因此最后的结果为0100，即为4</p>
+<h6 id="not指令：逻辑取反运算"><a href="#not指令：逻辑取反运算" class="headerlink" title="not指令：逻辑取反运算"></a>not指令：逻辑取反运算</h6><p>mov ax，010100000B<br>not ax<br>执行后：ax&#x3D;10101111B</p>
+<p><strong>注</strong>:1则为0，0则为1</p>
+<h5 id="（四）比较指令"><a href="#（四）比较指令" class="headerlink" title="（四）比较指令"></a>（四）比较指令</h5><h6 id="cmp指令："><a href="#cmp指令：" class="headerlink" title="cmp指令："></a>cmp指令：</h6><p>通过相关标志位的值可以看出比较结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cmp 操作对象1，操作对象2</span><br><span class="line">功能：操作对象1-操作对象2，但不保存结果，仅仅根据计算结果对标志寄存器进行设置</span><br><span class="line">mov ax,8</span><br><span class="line">mov bx,3</span><br><span class="line">cmp ax,bx</span><br><span class="line">执行后：(ax)=8</span><br><span class="line">ZF=0,PF=1,SF=0,CF=0,OF=0</span><br></pre></td></tr></table></figure>
+
+<h5 id="test指令：逻辑比较指令"><a href="#test指令：逻辑比较指令" class="headerlink" title="test指令：逻辑比较指令"></a>test指令：逻辑比较指令</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">test 操作数1，操作数2//将两个操作数进行逻辑与运算，并根据运算结果设置相关的标志位。但是，Test命令的两个操作数不会被改变。运算结果在设置过相关标记位后会被丢弃。（即test不会改变寄存器的值）</span><br><span class="line"></span><br><span class="line">（1）测试一方寄存器是否为空</span><br><span class="line">eg：eax=5</span><br><span class="line">test eax,eax</span><br><span class="line">je [0125]//test检测eax是否等于0，为0则je跳转，否则不跳转</span><br><span class="line"></span><br><span class="line">（2）测试一个位</span><br><span class="line">eg：test eax，100b</span><br><span class="line">jnz ****；如果eax右数第三个位为1，jnz会跳转</span><br><span class="line">jnz跳转的条件是ZF=0，即零标志位没被置位，逻辑与结果为1</span><br></pre></td></tr></table></figure>
+
+<h5 id="（五）跳转指令"><a href="#（五）跳转指令" class="headerlink" title="（五）跳转指令"></a>（五）跳转指令</h5><p><strong>jmp</strong>：无条件跳转，不根据标志位来改变程序运行逻辑<br><strong>je&#x2F;jz</strong>：等于则转移（ZF&#x3D;1）<br><strong>jne&#x2F;jnz</strong>：不等于则转移（ZF&#x3D;0）<br><strong>jb</strong>（判断无符号数）：低于则转移（CF&#x3D;1)<br><strong>jnb</strong>:不低于则转移（CF&#x3D;0）<br><strong>jbe</strong>：操作数1小于等于操作数2时，CF或ZF&#x3D;1则跳转<br><strong>jnbe</strong>：操作数大于操作数2时，CF和ZF&#x3D;0则跳转<br><strong>jl</strong>（判断有符号数）：SF&#x3D;1则跳转<br><strong>js</strong>：如果结果为负数，即SF&#x3D;1则跳转<br><strong>jns</strong>：如果结果为正数，即SF&#x3D;0则跳转<br><strong>jp&#x2F;jpe</strong>：如果二进制结果中1的个数为偶数，即PF&#x3D;1则跳转<br><strong>jnp&#x2F;jpo</strong>：如果二进制结果中1的个数为奇数，即PF&#x3D;0则跳转<br><strong>jo</strong>：OF&#x3D;1则跳转<br><strong>jno</strong>：OF&#x3D;0则跳转</p>
+<h5 id="（六）函数指令"><a href="#（六）函数指令" class="headerlink" title="（六）函数指令"></a>（六）函数指令</h5><h6 id="call指令："><a href="#call指令：" class="headerlink" title="call指令："></a>call指令：</h6><p>修改IP或同时修改CS和IP<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37564426/article/details/85332449?ops_request_misc=&request_id=&biz_id=102&utm_term=call%E6%8C%87%E4%BB%A4pushcs&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-85332449.nonecase&spm=1018.2226.3001.4450">汇编:call指令_汇编call指令主指令加子指令-CSDN博客</a></p>
+<p>(1)将当前的IP或CS和IP压入栈中<br>(2)转移（jmp）</p>
+<p>call指令不能实现短转移，除此之外，call指令实现转移的方法和jmp指令的原理相同</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">call 标号（将当前的IP压栈后，转到标号处执行指令）</span><br><span class="line">(1)(SP)=(SP)-2;((SS)*16+(SP))=(IP)</span><br><span class="line">(2)(IP)=(IP)+16位位移</span><br><span class="line">16位位移=“标号”处的地址-call指令后的第一个字节的地址</span><br><span class="line">16位位移的范围为-32769~32767，用补码表示</span><br><span class="line"></span><br><span class="line">call far ptr 标号</span><br><span class="line">(1)(SP)=(SP)-2;</span><br><span class="line">((SS)*16+(SP))=(CS);//push cs(call指令的下一条指令的cs地址)</span><br><span class="line">(SP)=(SP)-2;</span><br><span class="line">((SS)*16+(SP))=(IP)//push ip(call指令的下一条指令的ip地址）</span><br><span class="line">(2)(CS)=标号所在的段地址//jmp far ptr 标号</span><br><span class="line">(IP)=标号所在的偏移地址</span><br><span class="line"></span><br><span class="line">call 16位寄存器</span><br><span class="line">功能：(SP)=(SP)-2;</span><br><span class="line">((SS)*16+(SP))=(IP)//push ip</span><br><span class="line">(IP)=(16位寄存器)//jmp 16号寄存器</span><br><span class="line"></span><br><span class="line">call word ptr 内存单元地址</span><br><span class="line">push IP</span><br><span class="line">jmp word ptr 内存单元地址</span><br><span class="line"></span><br><span class="line">call dword ptr 内存单元地址</span><br><span class="line">push CS</span><br><span class="line">push IP</span><br><span class="line">jmp dword ptr 内存单元地址</span><br></pre></td></tr></table></figure>
+
+<h6 id="ret指令"><a href="#ret指令" class="headerlink" title="ret指令:"></a>ret指令:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用栈中的数据，修改IP的内容，实现近转移//pop ip</span><br><span class="line">（1）（IP）=（（ss）*16+（sp））</span><br><span class="line">（2）（sp）=（sp）+2</span><br></pre></td></tr></table></figure>
+
+<p><strong>注</strong>：call指令和ret指令一般搭配使用，call指令跳转之后，ret指令返回</p>
+<h5 id="（七）循环指令"><a href="#（七）循环指令" class="headerlink" title="（七）循环指令"></a>（七）循环指令</h5><h6 id="loop指令："><a href="#loop指令：" class="headerlink" title="loop指令："></a>loop指令：</h6><p>loop指令为循环指令，所有的循环指令都是短转移，在对应的机器码中包含转移的位移，而不是目的地址。<br>对IP修改范围为-128~127</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loop 标号</span><br><span class="line">（cx）=（cx）-1，如果（cx）不等于0，转移到标号处执行，（IP）=（IP）+8位位移</span><br><span class="line">（1）8位位移=“标号”处的地址-jcxz指令后的第一个字节的地址</span><br><span class="line">（2）8位位移的范围为-128~127，用补码表示</span><br><span class="line">若（cx）=0，什么也不做（程序向下执行）</span><br></pre></td></tr></table></figure>
+
+<h3 id="Reflector"><a href="#Reflector" class="headerlink" title="Reflector"></a>Reflector</h3><p>可以将.NET程序集中的中间语言反编译成C#或者Visual Basic代码。除了能将中间语言转换为C#或Visual Basic以外，Reflector还能够提供程序集中类及其成员的概要信息、提供查看程序集中中间语言的能力以及提供对第三方插件的支持。</p>
+<p>Reflector可以用于对代码的修改</p>
+<h3 id="Jadx-gui"><a href="#Jadx-gui" class="headerlink" title="Jadx-gui"></a>Jadx-gui</h3><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h5><p>jadx-gui 是一种基于 jadx 项目的图形界面工具，用于反编译 Android 应用程序的工具。通过使用jadx-gui，开发人员可以打开 APK（Android应用程序包）文件，并查看其反编译的源代码。这对于分析、理解和调试 Android 应用程序非常有用。jadx-gui 提供了一个用户友好的界面，使用户能够浏览应用程序的类、方法、变量等，并可以搜索特定的代码片段</p>
+<p>可以查看APK中classes.dex转化成出的jar文件，即源码文件</p>
+<h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xw1680/article/details/133472418?ops_request_misc=&request_id=&biz_id=102&utm_term=jadx-gui&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduweb~default-0-133472418.nonecase&spm=1018.2226.3001.4450">2024最新版Android逆向教程——第2天：dex反编译工具的安装和使用_jadx-CSDN博客</a></p>
+<h5 id="缺点及解决方案"><a href="#缺点及解决方案" class="headerlink" title="缺点及解决方案"></a>缺点及解决方案</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41872247/article/details/121925266?ops_request_misc=%7B%22request_id%22:%22171132786716800215058374%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=171132786716800215058374&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-121925266-null-null.nonecase&utm_term=jadx-gui&spm=1018.2226.3001.4450">Android反编译 jadx-gui基本用法_jadxgui-CSDN博客</a></p>
+<h6 id="APK过大时无法使用索引"><a href="#APK过大时无法使用索引" class="headerlink" title="APK过大时无法使用索引"></a>APK过大时无法使用索引</h6><p>jadx-gui缺点是如果遇到较大的APP，代码加起来超过30mb的话，这个软件的索引功能基本会失效，需要用Android studio来辅助。</p>
+<p><strong>在jadx-gui中，选择左上角的文件，另存为gradle工程。</strong></p>
+<p><img src="/imgs/Reverse-tools/jadx-gui_1.png"></p>
+<p>在保存之后，再用Android Studio打开另存为的工程，就可以使用索引了。</p>
+<h6 id="内存不足"><a href="#内存不足" class="headerlink" title="内存不足"></a>内存不足</h6><p>如果内存无论如何都不够用用，需要调大内存的话，这个时候就不要从github上下载exe文件了，下载zip文件并解压。</p>
+<p>只要打开bin目录下的jdax-gui.bat就能正常使用</p>
+<p>右键该文件，选择编辑</p>
+<p>搜索set DEFAULT_JVM_OPTS<br>在后面的”-Xms128M” “-Xmx4g”中的4g改为你想要开的内存大小即可，如果后面的内容为空就增加这些内容。</p>
+<h3 id="ResourceHacker"><a href="#ResourceHacker" class="headerlink" title="ResourceHacker"></a>ResourceHacker</h3><p>可以直接查看文件中的资源</p>
+<h3 id="PEiD"><a href="#PEiD" class="headerlink" title="PEiD"></a>PEiD</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lidabo/p/17298213.html">免杀|PEiD查壳、脱壳+汉化+工具打包 - DoubleLi - 博客园 (cnblogs.com)</a></p>
+
+      </section>
+
+      
+      
+        <nav class="article-nav">
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/02/26/Web/Web%E5%85%A5%E9%97%A8/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Web入门</h2>
+        </a>
+      
+      <div class="card-text--row">Newer</div>
+    </div>
+  </article>
+</div>
+          
+          
+            <div class="article-nav-item layout-padding">
+  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
+    
+    <div class="card-text">
+      
+        <a href="/2024/01/21/hexo-github%E7%9A%84%E6%90%AD%E5%BB%BA/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">hexo-github的搭建</h2>
+        </a>
+      
+      <div class="card-text--row">Older</div>
+    </div>
+  </article>
+</div>
+          
+        </nav>
+      
+
+      <section class="page-message-container layout-padding">
+        
+
+
+  
+  
+
+  
+  
+
+
+      </section>
+    </div>
+    <div class="widget-info">
+      <section class="widget-author widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-body">
+    
+      <img src="https://s.gravatar.com/avatar/2d6b803eea37de0257620d5fabee7e64?s=200&amp;r=g&amp;d=retro" class="soft-size--round soft-style--box" alt="Sukoshi">
+    
+    
+      <h2>Sukoshi</h2>
+    
+    
+      <p>贵在坚持</p>
+    
+
+    <div class="count-box">
+      <div class="count-box--item">
+        <svg class="icon icon-article" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M240.51564747 647.74217627h196.07203239c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806V165.10332731c0-33.18142087-30.16492806-60.32985613-60.32985612-60.32985611H245.04038668C225.43318342 104.7734712 210.35071939 119.85593522 210.35071939 139.46313845V617.57724821c0 16.59071043 13.57421762 30.16492806 30.16492808 30.16492806z m663.62841731-452.47392089v482.63884894c0 33.18142087-27.14843525 60.32985613-60.32985612 60.32985613H180.18579134c-33.18142087 0-60.32985613-27.14843525-60.32985612-60.32985613V195.26825538c-49.77213131 0-90.49478418 40.72265287-90.49478417 90.49478417v452.4739209c0 49.77213131 40.72265287 90.49478418 90.49478417 90.49478417h286.56681657c16.59071043 0 30.16492806 13.57421762 30.16492807 30.16492807s13.57421762 30.16492806 30.16492805 30.16492806h90.49478418c16.59071043 0 30.16492806-13.57421762 30.16492805-30.16492806s13.57421762-30.16492806 30.16492807-30.16492807h286.56681657c49.77213131 0 90.49478418-40.72265287 90.49478417-90.49478417V285.76303955c0-49.77213131-40.72265287-90.49478418-90.49478417-90.49478417zM587.41232014 647.74217627h191.54729318c19.60720323 0 34.68966726-15.08246403 34.68966729-34.68966727V134.93839925c0-16.59071043-13.57421762-30.16492806-30.16492808-30.16492805H617.57724821c-30.16492806 0-60.32985613 27.14843525-60.32985612 60.32985611v452.4739209c0 16.59071043 13.57421762 30.16492806 30.16492805 30.16492806z" fill="currentColor"></path>
+</svg>
+        <span>25</span>
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+        0
+      </div>
+      <div class="count-box--item">
+        <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+        4
+      </div>
+    </div>
+  </div>
+</section>
+
+      
+
+      
+<section class="widet-notice widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-notice" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M512 945.02305225v28.15620663a24.27259221 24.27259221 0 0 1-24.27259221 24.27259335H394.0352a48.54518557 48.54518557 0 0 1-41.74885888-23.78714112l-110.68302222-184.47170332a132.04290333 132.04290333 0 0 1-17.47626667-48.54518557h118.4502511a200.97706667 200.97706667 0 0 1 76.21594113 14.56355556l20.38897777 133.49925888a48.54518557 48.54518557 0 0 0 36.40888888 27.67075555l16.01991111 2.91271112a24.27259221 24.27259221 0 0 1 20.38897778 25.72894889zM997.45185223 463.45481443a194.18074112 194.18074112 0 0 1-38.8361489 116.50844445 24.75804445 24.75804445 0 0 1-36.4088889 0l-34.95253333-34.95253333a24.27259221 24.27259221 0 0 1-2.91271111-30.58346667 97.09036999 97.09036999 0 0 0 0-106.79940665 24.27259221 24.27259221 0 0 1 2.91271111-30.58346666l34.95253333-34.95253334a24.75804445 24.75804445 0 0 1 18.93262223-7.28177777 26.2144 26.2144 0 0 1 17.47626667 9.70903665A194.18074112 194.18074112 0 0 1 997.45185223 463.45481443z m-194.18074112-388.36148111v776.72296335a48.54518557 48.54518557 0 0 1-48.54518556 48.54518443h-28.64165888a48.54518557 48.54518557 0 0 1-33.98163001-14.07810332l-145.63555556-143.20829668A291.27111111 291.27111111 0 0 0 342.57730333 657.63555556H172.18370333a145.63555556 145.63555556 0 0 1-145.63555556-145.63555556v-97.09036999a145.63555556 145.63555556 0 0 1 145.63555556-145.63555556h170.3936a291.27111111 291.27111111 0 0 0 206.31703779-85.43952668l145.63555555-143.20829554a48.54518557 48.54518557 0 0 1 33.98162888-14.07810446H754.72592555a48.54518557 48.54518557 0 0 1 48.54518556 48.54518555z" fill="currentColor"></path>
+</svg>
+    <span>NOTICE</span>
+  </div>
+  <div class="widget-body">
+    <p>flex-block主题部分重构，详情查看https://github.com/miiiku/flex-block</p>
+  </div>
+</section>
+
+
+      <section class="widget-categorys widget-item layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-categories" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M900.3614811 257.09082106h-339.81629553l-67.96326003-101.9448889c-19.41807444-29.12711113-48.54518557-43.69066667-82.52681443-43.69066667H123.6385189c-53.39970333 0-97.09036999 43.69066667-97.09037113 97.09036999v582.54222222c0 53.39970333 43.69066667 97.09036999 97.09037113 97.09037002h776.7229622c53.39970333 0 97.09036999-43.69066667 97.09037113-97.09037002V354.18119104c0-53.39970333-43.69066667-97.09036999-97.09037113-97.09036998z m-97.09036999 242.72592554H220.72888889c-24.27259221 0-48.54518557-24.27259221-48.54518556-48.54518556s24.27259221-48.54518557 48.54518556-48.54518444h582.54222222c24.27259221 0 48.54518557 24.27259221 48.54518556 48.54518444s-24.27259221 48.54518557-48.54518556 48.54518556z" fill="currentColor"></path>
+</svg>
+    <span>CATEGORYS</span>
+  </div>
+  <div class="widget-body">
+    <ul class="categorys-list">
+      
+    </ul>
+  </div>
+</section>
+
+      <section class="widget-tags widget-item  layout-margin content-padding--primary soft-size--large soft-style--box">
+  <div class="widget-title">
+    <svg class="icon icon-tags" viewBox="0 0 1098 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M283.42180005 272q0-28.38857157-20.09142843-48.48000001t-48.47999998-20.09142842-48.48000002 20.09142842-20.09142846 48.48000001 20.09142846 48.48 48.48000002 20.09142843 48.47999998-20.09142843 20.09142843-48.48zM855.0332285 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.03999997 263.58857157q-20.9142853 19.81714313-48.75428534 19.81714312-28.38857157 0-48.20571468-19.81714312l-383.04-383.58857157q-20.36571468-19.81714313-34.55999999-54.10285688t-14.19428534-62.6742853l0-222.85714313q0-27.84000002 20.36571469-48.20571469t48.2057147-20.36571466l222.85714313 0q28.38857157 0 62.6742853 14.19428529t54.65142842 34.55999999l383.04000001 382.49142843q19.81714313 20.9142853 19.81714314 48.75428532zM1060.74751475 580.57142843q0 28.38857157-19.81714313 48.2057147l-263.04 263.58857157q-20.9142853 19.81714313-48.75428531 19.81714312-19.26857155 0-31.61142843-7.47428531t-28.38857159-24.13714314l251.79428534-251.7942853q19.81714313-19.81714313 19.81714308-48.20571469 0-27.84000002-19.81714308-48.75428531l-383.04000001-382.49142845q-20.36571468-20.36571468-54.65142842-34.55999999t-62.67428532-14.19428534l120 0q28.38857157 0 62.67428532 14.19428534t54.65142842 34.55999999l383.03999998 382.49142845q19.81714313 20.9142853 19.81714314 48.75428531z" fill="currentColor"></path>
+</svg>
+    <span>TAGS</span>
+  </div>
+  <div class="widget-body">
+    <div class="tags-cloud">
+      <a href="/tags/Crypto/" style="font-size: 10px;" class="tags-cloud-0">Crypto</a> <a href="/tags/Reverse/" style="font-size: 20px;" class="tags-cloud-10">Reverse</a> <a href="/tags/Web/" style="font-size: 15px;" class="tags-cloud-5">Web</a> <a href="/tags/study/" style="font-size: 10px;" class="tags-cloud-0">study</a>
+    </div>
+  </div>
+</section>
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons">
+      
+        
+      
+        
+      
+        
+      
+        
+          <a href="https://github.com/miiiku/" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+</svg>
+          </a>
+        
+      
+        
+          <a href="https://twitter.com/guanquanhong" class="soft-size--primary soft-style--box" target="_blank" rel="noopener noreferrer">
+            <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+</svg>
+          </a>
+        
+      
+    </div>
+     
+    <p>&copy; 2024 <a href="/" target="_blank">John Doe</a></p>
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+
+    <p>
+      <a href="javascript:;" id="theme-light">🌞 浅色</a>
+      <a href="javascript:;" id="theme-dark">🌛 深色</a>
+      <a href="javascript:;" id="theme-auto">🤖️ 自动</a>
+    </p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed soft-size--round soft-style--box">
+    <svg class="icon icon-back-to-top" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"></path>
+      <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"></path>
+      <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"></path>
+    </svg>
+  </div>
+
+  
+  <!-- aplayer -->
+
+
+<!-- dplayer -->
+
+
+<!-- copy button  -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+<!-- https://clipboardjs.com/ -->
+
+
+<script type="text/javascript">
+	(function () {
+		function getCodeType (elem) {
+			const classs = Array.from(elem.classList.values());
+			if (classs && classs.length > 1) {
+				return classs[1];
+			}
+			return "plain";
+		}
+
+		window.addEventListener("DOMContentLoaded", () => {
+			const copyBtnClass = "copy-btn";
+			//  instantiate clipboardjs 
+			const clipboard = new ClipboardJS('.' + copyBtnClass);
+
+			clipboard.on('success', function (e) {
+				console.info('Action:', e.action);
+				console.info('Text:', e.text);
+				console.info('Trigger:', e.trigger);
+				if (e.trigger) {
+					e.trigger.classList.add("copied");
+					setTimeout(() => {
+						e.trigger.classList.remove("copied");
+					}, 3000);
+				}
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function (e) {
+				console.error('Action:', e.action);
+				console.error('Trigger:', e.trigger);
+			});
+
+			document.querySelectorAll('figure.highlight').forEach((elem) => {
+				const codeContent = elem.querySelector("td.code");
+				const copyButton = document.createElement('button');
+				copyButton.setAttribute("class", copyBtnClass);
+				copyButton.setAttribute("title", "Copy Code");
+				copyButton.setAttribute("data-clipboard-text", codeContent.innerText);
+				elem.insertBefore(copyButton, elem.children[0]);
+			});
+		})
+	})();
+</script>
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+</body>
+</html>
