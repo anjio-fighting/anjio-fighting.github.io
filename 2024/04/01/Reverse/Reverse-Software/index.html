@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-04-02T02:58:10.729Z" itemprop="dateUpdated">2024-04-02</time>
+              <time  class="article-updated" datetime="2024-06-20T01:07:41.676Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -163,13 +163,13 @@
 <p>#通用寄存器：RAX RBX RCX RDX RSI RDI R8~R15<br>#栈顶指针寄存器ESP、栈底指针寄存器EBP<br>#指令计数器EIP（保存下一条即将执行的执行的地址）<br>#段寄存器CS DS SS ES FS GS</p>
 <p><strong>x16</strong></p>
 <p>#通用寄存器：AX BX CX DX SI DI<br>#栈顶指针寄存器ESP、栈底指针寄存器EBP<br>#指令计数器EIP（保存下一条即将执行的执行的地址）<br>#段寄存器CS DS SS ES FS GS</p>
-<p><img src="/imgs/Reverse-Software/1.jpg"></p>
+<p><img src="/../imgs/Reverse/Reverse-Software/1.jpg"></p>
 <p>R8~R15进行拆分时的命名规则：R8d（低32位），R8w（高16位），R8b（低16位）</p>
 <p><strong>标志寄存器</strong></p>
 <p>AF：辅助进位标志——运算结果在第3位进位的时候置1<br>PF：奇偶校验标志——运算结果的最低有效字节有偶数个1时置1<br>SF：符号标志——有符号整型的符号位为1时置1，代表这是一个负数<br>ZF：零标志位——运算结果全为0时置1<br>OF：溢出标志位——运算结果在被操作数是有符号数且溢出时置1<br>CF：进位标志——运算结果向高位以上进位时置1，用来判断无符号数的溢出</p>
-<h5 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h5><p><img src="/imgs/Reverse-Software/2.jpg"></p>
-<h5 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h5><p><img src="/imgs/Reverse-Software/3.jpg"></p>
-<h5 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h5><p><img src="/imgs/Reverse-Software/4.jpg"></p>
+<h5 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h5><p><img src="/../imgs/Reverse/Reverse-Software/2.jpg"></p>
+<h5 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h5><p><img src="/../imgs/Reverse/Reverse-Software/3.jpg"></p>
+<h5 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h5><p><img src="/../imgs/Reverse/Reverse-Software/4.jpg"></p>
 <h3 id="2、汇编与反汇编"><a href="#2、汇编与反汇编" class="headerlink" title="2、汇编与反汇编"></a>2、汇编与反汇编</h3><p><strong>汇编</strong>是直接翻译汇编语句为对应的机器代码，并直接将相邻的各条语句放在一起</p>
 <p><strong>反汇编</strong>是将机器代码编译回汇编语言</p>
 <p><strong>注</strong>：冯诺依曼架构模糊了代码与数据的区别界限，在代码节中可能穿插跳转表，常量池（ARM），普通常量数据，甚至恶意的干扰数据等。所以直接一条条连续地向下解析指令往往会出现问题</p>
@@ -179,7 +179,7 @@
 <p><strong>SystemV x64</strong>：在Linux、MacOS上使用，使用RDI、RSI、RCX、RDX、R8、R9，传递前6个参数，剩下的从右至左压入栈中</p>
 <h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>局部变量有“易失性”：一旦函数返回，所有局部变量失效。</p>
 <p>因此，将局部变量存放在栈上，在每次函数被调用时，程序从栈上分配一段空间，作为存储局部变量的区域。</p>
-<p><img src="/imgs/Reverse-Software/5.jpg"></p>
+<p><img src="/../imgs/Reverse/Reverse-Software/5.jpg"></p>
 <p>把每个函数自己的这一片区域称为帧，由于这些帧都在栈上，又被称为<strong>栈帧</strong>（由局部变量，父栈帧的值，返回地址，参数四部分构成）。</p>
 <p>栈的内存区域并不一定是固定的，随着每次调用的路径不同，栈帧的位置也会不同。<br>虽然栈的内容随着进栈、出栈会一直不断变化，但是一个函数中每个局部变量相对于该函数栈帧的偏移都是固定的，可以引入一个寄存器ebp（称为栈指针）专门存储当前栈帧的位置。</p>
 <h5 id="ebp栈指针"><a href="#ebp栈指针" class="headerlink" title="ebp栈指针"></a>ebp栈指针</h5><p>程序在函数初始化阶段赋值ebp为栈帧中间的某个位置，这样可以用ebp引用所有的局部变量。由于上一层的父函数也要使用ebp，因此要在函数开始时先保存ebp，再赋值ebp为自己的栈帧的值。ebp再初始化后实际上指向的是父栈帧地址的存储位置。</p>

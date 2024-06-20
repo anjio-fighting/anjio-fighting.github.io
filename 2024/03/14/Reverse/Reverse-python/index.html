@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-04-18T13:02:38.097Z" itemprop="dateUpdated">2024-04-18</time>
+              <time  class="article-updated" datetime="2024-06-20T01:05:01.062Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -146,39 +146,39 @@
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
         <h1 id="python逆向"><a href="#python逆向" class="headerlink" title="python逆向"></a>python逆向</h1><p><strong>题目：xctf bad_python</strong></p>
 <p>题目zip中是一个pyc文件</p>
-<p><img src="/imgs/Reverse-python/1.png" alt="1"></p>
+<p><img src="/../imgs/Reverse/Reverse-python/1.png"></p>
 <h3 id="1、pyc反编译py"><a href="#1、pyc反编译py" class="headerlink" title="1、pyc反编译py"></a>1、pyc反编译py</h3><h5 id="pyc文件反编译为py文件的工具："><a href="#pyc文件反编译为py文件的工具：" class="headerlink" title="pyc文件反编译为py文件的工具："></a>pyc文件反编译为py文件的工具：</h5><p>1、uncompyle6</p>
 <p>2、pycdc</p>
 <h5 id="uncompyle6"><a href="#uncompyle6" class="headerlink" title="uncompyle6"></a>uncompyle6</h5><p>这个工具在python3.8及一下的版本才能使用。<br>注意使用时<strong>python版本</strong>切换到<strong>3.8</strong></p>
-<h6 id="反编译指令"><a href="#反编译指令" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/imgs/Reverse-python/2.png"></p>
+<h6 id="反编译指令"><a href="#反编译指令" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/../imgs/Reverse/Reverse-python/2.png"></p>
 <p>执行该指令后即可生成py文件</p>
 <h5 id="pycdc"><a href="#pycdc" class="headerlink" title="pycdc"></a>pycdc</h5><p>我将pycdc安装在了kali里面，将pyc文件拖入Linux的桌面处，打开终端执行反编译指令</p>
-<h6 id="反编译指令-1"><a href="#反编译指令-1" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/imgs/Reverse-python/3.png"></p>
+<h6 id="反编译指令-1"><a href="#反编译指令-1" class="headerlink" title="反编译指令"></a>反编译指令</h6><p><img src="/../imgs/Reverse/Reverse-python/3.png"></p>
 <p>注意在root下的pycdc终端中执行反编译指令：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./pycdc /home/anjio/Desktop/文件名</span><br></pre></td></tr></table></figure>
 
 <h3 id="2、修改文件头"><a href="#2、修改文件头" class="headerlink" title="2、修改文件头"></a>2、修改文件头</h3><p><strong>出现magic表示这个pyc文件头是坏的</strong></p>
 <p>用010editor打开pyc文件查看文件头</p>
-<p><img src="/imgs/Reverse-python/4.png" alt="4"></p>
+<p><img src="/../imgs/Reverse/Reverse-python/4.png"></p>
 <p>黄色标记这部分就是pyc文件的文件头</p>
 <h5 id="文件头包含的信息包括："><a href="#文件头包含的信息包括：" class="headerlink" title="文件头包含的信息包括："></a><strong>文件头包含的信息包括：</strong></h5><p>前四个字节——版本信息，比如python的3.6,3.8等</p>
 <p>中间8个字节——不用管，修改时间而已，对我们来说没用</p>
 <p>后面四个字节——包含大小信息和校验码</p>
 <p>一般这种错误就是因为这个文件的文件头信息被修改了，我们需要去修复，也就是将文件头修复正确中间我们最重要的一步就是找到他是什么版本的pyc文件，不同版本的文件头不同。</p>
 <h5 id="寻找文件头的方法："><a href="#寻找文件头的方法：" class="headerlink" title="寻找文件头的方法："></a>寻找文件头的方法：</h5><p>1、查看题目名字</p>
-<p><img src="/imgs/Reverse-python/1.png" alt="1"></p>
+<p>1</p>
 <p>由pyc文件名可知这是python3.6版本的pyc文件</p>
 <p>2、查看文件头</p>
-<p><img src="/imgs/Reverse-python/5.png" alt="5"></p>
+<p><img src="/../imgs/Reverse/Reverse-python/5.png" alt="5"></p>
 <p>33 0D 就是python3.6版本的文件名开头</p>
 <h5 id="找正确的-pyc文件头方法"><a href="#找正确的-pyc文件头方法" class="headerlink" title="找正确的.pyc文件头方法"></a>找正确的.pyc文件头方法</h5><p>知道.pyc对应的正确的python版本之后，修改.pyc文件头</p>
 <p>1、搜百度，查找相应版本的python的.pyc文件头是怎样的</p>
 <p>2、用相对应的python版本写一个.pyc文件，放到010 editor里面去看</p>
 <h5 id="python3-6对应的正确的-pyc文件头"><a href="#python3-6对应的正确的-pyc文件头" class="headerlink" title="python3.6对应的正确的.pyc文件头"></a>python3.6对应的正确的.pyc文件头</h5><p>红色部分为修改的内容</p>
-<p><img src="/imgs/Reverse-python/6.png" alt="6"></p>
+<p><img src="/../imgs/Reverse/Reverse-python/6.png"></p>
 <p>将修改后的.pyc文件保存到桌面</p>
 <p>再次运行uncompyle6，即可生成py文件</p>
-<p><img src="/imgs/Reverse-python/7.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-python/7.png"></p>
 <p>python文件中出现代码，进行解题即可<strong>（bad_python的py代码暂时看不懂，之后再解）</strong></p>
 <h1 id="IDApython"><a href="#IDApython" class="headerlink" title="IDApython"></a>IDApython</h1><h5 id="IDAPython由三个独立模块组成："><a href="#IDAPython由三个独立模块组成：" class="headerlink" title="IDAPython由三个独立模块组成："></a>IDAPython由三个独立模块组成：</h5><p>第一个是idc，它是封装IDA的IDC函数的兼容性模块。</p>
 <p>第二个模块是idautils，这是IDA里的一个高级实用函数。</p>

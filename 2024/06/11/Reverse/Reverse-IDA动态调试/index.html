@@ -109,6 +109,11 @@
             <time  class="article-date" datetime="2024-06-11T10:15:23.000Z" itemprop="datePublished">2024-06-11</time>
           </h2>
           
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-06-20T01:01:00.503Z" itemprop="dateUpdated">2024-06-20</time>
+            </h2>
+          
           
           <ul class="wrap-list dark">
   
@@ -147,41 +152,41 @@
 <p>（3）<strong>输入如下指令运行调试服务器组件</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./linux_server64</span><br></pre></td></tr></table></figure>
 
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger1.png"></p>
-<p>（4）<strong>打开windows下的IDA，下好断点，选择remote linux debugger进行远程调试</strong></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger2.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger1.png"></p>
+<p>（4）<strong>打<img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger2.png" alt="remote linux debugger2">开windows下的IDA，下好断点，选择remote linux debugger进行远程调试</strong></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger3.png"></p>
 <p>（5）<strong>配置调试器</strong></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger3.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger4.png"></p>
 <p>（6）<strong>选择ok运行即可</strong></p>
 <p>（7）<strong>查看linux的ip地址</strong></p>
 <p>在linux终端输入指令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
 
 <p>即可查看虚拟机ip地址</p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/remote%20linux%20debugger4.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger4.png"></p>
 <h1 id="Local-Windows-debugger"><a href="#Local-Windows-debugger" class="headerlink" title="Local Windows debugger"></a>Local Windows debugger</h1><p>例题：变种base64解码（题目路径：G:\Reverse题目\逆向分析之密码学）</p>
 <p>（1）<strong>选择调试器后端为Local Windows debugger</strong></p>
 <p>（2）<strong>设置断点</strong>（快捷键F2），</p>
 <p>本题设置断点情况如下</p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger1.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger1.png"></p>
 <hr>
 <p>（3）<strong>按绿色三角形启动程序，再按F9运行程序</strong></p>
 <p>情况如下</p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger2.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger2.png"></p>
 <p>（4）<strong>输入任意字符串，按回车键程序运行至第二个断点处</strong></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger3.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger3.png"></p>
 <p>（5）<strong>查看变量”Debugger-Debugger Windows-Locals，打开查看局部变量的窗口</strong></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger4.png"></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger5.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger4.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger5.png"></p>
 <p>执行程序至base64_decode之后，v5被修改成另一个值，但是实际上v5是一个字符串，存放着正确的输入内容</p>
 <h3 id="获取v5的内容的方法如下："><a href="#获取v5的内容的方法如下：" class="headerlink" title="获取v5的内容的方法如下："></a>获取v5的内容的方法如下：</h3><h5 id="（一）："><a href="#（一）：" class="headerlink" title="（一）："></a>（一）：</h5><p><strong>Locals窗口中可以看出v5的Location为rdi，在寄存器窗口可以看到rdi的值，单击其值右侧的按钮，选择jump即可在反汇编窗口中跳转到对应的位置</strong></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger6.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger6.png"></p>
 <p>可以看到flag出现在汇编窗口，选中flag部分按a，将其转为字符串显示</p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger7.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger7.png"></p>
 <h5 id="（二）："><a href="#（二）：" class="headerlink" title="（二）："></a>（二）：</h5><p><strong>修改v5的类型，将_BYTE*修改为char*，从而将其在Locals显示出来</strong></p>
 <p>具体操作为：在伪代码窗口中按Y键，修改v5类型并确认，然后在Locals窗口中右键单击Refresh刷新</p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger8.png"></p>
-<p><img src="/imgs/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger9.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger8.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-IDA%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/Local%20Windows%20debugger9.png"></p>
 <p><strong>注：</strong>Locals中变量的值在远离被调用位置时并不可靠，请仅在该变量被引用时或明确知道该变量生存周期时再相信Locals显示的值</p>
 
       </section>

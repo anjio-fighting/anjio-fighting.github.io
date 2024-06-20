@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-06-20T00:33:59.443Z" itemprop="dateUpdated">2024-06-20</time>
+              <time  class="article-updated" datetime="2024-06-20T01:20:31.772Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -154,9 +154,9 @@
 <p>例如，当偏移量是3的时候，所有的字母A将被替换成D，B变成E，以此类推。</p>
 <p>当题目没有给出位移量的时候(我就没见题目给过)就全部给列出来然后寻找真正的字符串。记住：他只<strong>位移字母</strong></p>
 <p>以下是凯撒加密的伪代码</p>
-<p><img src="/imgs/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E4%BC%AA%E4%BB%A3%E7%A0%81.png"></p>
+<p><img src="/../imgs/Crypto/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/%E5%87%AF%E6%92%92%E5%8A%A0%E5%AF%86%E4%BC%AA%E4%BB%A3%E7%A0%81.png"></p>
 <h6 id="变异凯撒"><a href="#变异凯撒" class="headerlink" title="变异凯撒"></a>变异凯撒</h6><p>密文中每个字母的偏移量都不相同，具体解密规则需要自己找规律</p>
-<p><img src="/imgs/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/ASCII%E7%A0%81%E5%9B%BE-17188435897103.jpeg"></p>
+<p><img src="/../imgs/Crypto/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/ASCII%E7%A0%81%E5%9B%BE.jpeg"></p>
 <h3 id="rot族"><a href="#rot族" class="headerlink" title="rot族"></a>rot族</h3><h5 id="ROT5"><a href="#ROT5" class="headerlink" title="ROT5"></a>ROT5</h5><p>只对<strong>数字</strong>进行编码，用当前数字往前数的第5个数字替换当前数字</p>
 <p>例如当前为0，编码后变成5，当前为1，编码后变成6，以此类推顺序循环。</p>
 <h5 id="ROT13"><a href="#ROT13" class="headerlink" title="ROT13"></a>ROT13</h5><p>ROT13（回转13位）是一种简易的替换式密码算法。应用ROT13到一段文字上仅仅只需要检查字母顺序并取代它在13位之后的对应字母，有需要超过时则重新绕回26英文字母开头即可。A换成N、B换成O、依此类推到M换成Z，然后串行反转：N换成A、O换成B、最后Z换成M。只有这些出现在英文字母里的字符受影响，数字、符号、空白字符以及所有其他字符都不变。替换后的字母大小写保持不变。</p>
@@ -188,11 +188,11 @@
 <li>抗碰撞性（在原始数据固定的情况下，<strong>几乎不会出现两个数据的MD5相同</strong>）</li>
 </ol>
 <h3 id="RSA加密"><a href="#RSA加密" class="headerlink" title="RSA加密"></a>RSA加密</h3><p><strong>RSA算法参数</strong></p>
-<p><img src="/imgs/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/RSA%E7%AE%97%E6%B3%95%E5%8F%82%E6%95%B0.png"></p>
+<p><img src="/../imgs/Crypto/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/RSA%E7%AE%97%E6%B3%95%E5%8F%82%E6%95%B0.png"></p>
 <p><strong>RSA加密</strong></p>
-<p><img src="/imgs/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/RSA%E5%8A%A0%E5%AF%86.png"></p>
+<p><img src="/../imgs/Crypto/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/RSA%E5%8A%A0%E5%AF%86.png"></p>
 <p><strong>RSA解密</strong></p>
-<p><img src="/imgs/Crypto/Crypto%E5%85%A5%E9%97%A8/RSA%E8%A7%A3%E5%AF%86.png"></p>
+<p><img src="/../imgs/Crypto/Crypto%E5%AF%86%E7%A0%81%E7%89%B9%E5%BE%81/RSA%E8%A7%A3%E5%AF%86.png"></p>
 <p><strong>伪代码</strong>中判别是rsa加密解密的函数：</p>
 <p>__gmpz_init_set_str 其实就是 mpz_init_set_str </p>
 <p>int mpz_init_set_str (mpz_t rop, const char *str, int base) 函数：</p>

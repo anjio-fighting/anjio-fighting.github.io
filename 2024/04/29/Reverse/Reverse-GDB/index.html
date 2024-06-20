@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-05-11T01:39:53.857Z" itemprop="dateUpdated">2024-05-11</time>
+              <time  class="article-updated" datetime="2024-06-20T00:57:14.817Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -195,20 +195,20 @@
 <p>step(简写 s) ：单步执行程序，但是遇到函数会进入函数；</p>
 <h1 id="例题练习"><a href="#例题练习" class="headerlink" title="例题练习"></a>例题练习</h1><p><strong>攻防世界 simple-check-100</strong></p>
 <p>1、先用IDA分析主函数，发现只需要让if成立即可得到flag，即check_key(v9)&#x3D;&#x3D;1</p>
-<p><img src="/imgs/Reverse-GDB/1.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-GDB/1.png"></p>
 <p>2、在Linux中用gdb调试，修改寄存器的值</p>
 <p>先将文件拖入Ubuntu，再打开终端，输入gdb，启动调试程序</p>
 <p>打开文件进行调试</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file 文件名</span><br></pre></td></tr></table></figure>
 
 <p>设置断点，一个设置在主函数，一个设置在if判断的位置,r运行程序</p>
-<p><img src="/imgs/Reverse-GDB/2.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-GDB/2.png"></p>
 <p>if判断位置的地址用IDA查看，test eax，eax就是判断if是否成立的位置</p>
-<p><img src="/imgs/Reverse-GDB/2%EF%BC%881%EF%BC%89.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-GDB/2%EF%BC%881%EF%BC%89.png"></p>
 <p>3、c继续运行程序直到下一个断点前，任意输入key的值</p>
-<p><img src="/imgs/Reverse-GDB/3.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-GDB/3.png"></p>
 <p>4、此时eax的值为0，将其修改为1，继续运行程序即可得到flag</p>
-<p><img src="/imgs/Reverse-GDB/4.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-GDB/4.png"></p>
 
       </section>
 

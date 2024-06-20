@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-06-15T02:41:09.898Z" itemprop="dateUpdated">2024-06-15</time>
+              <time  class="article-updated" datetime="2024-06-20T01:10:56.873Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -153,7 +153,7 @@
 <p>4、系统相关（无法模拟指令）</p>
 <p>5、逻辑运算</p>
 <h3 id="逻辑运算指令"><a href="#逻辑运算指令" class="headerlink" title="逻辑运算指令"></a>逻辑运算指令</h3><p>VMP的逻辑运算指令：nor<br>这个指令在电路门中叫NOR门，它由三条指令组成，即not not and。与NAND门一样，用它可以模拟 not and xor or这四条逻辑运算指令。</p>
-<p><img src="/imgs/Reverse-VMProtect/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A41.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-VMProtect/%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E6%8C%87%E4%BB%A41.png"></p>
 <p>转换公式：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">P</span>(a,b)=~a &amp; ~b</span><br><span class="line"></span><br><span class="line"><span class="built_in">not</span>(a)=<span class="built_in">P</span>(a，a)</span><br><span class="line"></span><br><span class="line"><span class="built_in">and</span>(a，b)=<span class="built_in">P</span>(<span class="built_in">P</span>(a，a)，<span class="built_in">P</span>(b，b))</span><br><span class="line"></span><br><span class="line"><span class="built_in">or</span>(a，b)=<span class="built_in">P</span>(<span class="built_in">P</span>(a，b)，<span class="built_in">P</span>(a，b))</span><br><span class="line"></span><br><span class="line"><span class="built_in">xor</span>(a，b)=<span class="built_in">P</span>(<span class="built_in">P</span>(<span class="built_in">P</span>(a，b)，<span class="built_in">P</span>(b，b)),<span class="built_in">P</span>(a,b))</span><br></pre></td></tr></table></figure>
 

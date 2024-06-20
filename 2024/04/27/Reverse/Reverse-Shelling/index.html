@@ -111,7 +111,7 @@
           
             <h2 class="last-time">
               <span>最后更新于</span>
-              <time  class="article-updated" datetime="2024-04-28T23:42:53.473Z" itemprop="dateUpdated">2024-04-29</time>
+              <time  class="article-updated" datetime="2024-06-20T01:06:49.804Z" itemprop="dateUpdated">2024-06-20</time>
             </h2>
           
           
@@ -147,7 +147,7 @@
         <h1 id="壳的分类"><a href="#壳的分类" class="headerlink" title="壳的分类"></a>壳的分类</h1><p><strong>压缩壳</strong>：减小程序体积<br><strong>加密壳</strong>：通常配合压缩壳，导致程序体积增大</p>
 <p>UPX、ASPack注重压缩代码<br>VMP、ASProtect注重保护代码</p>
 <h1 id="脱壳方法"><a href="#脱壳方法" class="headerlink" title="脱壳方法"></a>脱壳方法</h1><h3 id="静态法"><a href="#静态法" class="headerlink" title="静态法"></a>静态法</h3><p>使用脱壳工具 upx -d</p>
-<p><img src="/imgs/Reverse-Shelling/%E8%84%B1%E5%A3%B3%E6%AD%A5%E9%AA%A4.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E8%84%B1%E5%A3%B3%E6%AD%A5%E9%AA%A4.png"></p>
 <h3 id="动态法"><a href="#动态法" class="headerlink" title="动态法"></a>动态法</h3><h5 id="OEP"><a href="#OEP" class="headerlink" title="OEP"></a>OEP</h5><p>oep：orignal entry point：未加壳的程序的真正的入口点，是手动脱壳的目标。</p>
 <p>一般加壳程序在使用Ollydbg等动态调试工具时，会停在壳的预处理块。即处在对于程序原始代码块的解压或解密操作之前，在运行完程序自脱壳模块后，会停留在程序加壳之前的OEP位置，此时是dump程序的最佳时期。脱壳时在真实OEP处下int3断点，就可以捕捉到程序代码段完全恢复的状态。因此，寻找加壳程序的正确OEP，也成了手动脱壳时的第一要务。</p>
 <h5 id="IAT（导入地址表）"><a href="#IAT（导入地址表）" class="headerlink" title="IAT（导入地址表）"></a>IAT（导入地址表）</h5><p>导入被程序调用但其执行代码不在程序中的函数。这些函数代码位于一个或多个DLL（动态链接库）中。当PE文件被装入内存的时候，Windows装载器才能装入DLL，并将调用导入函数的指令和函数实际所处的地址联系起来（动态链接），这些操作就需要导入表完成。其中导入表的地址就是函数实际地址。</p>
@@ -171,23 +171,22 @@
 <li>F9运行</li>
 <li>删除断点后即可分析</li>
 </ul>
-<h5 id="Xdbg"><a href="#Xdbg" class="headerlink" title="Xdbg"></a>Xdbg</h5><h6 id="找到正常的函数位置"><a href="#找到正常的函数位置" class="headerlink" title="找到正常的函数位置"></a>找到正常的函数位置</h6><p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%951.png"></p>
+<h5 id="Xdbg"><a href="#Xdbg" class="headerlink" title="Xdbg"></a>Xdbg</h5><h6 id="找到正常的函数位置"><a href="#找到正常的函数位置" class="headerlink" title="找到正常的函数位置"></a>找到正常的函数位置</h6><p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%951.png"></p>
 <p>按F8单步执行pushad指令</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%952.png"></p>
-<p>设置硬件读取断点：在内存窗口&#x2F;栈窗口中选定目标地址，单击右键，在快捷菜单中选择“断点——硬件断点，访问”，选择字节数</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%953.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%952.png">设置硬件读取断点：在内存窗口&#x2F;栈窗口中选定目标地址，单击右键，在快捷菜单中选择“断点——硬件断点，访问”，选择字节数</p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%953.png"></p>
 <p>设置完成，按F9运行程序，再次中断在一个不同的地址</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%954.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%954.png"></p>
 <p>硬件断点已经完成了使命，现在删除断点，防止后续触发</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%955.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%955.png"></p>
 <p>将光标移动到最后的jump，按F4，使程序执行到光标处</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%956.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%956.png"></p>
 <p>按F8执行跳转，此时出现了正常函数的开头和结尾。</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%957.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%957.png"></p>
 <h6 id="对程序进行dump"><a href="#对程序进行dump" class="headerlink" title="对程序进行dump"></a>对程序进行dump</h6><p>选择”插件——Scylla“</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%958.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%958.png"></p>
 <p>点击IAT Autoserch之后，点击dump</p>
-<p><img src="/imgs/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%959.png"></p>
+<p><img src="/../imgs/Reverse/Reverse-Shelling/%E5%8A%A8%E6%80%81%E6%B3%959.png"></p>
 <p>导出文件后，即可得到脱壳的文件</p>
 <h5 id="3、一步到达OEP法"><a href="#3、一步到达OEP法" class="headerlink" title="3、一步到达OEP法"></a>3、一步到达OEP法</h5><p>找到离OEP或大jmp近的popad，下int3断点，然后直接运行到断点处实现脱壳</p>
 <p><strong>要点</strong></p>
